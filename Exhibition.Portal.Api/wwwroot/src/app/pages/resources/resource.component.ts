@@ -13,6 +13,6 @@ import { ActivatedRoute, Router} from '@angular/router';
     }
     ngOnInit():void{
       const that = this;
-      console.log(this.url.queryParams);
+      //console.log(this.url.queryParams);
     }
   }
