@@ -9,10 +9,12 @@ import {TerminalComponent} from './pages/terminal/terminal.component';
 import{ NavigationComponent} from './pages/navigation/navigation.component';
 import{ ManagementService } from './services/ManagementService'
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { TopbBarComponent } from './pages/topbar/topbar.component';
+import { FooterComponent } from './pages/footer/footer.component';
 
 @NgModule({
   declarations: [
-    AppComponent,DashboardComponent,ResourceComponent,TerminalComponent,NavigationComponent
+    AppComponent,DashboardComponent,ResourceComponent,TerminalComponent,NavigationComponent,TopbBarComponent,FooterComponent
   ],
   imports: [
     BrowserModule,    AppRoutingModule,HttpClientModule

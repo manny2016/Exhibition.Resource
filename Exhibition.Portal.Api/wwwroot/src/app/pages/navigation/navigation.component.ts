@@ -16,7 +16,6 @@ export class NavigationComponent implements OnInit{
         const that = this;
         that.service.GetSidebars().subscribe(source=>{
             that.Navigation = source;
-            console.log(that.Navigation);
         });
     }
     collapse(sidebar:Sidebar){

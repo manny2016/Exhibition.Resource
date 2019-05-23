@@ -9,10 +9,12 @@ import { ActivatedRoute, Router} from '@angular/router';
   @Injectable()
   export class ResourceComponent implements OnInit{
     private type:string;
-    constructor(){     
+    constructor(private route:ActivatedRoute ,private router:Router){     
     }
     ngOnInit():void{
       const that = this;
-      //console.log(this.url.queryParams);
+      this.route.paramMap.subscribe(params => {
+        console.log(params.get("type"));
+      })
     }
   }
