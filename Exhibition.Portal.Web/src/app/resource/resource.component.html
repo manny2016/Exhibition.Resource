@@ -4,50 +4,66 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header card-header-danger">
-                        <h4 class="card-title ">所有资源</h4>
+                        <h4 class="card-title ">所有资源(/assets/userfiles)</h4>
                         <p class="card-category">维护播放内容包括视频,图片集,H5网页等</p>
                     </div>
                     <div class="card-body">
+                        <div class="inline-block">
+
+                            <div class="dropdown">
+                                <button mat-raised-button type="submit" class="btn btn-primary ">
+                                    <i class="material-icons">home</i>
+                                    根
+                                </button>
+                                <button class="btn btn-white dropdown-toggle" type="button" 
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    更多操作
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <a class="dropdown-item" href="#">新建文件夹</a>
+                                    <a class="dropdown-item" href="#">上一级</a>
+                                    <a class="dropdown-item" href="#">上传文件</a>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
                         <div class="table-responsive">
-                            <table datatable [dtOptions]="dtOptions" class="table">
-                                <thead class=" text-primary">
-                                  <tr>
-                                    <th>Id</th>
-                                    <th>资源类型</th>
-                                    <th>名称</th>
-                                    <th>存放位置</th>
-                                    <th></th>
-                                  </tr>
+                            <table class="table">
+                                <thead class="text-primary">
+                                    <th>#名称</th>
+                                    <th>路径</th>
+                                    <th>操作</th>
                                 </thead>
                                 <tbody *ngIf="resources?.length != 0">
+                                    <tr>
+                                        <td colspan="3"><a class="btn-white" href="/image">
+                                            <i class="material-icons">folder</i>上一级...</a></td>
+                                    </tr>
                                     <tr *ngFor="let resource of resources">
-                                        <td>{{ resource.id }}</td>
-                                        <td>{{ resource.type }}</td>
-                                        <td>{{ resource.name }}</td>
+                                        <td>
+                                            <a class="" href="/image">
+                                                <i class="material-icons">{{getIcoName(resource.type)}}</i> {{ resource.name }}</a>
+                                        </td>
                                         <td>{{ resource.fullName }}</td>
                                         <td class="td-actions text-left">
-                                          <button mat-raised-button type="button" matTooltip="Edit Task" [matTooltipPosition]="'above'" class="btn btn-primary btn-link btn-sm btn-just-icon">
-                                              <i class="material-icons">edit</i>
-                                          </button>
-                                          <button mat-raised-button type="button" matTooltip="Remove" [matTooltipPosition]="'above'" class="btn btn-danger btn-link btn-sm btn-just-icon">
-                                              <i class="material-icons">close</i>
-                                          </button>
-                                      </td>
+                                            <button mat-raised-button type="button" matTooltip="编辑" [matTooltipPosition]="'above'" class="btn btn-primary btn-link btn-sm btn-just-icon">
+                                                <i class="material-icons">edit</i>
+                                            </button>
+                                            <button mat-raised-button type="button" matTooltip="删除" [matTooltipPosition]="'above'" class="btn btn-danger btn-link btn-sm btn-just-icon">
+                                                <i class="material-icons">close</i>
+                                            </button>
+                                        </td>
                                     </tr>
                                 </tbody>
                                 <tbody *ngIf="persons?.length == 0">
-                                  <tr>
-                                    <td colspan="3" class="no-data-available">No data!</td>
-                                  </tr>
-                                <tbody>
-                              </table>
+                                    <tr>
+                                        <td colspan="3" class="no-data-available">No data!</td>
+                                    </tr>
+                                 <tbody>
+                            </table>                  
                         </div>
-                        <button mat-raised-button type="submit" class="btn btn-danger pull-left">导入</button>
-                        <div class="clearfix"></div>
                     </div>
                 </div>
-            </div>         
+            </div>
         </div>
     </div>
-  </div>
-  

@@ -1,17 +1,10 @@
 [
-    {"id":"001","type":"Image","name":"建党大业","fullName":"/assets/images/jiand"},
-    {"id":"002","type":"Video","name":"建党大业","fullName":"/assets/images/1.mp4"},
-    {"id":"003","type":"H5","name":"XX公众号","fullName":"https://www.baidu.com/"},
-    {"id":"004","type":"Image","name":"建党大业","fullName":"/assets/images/jiand"},
-    {"id":"005","type":"Video","name":"建党大业","fullName":"/assets/images/1.mp4"},
-    {"id":"006","type":"H5","name":"XX公众号","fullName":"https://www.baidu.com/"},
-    {"id":"007","type":"Image","name":"建党大业","fullName":"/assets/images/jiand"},
-    {"id":"008","type":"Video","name":"建党大业","fullName":"/assets/images/1.mp4"},
-    {"id":"009","type":"H5","name":"XX公众号","fullName":"https://www.baidu.com/"},
-    {"id":"010","type":"Image","name":"建党大业","fullName":"/assets/images/jiand"},
-    {"id":"011","type":"Video","name":"建党大业","fullName":"/assets/images/1.mp4"},
-    {"id":"012","type":"H5","name":"XX公众号","fullName":"https://www.baidu.com/"},
-    {"id":"013","type":"Image","name":"建党大业","fullName":"/assets/images/jiand"},
-    {"id":"014","type":"Video","name":"建党大业","fullName":"/assets/images/1.mp4"},
-    {"id":"015","type":"H5","name":"XX公众号","fullName":"https://www.baidu.com/"}
+    {"type":"Images","name":"建党大业","fullName":"/assets/images/jiand"},
+    {"type":"Video","name":"建党大业","fullName":"/assets/images/1.mp4"},
+    {"type":"H5","name":"XX公众号","fullName":"https://www.baidu.com/"},
+    {"type":"Image","name":"建党大业","fullName":"/assets/images/jiand"},
+    {"type":"Video","name":"建党大业","fullName":"/assets/images/1.mp4"},
+    {"type":"H5","name":"XX公众号","fullName":"https://www.baidu.com/"},
+    {"type":"Image","name":"建党大业","fullName":"/assets/images/jiand"}
+   
 ]
