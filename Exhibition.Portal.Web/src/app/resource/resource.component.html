@@ -1,0 +1,53 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title ">所有资源</h4>
+                        <p class="card-category">维护播放内容包括视频,图片集,H5网页等</p>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table datatable [dtOptions]="dtOptions" class="table">
+                                <thead class=" text-primary">
+                                  <tr>
+                                    <th>Id</th>
+                                    <th>资源类型</th>
+                                    <th>名称</th>
+                                    <th>存放位置</th>
+                                    <th></th>
+                                  </tr>
+                                </thead>
+                                <tbody *ngIf="resources?.length != 0">
+                                    <tr *ngFor="let resource of resources">
+                                        <td>{{ resource.id }}</td>
+                                        <td>{{ resource.type }}</td>
+                                        <td>{{ resource.name }}</td>
+                                        <td>{{ resource.fullName }}</td>
+                                        <td class="td-actions text-left">
+                                          <button mat-raised-button type="button" matTooltip="Edit Task" [matTooltipPosition]="'above'" class="btn btn-primary btn-link btn-sm btn-just-icon">
+                                              <i class="material-icons">edit</i>
+                                          </button>
+                                          <button mat-raised-button type="button" matTooltip="Remove" [matTooltipPosition]="'above'" class="btn btn-danger btn-link btn-sm btn-just-icon">
+                                              <i class="material-icons">close</i>
+                                          </button>
+                                      </td>
+                                    </tr>
+                                </tbody>
+                                <tbody *ngIf="persons?.length == 0">
+                                  <tr>
+                                    <td colspan="3" class="no-data-available">No data!</td>
+                                  </tr>
+                                <tbody>
+                              </table>
+                        </div>
+                        <button mat-raised-button type="submit" class="btn btn-danger pull-left">导入</button>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>         
+        </div>
+    </div>
+  </div>
+  
