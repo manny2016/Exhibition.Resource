@@ -9,3 +9,5 @@
 /Exhibition.Core/obj
 /Exhibition.Portal.Api/bin/Debug/netcoreapp2.1
 /Exhibition.Portal.Api/data
+/Exhibition.Portal.Api/wwwroot/node_modules/.bin
+/Exhibition.Portal.Api/wwwroot/node_modules
