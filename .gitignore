@@ -5,6 +5,7 @@
 /.vs
 /Exhibition.Portal.Api/obj
 /Exhibition.Portal.Api/wwwroot/src/assets
+/Exhibition.Core/bin/Debug/netstandard2.0
+/Exhibition.Core/obj
 /Exhibition.Portal.Api/bin/Debug/netcoreapp2.1
-/Exhibition.Portal.Api/wwwroot/node_modules/.bin
-/Exhibition.Portal.Api/wwwroot/node_modules
+/Exhibition.Portal.Api/data
