@@ -2,19 +2,21 @@
 
 
 namespace Exhibition.Core.Services
-{   
+{
     using System.Collections.Generic;
     using System.IO;
     using Models = Exhibition.Core.Models;
+    using Entities = Exhibition.Core.Entities;
     using System.Linq;
-    using Exhibition.Core.Models;
+
     using Exhibition.Core;
     using Microsoft.AspNetCore.Http;
-
+    using System;
+    using Dapper;
     public class ManagementService
     {
         #region FileSystem Management
-        public IEnumerable<Resource> QueryResource(QueryFilter filter)
+        public IEnumerable<Models::Resource> QueryResource(Models::QueryFilter filter)
         {
             if (filter == null) yield break;
             var directory = new DirectoryInfo(filter.Current)
@@ -34,11 +36,11 @@ namespace Exhibition.Core.Services
 
         }
 
-        public Resource CreateDirectory(string workspace, string directoryName)
+        public Models::Resource CreateDirectory(string workspace, string directoryName)
         {
             var directory = new DirectoryInfo(Path.Combine(workspace.ServerMap(), directoryName))
                 .CreateIfNotExists();
-            return new Resource()
+            return new Models::Resource()
             {
                 Workspace = workspace,
                 Name = directoryName,
@@ -48,7 +50,7 @@ namespace Exhibition.Core.Services
             };
         }
 
-        public IEnumerable<Resource> DeleteResource(string workspace, string name)
+        public IEnumerable<Models::Resource> DeleteResource(string workspace, string name)
         {
             var type = Path.Combine(workspace.ServerMap(), name).GetResourceType();
             switch (type)
@@ -73,7 +75,7 @@ namespace Exhibition.Core.Services
                     {
                         fileinfo.Delete();
                     }
-                    yield return new Resource()
+                    yield return new Models::Resource()
                     {
                         Workspace = workspace,
                         Name = name,
@@ -89,7 +91,7 @@ namespace Exhibition.Core.Services
 
         }
 
-        public Resource Create(IFormFile file, string current)
+        public Models::Resource Create(IFormFile file, string current)
         {
             var newfile = new FileInfo(string.Concat(current, "/", file.FileName).ServerMapFilePath());
             if (newfile.Exists) throw new FileUpoadException($"file name ({file.Name}) already exist. not allow to upload. please choose other name");
@@ -100,7 +102,7 @@ namespace Exhibition.Core.Services
             {
                 file.CopyToAsync(stream).GetAwaiter().GetResult();
             }
-            return new Resource()
+            return new Models::Resource()
             {
                 Workspace = current,
                 FullName = newfile.FullName.UrlMap(),
@@ -115,7 +117,7 @@ namespace Exhibition.Core.Services
         /// <param name="name">current file name</param>
         /// <param name="newly">new name</param>
         /// <returns></returns>
-        public Resource Rename(string workspace, string name, string newly)
+        public Models::Resource Rename(string workspace, string name, string newly)
         {
             var current = Path.Combine(workspace.ServerMap(), name);
             var type = current.GetResourceType();
@@ -149,7 +151,7 @@ namespace Exhibition.Core.Services
                 default:
                     break;
             }
-            return new Resource()
+            return new Models::Resource()
             {
                 Workspace = workspace,
                 FullName = Path.Combine(workspace, newly).UrlMap(),
@@ -159,24 +161,108 @@ namespace Exhibition.Core.Services
             };
         }
 
+
         #endregion
 
         #region  Terminal management
         public Models::Terminal CreateOrUpdateTerminal(Models::Terminal terminal)
         {
-            return null;
+            using (var database = SQLiteFactory.Genernate())
+            {
+                var queryString = string.Empty;
+                if (database.ExecuteScalar<int>("SELECT COUNT(*) FROM terminal WHERE Ip=@ip",
+                    terminal.GenernateParameters()) > 0)
+                {
+                    database.Execute(terminal.GenernateUpdateScript(), terminal.GenernateParameters());
+                }
+                else
+                {
+                    database.Execute(terminal.GenernateInsertScript(), terminal.GenernateParameters());
+                }
+            }
+            return terminal;
         }
-        public Models::Terminal DeleteTerminal(string ip)
+        public Models::Terminal DeleteTerminal(Models::Terminal terminal)
         {
-            return null;
+            using (var database = SQLiteFactory.Genernate())
+            {
+                database.Execute(terminal.GenernateDeleteScript(), terminal.GenernateParameters());
+            }
+            return terminal;
         }
-        public IEnumerable<Models::Terminal> QueryTerminals()
+        public IEnumerable<Models::Terminal> QueryTerminals(Models::SQLiteQueryFilter filter)
         {
-            return null;
+            using (var database = SQLiteFactory.Genernate())
+            {
+                var queryString = string.Concat("SELECT * FROM terminal ", filter.GenernateWhereCase());
+                var entities = database.Query<Entities::Terminal>(queryString);
+                if (entities == null) return new List<Models::Terminal>();
+                return entities.Select((ctx) =>
+                {
+                    return ctx.Convert();
+                });
+            }
+        }
+        public Models::Terminal QueryTerminal(string ip)
+        {
+            using (var database = SQLiteFactory.Genernate())
+            {
+                var queryString = "SELECT * FROM Terminal WHERE Ip=@ip";
+                return database.QueryFirst<Entities::Terminal>(queryString, new { @ip = ip })
+                    .Convert();
+            }
         }
         #endregion
-        #region  Directive management
 
+        #region  Directive management
+        public Models::Directive CreateOrUpdate(Models::Directive directive)
+        {
+            using (var database = SQLiteFactory.Genernate())
+            {
+                var queryString = "SELECT COUNT(*) FROM Directive WHERE Name=@name";
+                if (database.ExecuteScalar<int>(queryString, directive.GenernateParameters()) > 0)
+                {
+                    database.Execute(directive.GenernateUpdateScript(), directive.GenernateParameters());
+                }
+                else
+                {
+                    database.Execute(directive.GenernateInsertScript(), directive.GenernateParameters());
+                }
+            }
+            return directive;
+        }
+
+        public Models::Directive DeleteDirective(Models::Directive directive)
+        {
+            using (var database = SQLiteFactory.Genernate())
+            {
+                database.Execute(directive.GenernateDeleteScript(), directive.GenernateParameters());
+            }
+            return directive;
+        }
+        public IEnumerable<Models::Directive> QueryDirectives(Models::SQLiteQueryFilter filter = null)
+        {
+            using (var database = SQLiteFactory.Genernate())
+            {
+                var queryString = string.Concat("SELECT * FROM Directive ", filter.GenernateWhereCase());
+                var results = database.Query<Entities::Directive>(queryString);
+                if (results == null) return new List<Models::Directive>();
+                return results.Select((ctx) =>
+                {
+                    return ctx.Convert();
+                });
+            }
+        }
+        public Models::Directive QueryDirective(string name)
+        {
+            using (var database = SQLiteFactory.Genernate())
+            {
+                var queryString = "SELECT * FROM Directive WHERE Name = @name";
+                var entity = database.QueryFirst<Entities::Directive>(queryString, new { @name = name });
+                if (entity == null) return null;
+                return entity.Convert();
+            }
+        }
         #endregion
 
     }

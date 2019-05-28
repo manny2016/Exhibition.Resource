@@ -32,7 +32,6 @@ namespace Exhibition.Portal.Api.Controllers
             };
         }
 
-
         [Route("api/msr/CreateDirectory"), HttpPost]
         public ResourceActionResponse CreateDirectory(ResourceRequestContext context)
         {            
@@ -50,7 +49,6 @@ namespace Exhibition.Portal.Api.Controllers
                 Data = service.DeleteResource(context.Workspace, context.Name).ToArray()
             };
         }
-
 
         [Route("api/msr/UploadFiles"), HttpPost]
         [RequestFormLimits(MultipartBodyLengthLimit = long.MaxValue)]
@@ -90,5 +88,7 @@ namespace Exhibition.Portal.Api.Controllers
                 Data = service.Rename(context.Workspace, context.Name, context.NewName)
             };
         }
+
+        
     }
 }

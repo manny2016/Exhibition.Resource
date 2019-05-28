@@ -4,13 +4,16 @@ namespace Exhibition.Core.Entities
 {
     public class Terminal
     {
-        public string Ip { get; set; }
-        public string Name { get; set; }
-        public string Description { get; set; }
-        public string Schematic { get; set; }
-        public string Endpoint { get; set; }
+        public virtual string Ip { get; set; }
 
-        public string Windows { get; set; }
-        
+        public virtual string Name { get; set; }
+
+        public virtual string Description { get; set; }
+
+        public virtual string Schematic { get; set; }
+
+        public virtual string Endpoint { get; set; }
+
+        public virtual string Windows { get; set; }        
     }
 }

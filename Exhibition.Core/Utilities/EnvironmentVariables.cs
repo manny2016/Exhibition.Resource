@@ -17,5 +17,8 @@ namespace Exhibition.Core
         public static readonly string[] SupportWebPages = new string[] {
             ".link"
         };
+        public static readonly string[] SupportSerialPortDirective = new string[] {
+            ".serial"
+        };
     }
 }

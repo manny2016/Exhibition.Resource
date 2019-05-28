@@ -16,4 +16,9 @@ namespace Exhibition.Core.Models
         [Newtonsoft.Json.JsonProperty("search")]
         public string Search { get; set; }
     }
+    public class SQLiteQueryFilter
+    {
+        public string Name { get; set; }
+        public string Value { get; set; }
+    }
 }

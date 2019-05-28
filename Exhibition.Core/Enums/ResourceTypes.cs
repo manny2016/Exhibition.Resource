@@ -11,6 +11,7 @@ namespace Exhibition.Core
         Video = 2,
         Image = 3,
         H5 = 4,
-        NotSupported = 5,
+        SerialPortDirective = 5,
+        NotSupported = 6,
     }
 }

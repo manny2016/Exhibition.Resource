@@ -47,7 +47,7 @@ namespace Exhibition.Core
         static string GenernateTableScraptforTerminal()
         {
             return @"
-CREATE TABLE Terminal (
+CREATE TABLE  IF NOT EXISTS Terminal (
     Ip    varchar(20),
 	Name  varchar(50),
 	Description   varchar(200),
@@ -60,13 +60,15 @@ CREATE TABLE Terminal (
         static string GenernateTableScriptforDirective()
         {
             return @"
-CREATE TABLE Directive (
-
+CREATE TABLE IF NOT EXISTS Directive (
     Name  varchar(100),
+    Target VARCHAR(20),
+    Window INTEGER,
 	Type  INTEGER,
-	Description   INTEGER,
-	Content   TEXT,
-	PRIMARY KEY(Name)
+	Description   varchar(100),
+	Context   TEXT,
+	PRIMARY KEY(Name),
+        FOREIGN KEY (Target) REFERENCES Terminal(Ip)
 );            ";
         }
     }
