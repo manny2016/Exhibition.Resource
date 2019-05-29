@@ -41,7 +41,7 @@
                                     </tr>
                                     <tr *ngFor="let resource of resources">
                                         <td>
-                                            <a class="" href="/image">
+                                            <a class="btn-white" (click)="onClickResource(resource)" href="javascript:void()">
                                                 <i class="material-icons">{{getIcoName(resource.type)}}</i> {{ resource.name }}</a>
                                         </td>
                                         <td>{{ resource.fullName }}</td>

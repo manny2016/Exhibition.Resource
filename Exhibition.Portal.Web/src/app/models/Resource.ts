@@ -1,6 +1,7 @@
 export class Resource{
-    public id:string;
-    public type:string;    
     public name:string;
+    public type:number;
+    public workspace:string;
     public fullName:string;
+    public sorting:number;  
 }

@@ -18,7 +18,7 @@ namespace Exhibition.Portal.Api.Controllers
     {
         public ManagementService service = new ManagementService();
 
-        [Route("api/msr/GetFileSystem"), HttpPost]
+        [Route("api/mgr/GetFileSystem"), HttpPost,HttpOptions]
         public QueryFileSystemResponse GetFileSystem(QueryFilter filter)
         {
             filter.Current = filter.Current ?? EnvironmentVariables.UrlROOT;
@@ -32,7 +32,7 @@ namespace Exhibition.Portal.Api.Controllers
             };
         }
 
-        [Route("api/msr/CreateDirectory"), HttpPost]
+        [Route("api/mgr/CreateDirectory"), HttpPost]
         public ResourceActionResponse CreateDirectory(ResourceRequestContext context)
         {            
             return new ResourceActionResponse()
@@ -41,7 +41,7 @@ namespace Exhibition.Portal.Api.Controllers
             };
         }
 
-        [Route("api/msr/DeleteResource"), HttpPost]
+        [Route("api/mgr/DeleteResource"), HttpPost]
         public QueryFileSystemResponse DeleteResource(ResourceRequestContext context)
         {
             return new QueryFileSystemResponse()
@@ -50,7 +50,7 @@ namespace Exhibition.Portal.Api.Controllers
             };
         }
 
-        [Route("api/msr/UploadFiles"), HttpPost]
+        [Route("api/mgr/UploadFiles"), HttpPost]
         [RequestFormLimits(MultipartBodyLengthLimit = long.MaxValue)]
         public ResourceActionResponse UploadFiles(IFormFile file, string directory)
         {
@@ -80,7 +80,7 @@ namespace Exhibition.Portal.Api.Controllers
 
         }
 
-        [Route("api/msr/Rename"), HttpPost]
+        [Route("api/mgr/Rename"), HttpPost]
         public ResourceActionResponse Rename(ResourceRequestContext context)
         {
             return new ResourceActionResponse()

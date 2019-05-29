@@ -11,6 +11,6 @@ namespace Exhibition.Portal.Api
     [ApiController]
     public class DataServiceController : ControllerBase
     {
-        public 
+     
     }
 }
