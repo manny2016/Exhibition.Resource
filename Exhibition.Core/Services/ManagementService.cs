@@ -137,7 +137,9 @@ namespace Exhibition.Core.Services
                     break;
                 case ResourceTypes.Image:
                 case ResourceTypes.Video:
+                case ResourceTypes.SerialPortDirective:
                 case ResourceTypes.H5:
+                default:
                     var fileinfo = new FileInfo(current);
                     if (!fileinfo.Exists)
                     {
@@ -147,14 +149,12 @@ namespace Exhibition.Core.Services
                     {
                         fileinfo.MoveTo(Path.Combine(workspace.ServerMap(), newly));
                     }
-                    break;
-                default:
-                    break;
+                    break;                
             }
             return new Models::Resource()
             {
                 Workspace = workspace,
-                FullName = Path.Combine(workspace, newly).UrlMap(),
+                FullName = Path.Combine(current, newly).UrlMap(),
                 Name = newly,
                 Sorting = 0,
                 Type = type

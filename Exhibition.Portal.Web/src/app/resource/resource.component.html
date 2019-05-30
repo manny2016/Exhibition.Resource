@@ -20,7 +20,7 @@
                                     更多操作
                                 </button>
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    <a class="dropdown-item" href="#">新建文件夹</a>                                    
+                                    <a class="dropdown-item" href="javascript:void(0)" (click)="CreateFolder()">新建文件夹</a>                                    
                                     <a class="dropdown-item" href="#">上传文件</a>
                                 </div>
                             </div>
@@ -36,12 +36,12 @@
                                 <tbody >
                                     <tr *ngIf="parent!=null">
                                         <td  colspan="3"><a class="btn-white" 
-                                            (click)="onGoUp()" href="javascript:void(0);">
+                                            (click)="GoUp()" href="javascript:void(0);">
                                                 <i class="material-icons">folder</i>上一级...</a></td>
                                     </tr>
                                     <tr *ngFor="let resource of resources">
                                         <td>
-                                            <a *ngIf="!resource.editable" class="btn-white" (click)="onClickResource(resource)"
+                                            <a *ngIf="!resource.editable" class="btn-white" (click)="ClickResource(resource)"
                                                 href="javascript:void(0);">
                                                 <i class="material-icons">{{getIcoName(resource.type)}}</i>
                                                 {{ resource.name }}</a>
@@ -50,12 +50,12 @@
                                         </td>
                                         <td>{{ resource.fullName }}</td>
                                         <td class="td-actions text-left">
-                                            <button mat-raised-button type="button" matTooltip="{{getmatTooltip(resource.editable)}}" (click)="saveOrEditing(resource)"
+                                            <button mat-raised-button type="button" matTooltip="{{getmatTooltip(resource.editable)}}" (click)="StartEditing(resource)"
                                                 [matTooltipPosition]="'above'"
                                                 class="btn btn-primary btn-link btn-sm btn-just-icon">
                                                 <i class="material-icons">edit</i>
                                             </button>
-                                            <button mat-raised-button type="button" matTooltip="删除"
+                                            <button mat-raised-button type="button" matTooltip="删除" (click)="Delete(resource)"
                                                 [matTooltipPosition]="'above'"
                                                 class="btn btn-danger btn-link btn-sm btn-just-icon">
                                                 <i class="material-icons">close</i>

@@ -20,7 +20,7 @@ namespace Exhibition.Core
         }
         public static DirectoryInfo CreateIfNotExists(this DirectoryInfo directory)
         {
-            if (!directory.Exists) directory.Create();
+            if (!directory.Exists) directory.Create();            
             return directory;
         }
         public static string ServerMapFilePath(this string relative)
