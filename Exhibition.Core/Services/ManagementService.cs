@@ -190,19 +190,6 @@ namespace Exhibition.Core.Services
             }
             return terminal;
         }
-        public IEnumerable<Models::Terminal> QueryTerminals(Models::SQLiteQueryFilter filter)
-        {
-            using (var database = SQLiteFactory.Genernate())
-            {
-                var queryString = string.Concat("SELECT * FROM terminal ", filter.GenernateWhereCase());
-                var entities = database.Query<Entities::Terminal>(queryString);
-                if (entities == null) return new List<Models::Terminal>();
-                return entities.Select((ctx) =>
-                {
-                    return ctx.Convert();
-                });
-            }
-        }
         public Models::Terminal QueryTerminal(string ip)
         {
             using (var database = SQLiteFactory.Genernate())

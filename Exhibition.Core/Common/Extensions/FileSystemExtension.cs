@@ -52,7 +52,7 @@ namespace Exhibition.Core
             foreach (var resource in fileInfos.Select((ctx) =>
             {
                 return new Resource()
-                {
+                {                 
                     Name = ctx.Name,
                     Type = ctx.FullName.GetResourceType(),
                     FullName = ctx.FullName.UrlMap(),
@@ -70,7 +70,7 @@ namespace Exhibition.Core
             foreach (var folder in directories.Select((ctx) =>
             {
                 return new Resource()
-                {
+                {                    
                     Workspace = ctx.FullName.UrlMap(),
                     FullName = string.Empty,
                     Name = ctx.Name,
@@ -82,6 +82,15 @@ namespace Exhibition.Core
             {
                 yield return folder;
             }
+        }
+        public static string GetParentWrokspace(this string absolutely)
+        {
+            var result = absolutely.UrlMap();
+            var directory = new DirectoryInfo(absolutely);
+            return string.IsNullOrEmpty(result)
+                ? null
+                : directory.Parent.FullName.UrlMap();
+
         }
     }
 }

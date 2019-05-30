@@ -19,7 +19,9 @@ class DataTablesResponse {
 })
 export class ResourceComponent implements OnInit {
   public dtOptions: DataTables.Settings = {};
-  public resources: Resource[];
+  public resources: Resource[];  
+  public parent:string;
+  public edittingContext :string;
   accept = '*'
   files: File[] = []
   progress: number
@@ -41,10 +43,12 @@ export class ResourceComponent implements OnInit {
 
   constructor(public HttpClient: HttpClient, public service: ManagementService) { }
   ngOnInit() {
-    const that = this;
+    const that = this;    
     that.service.GetResources({ current: null, search: null }).toPromise().then(res => {
       var source: any = res;
       that.resources = source.data;
+      that.parent = source.parent;
+      console.log(res);
     })
   }
   public getIcoName(type: number) {
@@ -63,6 +67,42 @@ export class ResourceComponent implements OnInit {
     that.service.GetResources({current:model.workspace,search:""}).toPromise().then(res => {
       var source: any = res;
       that.resources = source.data;
+      that.parent = source.parent;
     });
+  }
+  public onGoUp()  {
+    const that = this;
+    that.service.GetResources({current:that.parent,search:""}).toPromise().then(res => {
+      var source: any = res;
+      that.resources = source.data;
+      that.parent = source.parent;
+    });
+  }
+  public onGoRoot(){
+    console.log("ongoroot");
+    const that = this;
+    that.service.GetResources({current:null,search:""}).toPromise().then(res => {
+      var source: any = res;
+      that.resources = source.data;
+      that.parent = source.parent;
+    });
+  }
+  public saveOrEditing(current:Resource){
+    if(current.editable){
+      //click save
+    }
+    else{
+      this.edittingContext = current.name;
+    }
+    current.editable=!current.editable;
+  }
+  public getmatTooltip(editable:boolean){
+    return editable?"保存":"编辑";
+  }
+  public OnInputBoxKeyPress(event:any,resource:Resource){    
+    if(event.key=="Enter"&&event.target.value!=""){
+      resource.name = event.target.value;
+      resource.editable = false
+    }    
   }
 }

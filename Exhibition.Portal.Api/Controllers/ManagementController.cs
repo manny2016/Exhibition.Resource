@@ -28,7 +28,8 @@ namespace Exhibition.Portal.Api.Controllers
             var resource = service.QueryResource(filter);
             return new QueryFileSystemResponse(filter.Current.UrlMap())
             {
-                Data = service.QueryResource(filter).OrderBy(o => o.Type).ToArray()
+                Data = service.QueryResource(filter).OrderBy(o => o.Type).ToArray(),
+                Parent = filter.Current.ServerMap().GetParentWrokspace()
             };
         }
 

@@ -43,7 +43,7 @@ form {
     //border-bottom: $input-btn-border-width solid $input-border-color;
     transition-duration: 0.3s;
   }
-
+  
   @include material-placeholder() {
       color: $mdb-input-placeholder-color;
       font-weight: 400;

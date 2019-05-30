@@ -3,9 +3,11 @@
 
 namespace Exhibition.Core.Models
 {
-    
+
     public class Resource
     {
+      
+
         [Newtonsoft.Json.JsonProperty("name")]
         public string Name { get; set; }
 

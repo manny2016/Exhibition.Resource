@@ -16,9 +16,13 @@ namespace Exhibition.Portal.Api.Models
         public QueryFileSystemResponse() :
             this(EnvironmentVariables.ROOT.Replace(@"\", "/"))
         {
+
         }
 
         [Newtonsoft.Json.JsonProperty("workspace")]
-        public string Workspace { get; private set; }        
+        public string Workspace { get; private set; }
+
+        [Newtonsoft.Json.JsonProperty("parent")]
+        public string Parent { get;  set; }
     }
 }
