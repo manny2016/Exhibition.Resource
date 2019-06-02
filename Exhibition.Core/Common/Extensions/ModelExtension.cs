@@ -5,6 +5,8 @@ namespace Exhibition.Core
     using Dapper;
     using Models = Exhibition.Core.Models;
     using Entities = Exhibition.Core.Entities;
+    using System.Collections.Generic;
+    using System.Linq;
     public static class ModelExtension
     {
         public static DynamicParameters GenernateParameters(this Models::Terminal terminal)
@@ -81,14 +83,14 @@ WHERE Name = @name;
 ";
         }
 
-        public static Models::Directive Convert(this Entities::Directive directive)
+        public static Models::Directive Convert(this Entities::Directive directive, IEnumerable<Entities::Terminal> terminals)
         {
             return new Core.Models.Directive()
             {
                 Description = directive.Description,
                 Name = directive.Name,
                 Resources = directive.Context.DeserializeToObject<Models::Resource[]>(),
-                Terminal = new Core.Models.Terminal() { Ip = directive.Target },
+                Terminal = terminals.First(o => o.Ip.Equals(directive.TargetIp)).Convert(),
                 Type = directive.Type,
                 Window = directive.Window
             };
@@ -102,7 +104,7 @@ WHERE Name = @name;
         {
             if (filter == null) return " WHERE 1=1 ";
             if (string.IsNullOrEmpty(filter.Value)) return " WHERE 1=1 ";
-            return $" WHERE {filter.Name} LIKE '%{filter.Value.Replace("'","''")}%'";
+            return $" WHERE {filter.Name} LIKE '%{filter.Value.Replace("'", "''")}%'";
         }
     }
 }

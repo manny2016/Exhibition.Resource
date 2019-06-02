@@ -1,0 +1,87 @@
+<div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">编辑播放窗口</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <h6>默认监视器</h6>
+    <div class="row">
+        <div class="col-sm-12">
+            <mat-form-field class="example-full-width">
+                <input type="text" matInput placeholder="默认监视器" [(ngModel)]="newly.monitor"
+                    value="{{newly.location.x}}">
+            </mat-form-field>
+        </div>
+    </div>
+    <h6>窗口位置、尺寸</h6>
+    <div class="row">
+        <div class="col-sm-3">
+            <mat-form-field class="example-full-width">
+                <input type="text" matInput placeholder="横坐标(X)" [(ngModel)]="newly.location.x"
+                    value="{{newly.location.x}}">
+            </mat-form-field>
+        </div>
+        <div class="col-sm-3">
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="纵坐标(Y)" [(ngModel)]="newly.location.y" value="{{newly.location.y}}">
+            </mat-form-field>
+        </div>
+        <div class="col-sm-3">
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="宽度(width)" [(ngModel)]="newly.size.width" value="{{newly.size.width}}">
+            </mat-form-field>
+        </div>
+        <div class="col-sm-3">
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="高度(Height)" [(ngModel)]="newly.size.height" value="{{newly.size.height}}">
+            </mat-form-field>
+        </div>
+        <input type="hidden" [(ngModel)]="newly.id" value="{{newly.id}}">
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <a class="btn-white pull-right" (click)="CreateWindow(newly)" href="javascript:void(0)">新增</a>
+        </div>
+    </div>
+    <h6>窗口列表</h6>
+    <div class="row">
+        <div class="col-sm-12">
+            <table class="table">
+                <thead class="text-primary">
+                    <th>#Id</th>
+                    <th>默认监视器</th>
+                    <th>窗口位置</th>
+                    <th>窗口尺寸</th>
+                    <th></th>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let window of current.windows">
+                        <td>
+                            {{window.id}}
+                        </td>
+                        <td>
+                            {{window.monitor}}
+                        </td>
+                        <td>
+                            {{window.location.x}}*{{window.location.y}}
+                        </td>
+                        <td>
+                            {{window.size.width}}*{{window.size.height}}
+                        </td>
+                        <td class="td-actions text-left">
+                            <button mat-raised-button type="button" matTooltip="删除" (click)="DeleteWindow(window)"
+                                [matTooltipPosition]="'above'" class="btn btn-danger btn-link btn-sm btn-just-icon">
+                                <i class="material-icons">close</i>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-danger" (click)="CreateOrUpdateTerminal(current)">保存</button>
+    <button type="button" class="btn btn-white" (click)="modalRef.close('Close')">关闭</button>
+</div>

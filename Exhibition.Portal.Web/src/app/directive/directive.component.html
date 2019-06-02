@@ -1,0 +1,63 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title ">指令管理</h4>
+                        <p class="card-category">管理设备控制指令(视频播放，图片播放，H5网页展示，串口指令等)</p>
+                    </div>
+                    <div class="card-body ">
+                        <div class="inline-block">
+                            <div class="dropdown">
+                                <button mat-raised-button (click)="OpenEdit({name:''})" class="btn btn-white  ">
+                                    <i class="material-icons">home</i>
+                                    新增指令
+                                </button>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead class="text-primary">
+                                    <th>名称</th>
+                                    <th>类型</th>
+                                    <th>目标终端</th>
+                                    <th>播放窗口</th>
+                                    <th>引用资源</th>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let directive of directives">
+                                        <td>
+                                            {{directive.name}}
+                                        </td>
+                                        <td>
+                                            {{directive.type}}
+                                        </td>
+                                        <td>
+                                            {{directive.terminal.name}}
+                                        </td>
+                                        <td><a (click)="OpenWindowEdit(terminal)" href="javascript:void(0)">{{directive.window}}</a>                                             
+                                        </td>
+                                        <td class="td-actions text-left">
+                                            <button mat-raised-button type="button" (click)="OpenTerminalEdit(terminal)" matTooltip="编辑"
+                                                [matTooltipPosition]="'above'"
+                                                class="btn btn-primary btn-link btn-sm btn-just-icon">
+                                                <i class="material-icons">edit</i>
+                                            </button>
+                                            <button mat-raised-button type="button" matTooltip="删除"
+                                                (click)="DeleteTerminal(terminal)" [matTooltipPosition]="'above'"
+                                                class="btn btn-danger btn-link btn-sm btn-just-icon">
+                                                <i class="material-icons">close</i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

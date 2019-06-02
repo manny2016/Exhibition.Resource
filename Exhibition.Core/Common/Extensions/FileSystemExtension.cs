@@ -26,7 +26,7 @@ namespace Exhibition.Core
         public static string ServerMapFilePath(this string relative)
         {
             var root = Path.Combine(System.Environment.CurrentDirectory, EnvironmentVariables.ROOT);
-            return Path.Combine(root, relative.Replace("/", "\\"));
+            return Path.Combine(root, relative.TrimStart('/').Replace("/", "\\"));
         }
         public static string UrlMap(this string absolutely)
         {

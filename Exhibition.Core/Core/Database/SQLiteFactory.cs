@@ -62,13 +62,13 @@ CREATE TABLE  IF NOT EXISTS Terminal (
             return @"
 CREATE TABLE IF NOT EXISTS Directive (
     Name  varchar(100),
-    Target VARCHAR(20),
+    TargetIp VARCHAR(20),
     Window INTEGER,
 	Type  INTEGER,
 	Description   varchar(100),
 	Context   TEXT,
 	PRIMARY KEY(Name),
-        FOREIGN KEY (Target) REFERENCES Terminal(Ip)
+        FOREIGN KEY (TargetIp) REFERENCES Terminal(Ip)
 );            ";
         }
     }

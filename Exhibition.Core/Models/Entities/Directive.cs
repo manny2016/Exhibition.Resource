@@ -12,7 +12,7 @@ namespace Exhibition.Core.Entities
 
         public virtual string Name { get; set; }
 
-        public virtual string Target { get; set; }
+        public virtual string TargetIp { get; set; }
 
         public virtual int? Window { get; set; }
 

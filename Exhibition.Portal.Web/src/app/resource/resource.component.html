@@ -7,21 +7,22 @@
                         <h4 class="card-title ">所有资源(/assets/userfiles)</h4>
                         <p class="card-category">维护播放内容包括视频,图片集,H5网页,串口指令等</p>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body ">
                         <div class="inline-block">
-
                             <div class="dropdown">
-                                <button mat-raised-button (click)="onGoRoot()" class="btn btn-white  ">
+                                <button mat-raised-button (click)="onGoRoot()" class="btn btn-secondary  ">
                                     <i class="material-icons">home</i>
                                     根目录
                                 </button>
-                                <button class="btn btn-white dropdown-toggle" type="button" data-toggle="dropdown"
+                                <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown"
                                     aria-haspopup="true" aria-expanded="false">
                                     更多操作
                                 </button>
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    <a class="dropdown-item" href="javascript:void(0)" (click)="CreateFolder()">新建文件夹</a>                                    
-                                    <a class="dropdown-item" href="#">上传文件</a>
+                                    <a class="dropdown-item " href="javascript:void(0)"
+                                        (click)="CreateFolder()">新建文件夹</a>
+                                    <a class="dropdown-item" (click)="OpenModal(content)"
+                                        href="javascript:void(0)">上传文件</a>
                                 </div>
                             </div>
                             <div class="clearfix"></div>
@@ -33,36 +34,40 @@
                                     <th>路径</th>
                                     <th>操作</th>
                                 </thead>
-                                <tbody >
+                                <tbody>
                                     <tr *ngIf="parent!=null">
-                                        <td  colspan="3"><a class="btn-white" 
-                                            (click)="GoUp()" href="javascript:void(0);">
+                                        <td colspan="3"><a class="btn-white" (click)="GoUp()"
+                                                href="javascript:void(0);">
                                                 <i class="material-icons">folder</i>上一级...</a></td>
                                     </tr>
                                     <tr *ngFor="let resource of resources">
                                         <td>
-                                            <a *ngIf="!resource.editable" class="btn-white" (click)="ClickResource(resource)"
-                                                href="javascript:void(0);">
+                                            <a *ngIf="!resource.editable" class="btn-white"
+                                                (click)="ClickResource(resource)" href="javascript:void(0);">
                                                 <i class="material-icons">{{getIcoName(resource.type)}}</i>
                                                 {{ resource.name }}</a>
-                                            <input  *ngIf="resource.editable" type="text"  
-                                            [ngModel]="edittingContext" (keypress)="OnInputBoxKeyPress($event,resource)" />
+
+                                            <mat-form-field class="example-full-width" *ngIf="resource.editable"
+                                                type="text" [ngModel]="edittingContext"                                               >
+                                                <input matInput placeholder="#Ip" value="{{resource.name}}"  (keypress)="OnInputBoxKeyPress($event,resource)">
+                                            </mat-form-field>
                                         </td>
                                         <td>{{ resource.fullName }}</td>
                                         <td class="td-actions text-left">
-                                            <button mat-raised-button type="button" matTooltip="{{getmatTooltip(resource.editable)}}" (click)="StartEditing(resource)"
-                                                [matTooltipPosition]="'above'"
+                                            <button mat-raised-button type="button"
+                                                matTooltip="{{getmatTooltip(resource.editable)}}"
+                                                (click)="StartEditing(resource)" [matTooltipPosition]="'above'"
                                                 class="btn btn-primary btn-link btn-sm btn-just-icon">
                                                 <i class="material-icons">edit</i>
                                             </button>
-                                            <button mat-raised-button type="button" matTooltip="删除" (click)="Delete(resource)"
-                                                [matTooltipPosition]="'above'"
+                                            <button mat-raised-button type="button" matTooltip="删除"
+                                                (click)="Delete(resource)" [matTooltipPosition]="'above'"
                                                 class="btn btn-danger btn-link btn-sm btn-just-icon">
                                                 <i class="material-icons">close</i>
                                             </button>
                                         </td>
                                     </tr>
-                                </tbody>                                
+                                </tbody>
                             </table>
                         </div>
                     </div>
@@ -70,3 +75,28 @@
             </div>
         </div>
     </div>
+</div>
+
+
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">上传文件</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="form-group">
+            <label for="dateOfBirth">选择文件点开始上传</label>
+            <div class="input-group">
+                <div class="input-group-append">
+                    <angular-file-uploader [config]="afuConfig" (ApiResponse)="DocUpload($event)">
+                    </angular-file-uploader>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-white" (click)="modal.close('Close')">关闭</button>
+    </div>
+</ng-template>

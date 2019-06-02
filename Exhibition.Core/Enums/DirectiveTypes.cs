@@ -13,6 +13,8 @@ namespace Exhibition.Core
         PlayImages = 4,
         ChangePlayMode = 5,
         Restart = 6,
-        CloseMonitor = 7
+        CloseMonitor = 7,
+        StopcCurrentPlayTask = 8,
+
     }
 }

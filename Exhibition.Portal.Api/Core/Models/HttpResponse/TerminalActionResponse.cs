@@ -7,4 +7,18 @@ namespace Exhibition.Portal.Api.Models
     {
 
     }
+    public class QueryTerminalResponse : Response<Models::Terminal[]>
+    {
+
+    }
+    public class GeneralResponse : Response<int?>
+    {
+        public GeneralResponse()
+        {
+        }
+    }
+    public class QueryDirectiveResponse : Response<Models::Directive[]>
+    {
+
+    }
 }

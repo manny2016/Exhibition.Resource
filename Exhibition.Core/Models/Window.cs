@@ -12,12 +12,26 @@ namespace Exhibition.Core.Models
         public int Id { get; set; }
 
         [Newtonsoft.Json.JsonProperty("location")]
-        public Point Location { get; set; }
+        public WinPoint Location { get; set; }
 
         [Newtonsoft.Json.JsonProperty("size")]
-        public Size Size { get; set; }
+        public WinSize Size { get; set; }
 
         [Newtonsoft.Json.JsonProperty("monitor")]
         public int Monitor { get; set; }
+    }
+
+    public class WinSize
+    {
+        [Newtonsoft.Json.JsonProperty("width")]
+        public int Width { get; set; }
+        [Newtonsoft.Json.JsonProperty("height")]
+        public int Height { get; set; }
+    }
+    public class WinPoint {
+        [Newtonsoft.Json.JsonProperty("x")]
+        public int X { get; set; }
+        [Newtonsoft.Json.JsonProperty("y")]
+        public int Y { get; set; }
     }
 }

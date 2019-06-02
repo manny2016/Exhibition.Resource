@@ -5,9 +5,11 @@ VisualStudioVersion = 15.0.28307.572
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Exhibition.Portal.Api", "Exhibition.Portal.Api\Exhibition.Portal.Api.csproj", "{FA7899E5-1517-43D1-AF98-C065ED2204B2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exhibition.Core", "Exhibition.Core\Exhibition.Core.csproj", "{0DA484B5-77D4-47CE-890B-B892F011D34A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Exhibition.Core", "Exhibition.Core\Exhibition.Core.csproj", "{0DA484B5-77D4-47CE-890B-B892F011D34A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Portals", "Portals", "{92CD37D9-93EF-4343-A2F2-40BD1CBDAD87}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Agents", "Agents", "{F3C247FB-BC2F-496F-B855-55BBCC17B8B2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

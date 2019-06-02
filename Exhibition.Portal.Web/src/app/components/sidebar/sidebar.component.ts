@@ -10,7 +10,7 @@ declare interface RouteInfo {
 export const ROUTES: RouteInfo[] = [
     { path: '/dashboard', title: '仪表盘',  icon: 'dashboard', class: '' },
     { path: '/resource', title: '资源管理',  icon:'library_books', class: '' },
-    { path: '/terminal', title: '播放终端',  icon:'content_paste', class: '' },    
+    { path: '/terminal', title: '设备管理',  icon:'content_paste', class: '' },    
     { path: '/directive', title: '指令配置',  icon:'bubble_chart', class: '' }
 ];
 

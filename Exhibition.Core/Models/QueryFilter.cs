@@ -21,4 +21,9 @@ namespace Exhibition.Core.Models
         public string Name { get; set; }
         public string Value { get; set; }
     }
+    public class SQLiteDimQueryFilter
+    {
+        [Newtonsoft.Json.JsonProperty("search")]
+        public string Search { get; set; }
+    }
 }

@@ -4,7 +4,11 @@ import { ManagementService } from '../services/ManagementService'
 import { Resource } from 'app/models/Resource';
 import { Subscription } from 'rxjs'
 import { QueryFilter } from 'app/models/queryFilter';
-import { ResourceRequestContext } from 'app/models/ResourceRequestContext';
+import { ResourceRequestContext } from "app/models/ResourceRequestContext";
+
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { environment } from 'environments/environment.prod';
+
 declare var $: any;
 class DataTablesResponse {
   data: any[];
@@ -24,26 +28,9 @@ export class ResourceComponent implements OnInit {
   public parent: string;
   public edittingContext: string;
   public workspace: string;
-  accept = '*'
-  files: File[] = []
-  progress: number
-  url = 'https://evening-anchorage-3159.herokuapp.com/api/'
-  hasBaseDropZoneOver: boolean = false
-  httpEmitter: Subscription
-  httpEvent: HttpEvent<{}>
-  lastFileAt: Date
-
-  sendableFormData: FormData//populated via ngfFormData directive
-
-  dragFiles: any
-  validComboDrag: any
-  lastInvalids: any
-  fileDropDisabled: any
-  maxSize: any
-  baseDropValid: any
-
-
-  constructor(public HttpClient: HttpClient, public service: ManagementService) { }
+  accept = '*' 
+  afuConfig: any = null;
+  constructor(public HttpClient: HttpClient, public service: ManagementService, private modalService: NgbModal) { }
   ngOnInit() {
     const that = this;
     that.service.GetResources({ current: that.workspace, search: null }).toPromise().then(res => {
@@ -52,6 +39,32 @@ export class ResourceComponent implements OnInit {
       that.parent = source.parent;
       console.log(res);
     })
+
+    this.afuConfig = {
+      multiple: false,
+      formatsAllowed: ".jpg,.png,.jpeg,.bmp,.mp4,.avi,.mpeg,.link,.serial",
+      maxSize: "1024",
+      uploadAPI: {
+        url: environment.api + "UploadFiles?workspace=",
+        headers: {
+
+        }
+      },
+      theme: "dragNDrop",
+      hideProgressBar: false,
+      hideResetBtn: true,
+      hideSelectBtn: true,
+      replaceTexts: {
+        selectFileBtn: '浏览',
+        resetBtn: '重置',
+        uploadBtn: '开始上传',
+        dragNDropBox: '将要上传的文件拖拽到这里',
+        attachPinBtn: 'Attach Files...',
+        afterUploadMsg_success: '上传成功!',
+        afterUploadMsg_error: '上传失败!'
+      }
+    };
+
   }
   public getIcoName(type: number) {
 
@@ -64,13 +77,14 @@ export class ResourceComponent implements OnInit {
     if (type == 5) return "image";
     return ico;
   }
+
   public ClickResource(model: Resource) {
     const that = this;
     that.service.GetResources({ current: model.workspace, search: "" }).toPromise().then(res => {
       var source: any = res;
       that.resources = source.data;
       that.parent = source.parent;
-      that.workspace = source.workspace;      
+      that.workspace = source.workspace;
     });
   }
   public GoUp() {
@@ -80,7 +94,7 @@ export class ResourceComponent implements OnInit {
       that.resources = source.data;
       that.parent = source.parent;
       that.workspace = source.workspace;
-      
+
     });
   }
   public onGoRoot() {
@@ -124,7 +138,7 @@ export class ResourceComponent implements OnInit {
     const that = this;
     if (event.key == "Enter" && event.target.value != "") {
       console.log(resource.workspace);
-      
+
       that.service.Rename({
         workspace: that.workspace,
         name: resource.name,
@@ -144,7 +158,7 @@ export class ResourceComponent implements OnInit {
     this.service.CreateDirectory({
       workspace: that.workspace, name: "新建文件夹", newName: ""
     }).toPromise().then(res => {
-      
+
       that.service.GetResources({ current: that.workspace, search: null }).toPromise().then(res => {
         var source: any = res;
         that.resources = source.data;
@@ -153,18 +167,43 @@ export class ResourceComponent implements OnInit {
       })
     });
   }
-  public Delete(resource:Resource){
+  /**
+   * 
+   * @param resource 
+   */
+  public Delete(resource: Resource) {
     const that = this;
     if (confirm("真的要删除吗?")) {
-      that.service.Delete({workspace:that.workspace,name:resource.name,newName:""})
-      .toPromise().then(res=>{
-        that.service.GetResources({ current: that.workspace, search: null }).toPromise().then(res => {
-          var source: any = res;
-          that.resources = source.data;
-          that.parent = source.parent;
-          console.log(res);
-        })
-      });
+      that.service.DeleteResource({ workspace: that.workspace, name: resource.name, newName: "" })
+        .toPromise().then(res => {
+          that.service.GetResources({ current: that.workspace, search: null }).toPromise().then(res => {
+            var source: any = res;
+            that.resources = source.data;
+            that.parent = source.parent;
+            console.log(res);
+          })
+        });
     }
+  }
+  public OpenModal(content) {
+    const that = this;
+    if (that.workspace == "undefined") {
+      that.workspace = null;
+    }
+    that.afuConfig.uploadAPI.url = environment.api + "UploadFiles?workspace=" + that.workspace;
+    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {      
+    }, (reason) => {
+    });
+  }
+  public DocUpload(event: any) {
+    const that = this;
+    that.service.GetResources({ current: that.workspace, search: null }).toPromise().then(res => {
+      var source: any = res;
+      that.resources = source.data;
+      that.parent = source.parent;
+      console.log("ref");
+    }).catch(error => {
+      console.log("fail", error);
+    });
   }
 }

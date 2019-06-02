@@ -2,8 +2,7 @@
 
 namespace Exhibition.Portal.Api.Models
 {
-    public abstract class Response<T>
-        where T:class
+    public abstract class Response<T>        
     {
         public Response() {
             this.Success = true;

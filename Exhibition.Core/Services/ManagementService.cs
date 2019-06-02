@@ -149,7 +149,7 @@ namespace Exhibition.Core.Services
                     {
                         fileinfo.MoveTo(Path.Combine(workspace.ServerMap(), newly));
                     }
-                    break;                
+                    break;
             }
             return new Models::Resource()
             {
@@ -165,7 +165,7 @@ namespace Exhibition.Core.Services
         #endregion
 
         #region  Terminal management
-        public Models::Terminal CreateOrUpdateTerminal(Models::Terminal terminal)
+        public Models::Terminal CreateOrUpdate(Models::Terminal terminal)
         {
             using (var database = SQLiteFactory.Genernate())
             {
@@ -199,47 +199,93 @@ namespace Exhibition.Core.Services
                     .Convert();
             }
         }
+        public IEnumerable<Models::Terminal> QueryTerminals(string search = null)
+        {
+            using (var database = SQLiteFactory.Genernate())
+            {
+                var queryString = "SELECT * FROM Terminal  ";
+                if (string.IsNullOrEmpty(search))
+                {
+
+                }
+                return database.Query<Entities::Terminal>(queryString, new { @search = search })
+                    .Select((ctx) =>
+                    {
+                        return new Models.Terminal()
+                        {
+                            Description = ctx.Description,
+                            Endpoint = ctx.Endpoint,
+                            Ip = ctx.Ip,
+                            Name = ctx.Name,
+                            Schematic = ctx.Schematic,
+                            Windows = ctx.Windows.DeserializeToObject<Models::Window[]>()
+                        };
+                    });
+            }
+        }
+        public int DeleteTerminal(string ip)
+        {
+            using (var database = SQLiteFactory.Genernate())
+            {
+                var queryString = @"
+DELETE FROM Directive WHERE TargetIp =@ip;
+DELETE FROM Terminal WHERE Ip=@ip";
+                return database.Execute(queryString, new { @ip = ip });
+            }
+        }
         #endregion
 
         #region  Directive management
-        public Models::Directive CreateOrUpdate(Models::Directive directive)
+        public int CreateOrUpdate(Models::Directive directive)
         {
             using (var database = SQLiteFactory.Genernate())
             {
                 var queryString = "SELECT COUNT(*) FROM Directive WHERE Name=@name";
                 if (database.ExecuteScalar<int>(queryString, directive.GenernateParameters()) > 0)
                 {
-                    database.Execute(directive.GenernateUpdateScript(), directive.GenernateParameters());
+                    return database.Execute(directive.GenernateUpdateScript(), directive.GenernateParameters());
                 }
                 else
                 {
-                    database.Execute(directive.GenernateInsertScript(), directive.GenernateParameters());
+                    return database.Execute(directive.GenernateInsertScript(), directive.GenernateParameters());
                 }
             }
-            return directive;
         }
 
-        public Models::Directive DeleteDirective(Models::Directive directive)
+        public int DeleteDirective(Models::Directive directive)
         {
             using (var database = SQLiteFactory.Genernate())
             {
-                database.Execute(directive.GenernateDeleteScript(), directive.GenernateParameters());
+                return database.Execute(directive.GenernateDeleteScript(), directive.GenernateParameters());
             }
-            return directive;
         }
-        public IEnumerable<Models::Directive> QueryDirectives(Models::SQLiteQueryFilter filter = null)
+
+
+        public IEnumerable<Models::Directive> QueryDirectives(Models::SQLiteDimQueryFilter filter = null)
         {
             using (var database = SQLiteFactory.Genernate())
             {
-                var queryString = string.Concat("SELECT * FROM Directive ", filter.GenernateWhereCase());
-                var results = database.Query<Entities::Directive>(queryString);
+                var strWhere = " WHERE 1=1 ";
+                var queryString = "SELECT * FROM Directive  ";
+                if (filter != null && !string.IsNullOrEmpty(filter.Search))
+                    strWhere = string.Concat(strWhere, " AND (NAME LIKE @search OR TargetIp LIKE @search)");
+
+                queryString = string.Concat(queryString, strWhere);
+                var results = database.Query<Entities::Directive>(queryString, new { @search = filter.Search });
                 if (results == null) return new List<Models::Directive>();
+
+                var ip = string.Join(",", results.Select((ctx) => { return $"'{ctx.TargetIp}'"; }));
+                queryString = $@"SELECT * FROM Terminal WHERE Ip IN ({ip})";
+
+                var terminals = database.Query<Entities.Terminal>(queryString);
+
                 return results.Select((ctx) =>
                 {
-                    return ctx.Convert();
+                    return ctx.Convert(terminals);
                 });
             }
         }
+
         public Models::Directive QueryDirective(string name)
         {
             using (var database = SQLiteFactory.Genernate())
@@ -247,7 +293,9 @@ namespace Exhibition.Core.Services
                 var queryString = "SELECT * FROM Directive WHERE Name = @name";
                 var entity = database.QueryFirst<Entities::Directive>(queryString, new { @name = name });
                 if (entity == null) return null;
-                return entity.Convert();
+                queryString = "SELECT * FROM Terminal WHERE Ip=@ip";
+                var terminals = database.Query<Entities::Terminal>(queryString, new { @ip = entity.TargetIp });
+                return entity.Convert(terminals);
             }
         }
         #endregion
