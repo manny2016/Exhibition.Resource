@@ -160,5 +160,13 @@ namespace Exhibition.Portal.Api.Controllers
         {
             return new GeneralResponse() { Data = 0 };
         }
+        [Route("api/mgr/QueryFileSystem"), HttpPost]
+        public QueryFileSystemResponse QueryFileSystem(QueryFilter filter)
+        {
+            return new QueryFileSystemResponse()
+            {
+                Data = this.service.QueryFileSystem(filter).ToArray()
+        };
     }
+}
 }

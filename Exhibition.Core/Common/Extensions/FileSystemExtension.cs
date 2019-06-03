@@ -20,7 +20,7 @@ namespace Exhibition.Core
         }
         public static DirectoryInfo CreateIfNotExists(this DirectoryInfo directory)
         {
-            if (!directory.Exists) directory.Create();            
+            if (!directory.Exists) directory.Create();
             return directory;
         }
         public static string ServerMapFilePath(this string relative)
@@ -49,39 +49,42 @@ namespace Exhibition.Core
         public static IEnumerable<Resource> Convert(this FileInfo[] fileInfos)
         {
             if (fileInfos == null) yield break;
-            foreach (var resource in fileInfos.Select((ctx) =>
-            {
-                return new Resource()
-                {                 
-                    Name = ctx.Name,
-                    Type = ctx.FullName.GetResourceType(),
-                    FullName = ctx.FullName.UrlMap(),
-                    Workspace = ctx.Directory.FullName.UrlMap(),
-                    Sorting = 0,
-                };
-            }))
-            {
+            foreach (var resource in fileInfos.Select(ctx => ctx.Convert())) {
                 yield return resource;
-            }
+                     
+            };            
         }
         public static IEnumerable<Resource> Convert(this DirectoryInfo[] directories)
         {
             if (directories == null) yield break;
-            foreach (var folder in directories.Select((ctx) =>
-            {
-                return new Resource()
-                {                    
-                    Workspace = ctx.FullName.UrlMap(),
-                    FullName = string.Empty,
-                    Name = ctx.Name,
-                    Type = ResourceTypes.Folder,
-                    Sorting = 0
-
-                };
-            }))
+            foreach(var folder in directories.Select(ctx => ctx.Convert()))
             {
                 yield return folder;
-            }
+            }            
+        }
+
+        public static Resource Convert(this DirectoryInfo info)
+        {
+            return new Resource()
+            {
+                Workspace = info.FullName.UrlMap(),
+                FullName = string.Empty,
+                Name = info.Name,
+                Type = ResourceTypes.Folder,
+                Sorting = 0
+
+            };
+        }
+        public static Resource Convert(this FileInfo info)
+        {
+            return new Resource()
+            {
+                Name = info.Name,
+                Type = info.FullName.GetResourceType(),
+                FullName = info.FullName.UrlMap(),
+                Workspace = info.Directory.FullName.UrlMap(),
+                Sorting = 0,
+            };
         }
         public static string GetParentWrokspace(this string absolutely)
         {

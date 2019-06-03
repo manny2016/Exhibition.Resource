@@ -1,11 +1,11 @@
-import { Terminal } from "./terminal";
+import { Terminal,Window } from "./terminal";
 import { Resource } from "./Resource";
 
 export class Directive{
     public type:number;
     public terminal:Terminal;
-    public window:number;
+    public window:Window;
     public name:string;
-    public resources:Resource[];
+    public resource:Resource;
     public description:string;
 }

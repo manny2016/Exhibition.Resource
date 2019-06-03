@@ -25,6 +25,7 @@
                                     <th>目标终端</th>
                                     <th>播放窗口</th>
                                     <th>引用资源</th>
+                                    <th></th>
                                 </thead>
                                 <tbody>
                                     <tr *ngFor="let directive of directives">
@@ -37,10 +38,16 @@
                                         <td>
                                             {{directive.terminal.name}}
                                         </td>
-                                        <td><a (click)="OpenWindowEdit(terminal)" href="javascript:void(0)">{{directive.window}}</a>                                             
+                                        <td>
+                                                {{directive.window.id}} | {{directive.window.location.x}} * {{directive.window.location.y}} (x * y) | {{directive.window.size.width}} *
+                                                {{directive.window.size.height}} (宽 * 高)                                            
+                                        
+                                        </td>
+                                        <td>
+                                                {{directive.resource.workspace}}/{{directive.resource.name}}
                                         </td>
                                         <td class="td-actions text-left">
-                                            <button mat-raised-button type="button" (click)="OpenTerminalEdit(terminal)" matTooltip="编辑"
+                                            <button mat-raised-button type="button" (click)="OpenEdit(directive)" matTooltip="编辑"
                                                 [matTooltipPosition]="'above'"
                                                 class="btn btn-primary btn-link btn-sm btn-just-icon">
                                                 <i class="material-icons">edit</i>

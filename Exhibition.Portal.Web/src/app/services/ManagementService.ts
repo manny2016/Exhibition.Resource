@@ -25,6 +25,10 @@ export class ManagementService {
         const url = environment.api + "GetFileSystem?datetime=" + new Date();
         return this.https.post<Resource[]>(url, filter);
     }
+    public QueryFileSystem(filter:QueryFilter):Observable<Resource[]>{
+        const url = environment.api + "QueryFileSystem?datetime=" + new Date();
+        return this.https.post<Resource[]>(url,filter);
+    }
     /**
      * rename folder or file
      * @param context 

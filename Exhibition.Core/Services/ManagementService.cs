@@ -161,7 +161,33 @@ namespace Exhibition.Core.Services
             };
         }
 
+        public IEnumerable<Models::Resource> QueryFileSystem(Models::QueryFilter filter)
+        {
+            var root = filter.Current.ServerMap();
+            var directory = new DirectoryInfo(root);
+            foreach (var resource in FindSubDirectory(directory, filter.Search))
+            {
+                yield return resource;
+            }
+        }
+        private IEnumerable<Models::Resource> FindSubDirectory(DirectoryInfo directory, string search)
+        {
+            foreach (var info in directory.GetFiles())
+            {
+                if (string.IsNullOrEmpty(search) == false && info.Name.IndexOf(search) < 0)
+                    continue;
+                yield return info.Convert();
+            }
+            yield return directory.Convert();
 
+            foreach (var subdir in directory.GetDirectories())
+            {
+                foreach (var resource in FindSubDirectory(subdir, search))
+                {
+                    yield return resource;
+                }
+            }
+        }
         #endregion
 
         #region  Terminal management

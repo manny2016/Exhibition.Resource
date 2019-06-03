@@ -12,14 +12,14 @@ namespace Exhibition.Core.Models
         public Terminal Terminal { get; set; }
 
         [Newtonsoft.Json.JsonProperty("window")]
-        public int? Window { get; set; }
+        public Window Window { get; set; }
 
 
         [Newtonsoft.Json.JsonProperty("name")]
         public string Name { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("resources")]
-        public Resource[] Resources { get; set; }
+        [Newtonsoft.Json.JsonProperty("resource")]
+        public Resource Resource { get; set; }
 
         [Newtonsoft.Json.JsonProperty("description")]
         public string Description { get; set; }

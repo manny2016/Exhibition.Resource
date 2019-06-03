@@ -20,7 +20,7 @@ export class DirectiveComponent {
         });
         this.Refresh();
     }
-    public OpenEdit(content) {
+    public OpenEdit(content) {        
         const that = this;
         const modalRef = that.modalService.open(DirectiveContent,{ size: 'lg' });
         modalRef.componentInstance.current = content;

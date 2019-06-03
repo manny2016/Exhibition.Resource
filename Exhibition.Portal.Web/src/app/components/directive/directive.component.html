@@ -8,32 +8,55 @@
 <div class="modal-body">
     <div class="row">
         <div class="col-sm-6">
-            <div class="form-group">
-                <mat-form-field>
-                    <mat-select [formControl]="bankCtrl" placeholder="Bank" #singleSelect>
-                        <mat-option>
-                            <ngx-mat-select-search [formControl]="bankFilterCtrl"></ngx-mat-select-search>
-                        </mat-option>
-                        <mat-option *ngFor="let bank of filteredBanks | async" [value]="bank">
-                            {{bank.name}}
-                        </mat-option>
-                    </mat-select>
-                </mat-form-field>
-            </div>
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="指令名称" [(ngModel)]="current.name" value="{{current.name}}"  >
+            </mat-form-field>
         </div>
-        <div class="col-sm-6">            
+        <div class="col-sm-6">
+            <mat-form-field>
+                <mat-select [formControl]="dtypeCtrl" placeholder="指令类型" #dtypeSelect  [(ngModel)]="current.type">
+                    <mat-option *ngFor="let type of directiveTypes " [value]="type.key">
+                        {{type.text}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
         </div>
     </div>
     <div class="row">
         <div class="col-sm-6">
-            <div class="form-group">
-                <select class="form-control selectpicker" placeholder="#指令名称" data-style="btn btn-link"
-                    id="exampleFormControlSelect1">
-                    <option *ngFor="let terminal  of terminals" value="{{terminal.ip}}">
-                        {{terminal.name}}
-                    </option>
-                </select>
-            </div>
+            <mat-form-field>
+                <mat-select [formControl]="terminalCtrl" placeholder="目标计算机" #targetIpSelect  [(ngModel)]="current.terminal">
+                    <mat-option *ngFor="let terminal of terminals " [value]="terminal">
+                        {{terminal.name}}({{terminal.ip}})
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="col-sm-6">
+            <mat-form-field>
+                <mat-select [formControl]="windowCtrl" placeholder="指定窗口" #windowSelect  [(ngModel)]="current.window">
+                    <mat-option *ngFor="let window of windows " [value]="window">
+                        {{window.id}} / {{window.location.x}} * {{window.location.y}} (x * y) / {{window.size.width}} *
+                        {{window.size.height}} (宽 * 高)
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <mat-form-field>
+                <mat-select [formControl]="resourceServerSideCtrl" placeholder="相关资源" #resourceSelect [(ngModel)]="current.resource">
+                    <!-- place ngx-mat-select-search inside mat-option to allow opening without initial selection -->
+                    <mat-option>
+                        <ngx-mat-select-search [formControl]="resourceServerSideFilteringCtrl" [searching]="searching">
+                        </ngx-mat-select-search>
+                    </mat-option>
+                    <mat-option *ngFor="let resource of filteredServerSideResource | async" [value]="resource">
+                        {{resource.workspace}} / {{resource.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
         </div>
     </div>
     <div class="row">
@@ -48,6 +71,6 @@
 
 </div>
 <div class="modal-footer">
-    <button type="button" class="btn btn-danger" (click)="CreateOrUpdateTerminal(current)">保存</button>
+    <button type="button" class="btn btn-danger" (click)="CreateOrUpdateDirective(current)">保存</button>
     <button type="button" class="btn btn-white" (click)="modalRef.close('Close')">关闭</button>
 </div>

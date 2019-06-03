@@ -60,39 +60,40 @@ Schematic=@schematic,Endpoint=@endpoint,Windows=@windows WHERE Ip=@ip;";
             var parameters = new DynamicParameters();
             parameters.Add("@type", (int)directive.Type);
             parameters.Add("@name", directive.Name);
-            parameters.Add("@target", directive.Terminal.Ip);
-            parameters.Add("@window", directive.Window);
+            parameters.Add("@targetIp", directive.Terminal.Ip);
+            parameters.Add("@window", directive.Window.Id);
             parameters.Add("@description", directive.Description);
-            parameters.Add("@context", directive.Resources.SerializeToJson());
+            parameters.Add("@context", directive.Resource.SerializeToJson());
             return parameters;
         }
 
         public static string GenernateInsertScript(this Models::Directive directive)
         {
             return @"
-INSERT INTO Directive(Name,Target,Window,Type,Description,Context)
-VALUES(@name,@target,@window,@type,@description,@context);
+INSERT INTO Directive(Name,TargetIp,Window,Type,Description,Context)
+VALUES(@name,@targetIp,@window,@type,@description,@context);
 ";
         }
 
         public static string GenernateUpdateScript(this Models::Directive directive)
         {
             return @"
-UPDATE Directive SET Target=@target,Window=@window,Type=@type,Description=@description,Context=@context
+UPDATE Directive SET TargetIp=@targetIp,Window=@window,Type=@type,Description=@description,Context=@context
 WHERE Name = @name;
 ";
         }
 
         public static Models::Directive Convert(this Entities::Directive directive, IEnumerable<Entities::Terminal> terminals)
         {
+            var terminal = terminals.First(o => o.Ip.Equals(directive.TargetIp)).Convert();
             return new Core.Models.Directive()
             {
                 Description = directive.Description,
                 Name = directive.Name,
-                Resources = directive.Context.DeserializeToObject<Models::Resource[]>(),
-                Terminal = terminals.First(o => o.Ip.Equals(directive.TargetIp)).Convert(),
+                Resource = directive.Context.DeserializeToObject<Models::Resource>(),
+                Terminal = terminal,
                 Type = directive.Type,
-                Window = directive.Window
+                Window = terminal.Windows.FirstOrDefault(ctx => ctx.Id == directive.Window)
             };
         }
 
