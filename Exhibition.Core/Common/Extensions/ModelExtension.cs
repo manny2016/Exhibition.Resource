@@ -7,93 +7,102 @@ namespace Exhibition.Core
     using Entities = Exhibition.Core.Entities;
     using System.Collections.Generic;
     using System.Linq;
+    using System;
+    using Exhibition.Core.Models;
+
     public static class ModelExtension
     {
-        public static DynamicParameters GenernateParameters(this Models::Terminal terminal)
+        public static DynamicParameters GenernateParameters(this IBaseTerminal terminal)
         {
             var parameters = new DynamicParameters();
-            parameters.Add("@ip", terminal.Ip);
             parameters.Add("@name", terminal.Name);
-            parameters.Add("@schematic", terminal.Schematic);
-            parameters.Add("@windows", terminal.Windows == null
-                ? "[]"
-                : terminal.Windows.SerializeToJson());
+            parameters.Add("@type", terminal.Type);
             parameters.Add("@description", terminal.Description);
-            parameters.Add("@endpoint", terminal.Endpoint);
+            parameters.Add("@settings", terminal.GetSettings());
             return parameters;
         }
 
-        public static string GenernateInsertScript(this Models::Terminal terminal)
+        public static string GenernateInsertScript(this IBaseTerminal terminal)
         {
-            return @"
-INSERT INTO terminal(Ip,Name,Description,Schematic,Endpoint,Windows) 
-VALUES(@ip,@name,@description,@schematic,@endpoint,@windows);";
+            return @"INSERT INTO terminal(Name,Type,Description,Settings) 
+VALUES(@name,@type,@description,@settings);";
         }
 
-        public static string GenernateUpdateScript(this Models::Terminal terminal)
+        public static string GenernateUpdateScript(this IBaseTerminal terminal)
         {
-            return @"UPDATE terminal SET Name=@name,Description=@description,
-Schematic=@schematic,Endpoint=@endpoint,Windows=@windows WHERE Ip=@ip;";
+            return @"UPDATE terminal SET Type=@type, Description=@description,Settings=@settings WHERE Name=@name;";
         }
 
-        public static string GenernateDeleteScript(this Models::Terminal terminal)
+        public static string GenernateDeleteScript(this IBaseTerminal terminal)
         {
-            return @"DELETE FROM terminal WHERE Ip=@ip";
+            return @"DELETE FROM Terminal WHERE Name=@name";
         }
 
-        public static Models::Terminal Convert(this Entities::Terminal terminal)
+        public static IBaseTerminal Convert(this Entities::Terminal terminal)
         {
             if (terminal == null) return null;
-            return new Models::Terminal()
+
+            switch (terminal.Type)
             {
-                Ip = terminal.Ip,
-                Description = terminal.Description,
-                Endpoint = terminal.Endpoint,
-                Name = terminal.Name,
-                Schematic = terminal.Schematic,
-                Windows = terminal.Windows.DeserializeToObject<Models::Window[]>()
-            };
+                case TerminalTypes.MediaPlayer:
+                    return new MediaPlayerTerminal()
+                    {
+                        Name = terminal.Name,
+                        Description = terminal.Description,
+                        Settings = terminal.Settings.DeserializeToObject<MedaiPlayerSettings>()
+                    };
+                case TerminalTypes.SerialPort:
+                    return new SerialPortTerminal()
+                    {
+                        Name = terminal.Name,
+                        Description = terminal.Description,
+                        Settings = terminal.Settings.DeserializeToObject<SerialPortSettings>()
+                    };
+                default:
+                    throw new NotSupportedException(terminal.Type.ToString());
+            }
         }
 
         public static DynamicParameters GenernateParameters(this Models::Directive directive)
         {
             var parameters = new DynamicParameters();
-            parameters.Add("@type", (int)directive.Type);
+
             parameters.Add("@name", directive.Name);
-            parameters.Add("@targetIp", directive.Terminal.Ip);
-            parameters.Add("@window", directive.Window ==null? (int?)null: directive.Window.Id);
+            parameters.Add("@type", (int)directive.Type);
             parameters.Add("@description", directive.Description);
-            parameters.Add("@context", directive.Resource.SerializeToJson());
+            parameters.Add("@target", directive.Terminal.SerializeToJson());
+            parameters.Add("@defaultwindow", directive.DefaultWindow == null ? "{}" : directive.DefaultWindow.SerializeToJson());
+            parameters.Add("@resources", directive.Resources == null ? "[]" : directive.Resources.SerializeToJson());
             return parameters;
         }
 
         public static string GenernateInsertScript(this Models::Directive directive)
         {
             return @"
-INSERT INTO Directive(Name,TargetIp,Window,Type,Description,Context)
-VALUES(@name,@targetIp,@window,@type,@description,@context);
+INSERT INTO Directive(Name,Type,Description,Target,DefaultWindow,Resources)
+VALUES(@name,@type,@description,@target,@defaultwindow,@resources);
 ";
         }
 
         public static string GenernateUpdateScript(this Models::Directive directive)
         {
             return @"
-UPDATE Directive SET TargetIp=@targetIp,Window=@window,Type=@type,Description=@description,Context=@context
+UPDATE Directive SET Target=@target,Defaultwindow=@defaultwindow,Type=@type,Description=@description,Resources=@resources
 WHERE Name = @name;
 ";
         }
 
-        public static Models::Directive Convert(this Entities::Directive directive, IEnumerable<Entities::Terminal> terminals)
+        public static Models::Directive Convert(this Entities::Directive directive)
         {
-            var terminal = terminals.First(o => o.Ip.Equals(directive.TargetIp)).Convert();
+            //var terminal = terminals.First(o => o.Ip.Equals(directive.TargetIp)).Convert();
             return new Core.Models.Directive()
             {
                 Description = directive.Description,
                 Name = directive.Name,
-                Resource = directive.Context.DeserializeToObject<Models::Resource>(),
-                Terminal = terminal,
+                //Resource = directive.Context.DeserializeToObject<Models::Resource>(),
+                //Terminal = terminal,
                 Type = directive.Type,
-                Window = terminal.Windows.FirstOrDefault(ctx => ctx.Id == directive.Window)
+                //Window = terminal.Windows.FirstOrDefault(ctx => ctx.Id == directive.Window)
             };
         }
 
@@ -108,12 +117,12 @@ WHERE Name = @name;
             return $" WHERE {filter.Name} LIKE '%{filter.Value.Replace("'", "''")}%'";
         }
 
-        public static Models::OptionModel Convert(this Models::Terminal terminal)
+        public static Models::OptionModel Convert(this IBaseTerminal terminal)
         {
             return new Models::OptionModel()
             {
-                Key = terminal.Ip,
-                Text = $"{terminal.Name}({terminal.Ip})"
+                Key = terminal.Name,
+                Text = $"{terminal.Name}"
             };
         }
         public static Models::OptionModel Convert(this Models::Resource resource)

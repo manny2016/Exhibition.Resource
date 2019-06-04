@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Exhibition.Core;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -17,6 +18,7 @@ namespace Exhibition.Portal.Api
     {
         public Startup(IConfiguration configuration)
         {
+            EnvironmentVariables.InitializeTestData();
             Configuration = configuration;
         }
 

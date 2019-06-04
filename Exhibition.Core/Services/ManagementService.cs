@@ -190,14 +190,13 @@ namespace Exhibition.Core.Services
         }
         #endregion
 
-        #region  Terminal management
-        public Models::Terminal CreateOrUpdate(Models::Terminal terminal)
+        #region Terminal Management
+        public void CreateOrUpdate(IBaseTerminal terminal)
         {
+            var queryString = "SELECT COUNT(*) FROM Terminal WHERE Name=@name";
             using (var database = SQLiteFactory.Genernate())
             {
-                var queryString = string.Empty;
-                if (database.ExecuteScalar<int>("SELECT COUNT(*) FROM terminal WHERE Ip=@ip",
-                    terminal.GenernateParameters()) > 0)
+                if (database.ExecuteScalar<int>(queryString,new { @name=terminal.Name}) > 0)
                 {
                     database.Execute(terminal.GenernateUpdateScript(), terminal.GenernateParameters());
                 }
@@ -206,125 +205,39 @@ namespace Exhibition.Core.Services
                     database.Execute(terminal.GenernateInsertScript(), terminal.GenernateParameters());
                 }
             }
-            return terminal;
         }
-        public Models::Terminal DeleteTerminal(Models::Terminal terminal)
+        public void Delete(IBaseTerminal terminal)
         {
             using (var database = SQLiteFactory.Genernate())
             {
                 database.Execute(terminal.GenernateDeleteScript(), terminal.GenernateParameters());
             }
-            return terminal;
-        }
-        public Models::Terminal QueryTerminal(string ip)
-        {
-            using (var database = SQLiteFactory.Genernate())
-            {
-                var queryString = "SELECT * FROM Terminal WHERE Ip=@ip";
-                return database.QueryFirst<Entities::Terminal>(queryString, new { @ip = ip })
-                    .Convert();
-            }
-        }
-        public IEnumerable<Models::Terminal> QueryTerminals(string search = null)
-        {
-            using (var database = SQLiteFactory.Genernate())
-            {
-                var queryString = "SELECT * FROM Terminal  ";
-                if (string.IsNullOrEmpty(search))
-                {
-
-                }
-                return database.Query<Entities::Terminal>(queryString, new { @search = search })
-                    .Select((ctx) =>
-                    {
-                        return new Models.Terminal()
-                        {
-                            Description = ctx.Description,
-                            Endpoint = ctx.Endpoint,
-                            Ip = ctx.Ip,
-                            Name = ctx.Name,
-                            Schematic = ctx.Schematic,
-                            Windows = ctx.Windows.DeserializeToObject<Models::Window[]>()
-                        };
-                    });
-            }
-        }
-        public int DeleteTerminal(string ip)
-        {
-            using (var database = SQLiteFactory.Genernate())
-            {
-                var queryString = @"
-DELETE FROM Directive WHERE TargetIp =@ip;
-DELETE FROM Terminal WHERE Ip=@ip";
-                return database.Execute(queryString, new { @ip = ip });
-            }
         }
         #endregion
 
-        #region  Directive management
-        public int CreateOrUpdate(Models::Directive directive)
+        #region Directive Management
+        public void CreateOrUpdate(Models::Directive directive)
         {
+            var queryString = "SELECT COUNT(*) FROM Directive WHERE Name=@name";
             using (var database = SQLiteFactory.Genernate())
             {
-                var queryString = "SELECT COUNT(*) FROM Directive WHERE Name=@name";
-                if (database.ExecuteScalar<int>(queryString, directive.GenernateParameters()) > 0)
+                if (database.ExecuteScalar<int>(queryString, new { @name = directive.Name }) > 0)
                 {
-                    return database.Execute(directive.GenernateUpdateScript(), directive.GenernateParameters());
+                    database.Execute(directive.GenernateUpdateScript(), directive.GenernateParameters());
                 }
                 else
                 {
-                    return database.Execute(directive.GenernateInsertScript(), directive.GenernateParameters());
+                    database.Execute(directive.GenernateInsertScript(), directive.GenernateParameters());
                 }
             }
         }
-
-        public int DeleteDirective(Models::Directive directive)
+        public void Delete(Models::Directive directive)
         {
             using (var database = SQLiteFactory.Genernate())
             {
-                return database.Execute(directive.GenernateDeleteScript(), directive.GenernateParameters());
-            }
-        }
-
-
-        public IEnumerable<Models::Directive> QueryDirectives(Models::SQLiteDimQueryFilter filter = null)
-        {
-            using (var database = SQLiteFactory.Genernate())
-            {
-                var strWhere = " WHERE 1=1 ";
-                var queryString = "SELECT * FROM Directive  ";
-                if (filter != null && !string.IsNullOrEmpty(filter.Search))
-                    strWhere = string.Concat(strWhere, " AND (NAME LIKE @search OR TargetIp LIKE @search)");
-
-                queryString = string.Concat(queryString, strWhere);
-                var results = database.Query<Entities::Directive>(queryString, new { @search = filter.Search });
-                if (results == null) return new List<Models::Directive>();
-
-                var ip = string.Join(",", results.Select((ctx) => { return $"'{ctx.TargetIp}'"; }));
-                queryString = $@"SELECT * FROM Terminal WHERE Ip IN ({ip})";
-
-                var terminals = database.Query<Entities.Terminal>(queryString);
-
-                return results.Select((ctx) =>
-                {
-                    return ctx.Convert(terminals);
-                });
-            }
-        }
-
-        public Models::Directive QueryDirective(string name)
-        {
-            using (var database = SQLiteFactory.Genernate())
-            {
-                var queryString = "SELECT * FROM Directive WHERE Name = @name";
-                var entity = database.QueryFirst<Entities::Directive>(queryString, new { @name = name });
-                if (entity == null) return null;
-                queryString = "SELECT * FROM Terminal WHERE Ip=@ip";
-                var terminals = database.Query<Entities::Terminal>(queryString, new { @ip = entity.TargetIp });
-                return entity.Convert(terminals);
+                database.Execute(directive.GenernateDeleteScript(), directive.GenernateParameters());
             }
         }
         #endregion
-
     }
 }
