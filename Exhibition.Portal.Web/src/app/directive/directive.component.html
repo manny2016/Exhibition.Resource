@@ -39,21 +39,23 @@
                                             {{directive.terminal.name}}
                                         </td>
                                         <td>
-                                                {{directive.window.id}} | {{directive.window.location.x}} * {{directive.window.location.y}} (x * y) | {{directive.window.size.width}} *
-                                                {{directive.window.size.height}} (宽 * 高)                                            
+                                            <div>
+                                                {{directive.window.id}} | {{directive.window.location.x}} * {{directive.window.location.y}} (x * y) | {{directive.window.size.width}}
+                                                * {{directive.window.size.height}} (宽 * 高)
+
+                                            </div>
+                                        </td>
+                                        <td >
+                                            <p *ngIf="directive.resource!=null">
+                                                    {{directive.resource.workspace}}/{{directive.resource.name}}
+                                            </p>
+                                        </td>
                                         
-                                        </td>
-                                        <td>
-                                                {{directive.resource.workspace}}/{{directive.resource.name}}
-                                        </td>
                                         <td class="td-actions text-left">
-                                            <button mat-raised-button type="button" (click)="OpenEdit(directive)" matTooltip="编辑"
-                                                [matTooltipPosition]="'above'"
-                                                class="btn btn-primary btn-link btn-sm btn-just-icon">
+                                            <button mat-raised-button type="button" (click)="OpenEdit(directive)" matTooltip="编辑" [matTooltipPosition]="'above'" class="btn btn-primary btn-link btn-sm btn-just-icon">
                                                 <i class="material-icons">edit</i>
                                             </button>
-                                            <button mat-raised-button type="button" matTooltip="删除"
-                                                (click)="DeleteTerminal(terminal)" [matTooltipPosition]="'above'"
+                                            <button mat-raised-button type="button" matTooltip="删除" (click)="DeleteDirective(directive)" [matTooltipPosition]="'above'"
                                                 class="btn btn-danger btn-link btn-sm btn-just-icon">
                                                 <i class="material-icons">close</i>
                                             </button>

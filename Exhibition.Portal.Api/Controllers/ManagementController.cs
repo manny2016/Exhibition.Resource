@@ -21,7 +21,7 @@ namespace Exhibition.Portal.Api.Controllers
         public ManagementService service = new ManagementService();
 
         [Route("api/mgr/GetFileSystem"), HttpPost]
-        public QueryFileSystemResponse GetFileSystem(QueryFilter filter)
+        public  QueryFileSystemResponse GetFileSystem(QueryFilter filter)
         {
             filter.Current = filter.Current ?? EnvironmentVariables.UrlROOT;
             filter.Current = filter.Current.TrimStart('/').TrimEnd('/');
@@ -166,7 +166,26 @@ namespace Exhibition.Portal.Api.Controllers
             return new QueryFileSystemResponse()
             {
                 Data = this.service.QueryFileSystem(filter).ToArray()
-        };
+            };
+        }
+
+        [Route("api/mgr/QueryFileSystemforChoosing"), HttpPost]
+        public BasicResponse<OptionModel[]> QueryFileSystemforChoosing(QueryFilter filter)
+        {
+            var response = this.QueryFileSystem(filter);
+            return new QuerySelectOptionResponse()
+            {
+                Data = response.Data.Select(o => o.Convert()).ToArray()
+            };
+        }
+        [Route("api/mgr/QueryTerminalforChoosing"), HttpPost]
+        public BasicResponse<OptionModel[]> QueryTerminalforChoosing(SQLiteDimQueryFilter filter)
+        {
+            var response = this.QueryTerminals(filter);
+            return new BasicResponse<OptionModel[]>()
+            {
+                Data = response.Data.Select(o=>o.Convert()).ToArray()
+            };
+        }
     }
-}
 }

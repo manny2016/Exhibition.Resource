@@ -9,8 +9,9 @@ import { QueryFilter, SQLiteFilter } from 'app/models/queryFilter';
 import { ResourceRequestContext } from "app/models/ResourceRequestContext";
 import { ActionResponse } from 'app/models/QueryResponse';
 import { getLocaleDateTimeFormat } from '@angular/common';
-import { Terminal } from 'app/models/terminal';
-import { Directive } from 'app/models/Directive';
+import { Terminal, Window } from 'app/models/terminal';
+import { Directive, OptionModel } from 'app/models/Directive';
+import { text } from '../../../node_modules/@angular/core/src/render3';
 
 
 
@@ -25,9 +26,9 @@ export class ManagementService {
         const url = environment.api + "GetFileSystem?datetime=" + new Date();
         return this.https.post<Resource[]>(url, filter);
     }
-    public QueryFileSystem(filter:QueryFilter):Observable<Resource[]>{
+    public QueryFileSystem(filter: QueryFilter): Observable<Resource[]> {
         const url = environment.api + "QueryFileSystem?datetime=" + new Date();
-        return this.https.post<Resource[]>(url,filter);
+        return this.https.post<Resource[]>(url, filter);
     }
     /**
      * rename folder or file
@@ -100,5 +101,22 @@ export class ManagementService {
     public DeleteDirective(context: Directive): Observable<ActionResponse> {
         const url = environment.api + "DeleteDirective";
         return this.https.post<ActionResponse>(url, context);
+    }
+
+    /**
+     * 
+     * @param filter 
+     */
+    public QueryResourceforChoosing(filter: QueryFilter): Observable<ActionResponse> {
+        const url = environment.api + "QueryFileSystemforChoosing";
+        return this.https.post<ActionResponse>(url, filter);
+    }
+    /**
+     * 
+     * @param filter 
+     */
+    public QueryTerminalforChoosing(filter:SQLiteFilter):Observable<ActionResponse>{
+        const url = environment.api+"QueryTerminalforChoosing";
+        return this.https.post<ActionResponse>(url, filter);
     }
 }

@@ -5,7 +5,7 @@ using Exhibition.Core.Models;
 
 namespace Exhibition.Portal.Api.Models
 {
-    public class QueryFileSystemResponse : Response<Resource[]>
+    public class QueryFileSystemResponse : BasicResponse<Resource[]>
     {
 
         public QueryFileSystemResponse(string current) :
@@ -25,4 +25,6 @@ namespace Exhibition.Portal.Api.Models
         [Newtonsoft.Json.JsonProperty("parent")]
         public string Parent { get;  set; }
     }
+
+   
 }

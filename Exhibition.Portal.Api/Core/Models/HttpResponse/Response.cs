@@ -2,9 +2,9 @@
 
 namespace Exhibition.Portal.Api.Models
 {
-    public abstract class Response<T>        
+    public  class BasicResponse<T>        
     {
-        public Response() {
+        public BasicResponse() {
             this.Success = true;
             this.ErrorCode = 0;
             this.ErrorMsg = string.Empty;

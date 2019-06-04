@@ -68,7 +68,7 @@ namespace Exhibition.Core
             return new Resource()
             {
                 Workspace = info.FullName.UrlMap(),
-                FullName = string.Empty,
+                FullName =info.FullName.UrlMap(),
                 Name = info.Name,
                 Type = ResourceTypes.Folder,
                 Sorting = 0

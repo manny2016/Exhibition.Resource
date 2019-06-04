@@ -61,7 +61,7 @@ Schematic=@schematic,Endpoint=@endpoint,Windows=@windows WHERE Ip=@ip;";
             parameters.Add("@type", (int)directive.Type);
             parameters.Add("@name", directive.Name);
             parameters.Add("@targetIp", directive.Terminal.Ip);
-            parameters.Add("@window", directive.Window.Id);
+            parameters.Add("@window", directive.Window ==null? (int?)null: directive.Window.Id);
             parameters.Add("@description", directive.Description);
             parameters.Add("@context", directive.Resource.SerializeToJson());
             return parameters;
@@ -106,6 +106,31 @@ WHERE Name = @name;
             if (filter == null) return " WHERE 1=1 ";
             if (string.IsNullOrEmpty(filter.Value)) return " WHERE 1=1 ";
             return $" WHERE {filter.Name} LIKE '%{filter.Value.Replace("'", "''")}%'";
+        }
+
+        public static Models::OptionModel Convert(this Models::Terminal terminal)
+        {
+            return new Models::OptionModel()
+            {
+                Key = terminal.Ip,
+                Text = $"{terminal.Name}({terminal.Ip})"
+            };
+        }
+        public static Models::OptionModel Convert(this Models::Resource resource)
+        {
+            return new Models::OptionModel()
+            {
+                Key = resource.FullName,
+                Text = resource.FullName
+            };
+        }
+        public static Models::OptionModel Convert(this Models::Window window, string ip)
+        {
+            return new Models::OptionModel()
+            {
+                Key = $"{ip}-{window.Id}",
+                Text = $"{window.Id}|{window.Location.X} * {window.Location.Y}(x * y) | {window.Size.Width} * {window.Size.Height} (width * height)"
+            };
         }
     }
 }

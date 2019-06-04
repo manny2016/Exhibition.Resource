@@ -39,8 +39,9 @@ export class WindowContent implements OnInit {
             }
         });
         var temp :Window={id:id,size:window.size,location:window.location,monitor:window.monitor};
-
         that.current.windows.push(temp);
+        that.CreateOrUpdateTerminal(that.current);
+        that.modalRef.close("Close");
     }
     public DeleteWindow(window: Window) {
         const that = this;        
@@ -54,7 +55,7 @@ export class WindowContent implements OnInit {
     }
     public CreateOrUpdateTerminal(terminal: Terminal) {
         const that = this;
-        console.log(terminal);
+        
         that.service.CreateOrUpdateTerminal(terminal).toPromise().then(res=>{
             if(res.success){
               that.modalRef.close("Close");
