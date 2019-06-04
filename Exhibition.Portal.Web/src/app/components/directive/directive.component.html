@@ -15,7 +15,7 @@
         <div class="col-sm-6">
             <mat-form-field>
                 <mat-select [formControl]="dtypeCtrl" placeholder="指令类型" #dtypeSelect  [(ngModel)]="current.type">
-                    <mat-option *ngFor="let type of directiveTypes " [value]="type.key">
+                    <mat-option *ngFor="let type of omDirectiveTypes " [value]="type.key">
                         {{type.text}}
                     </mat-option>
                 </mat-select>
@@ -27,7 +27,7 @@
             <mat-form-field>
                 <mat-select [formControl]="terminalCtrl" placeholder="目标计算机" #targetIpSelect  [(ngModel)]="current.termianlIp">
                     <mat-option *ngFor="let om of omTerminals " [value]="om.key">
-                        {{om.key}}({{om.text}})
+                        {{om.text}}
                     </mat-option>
                 </mat-select>
             </mat-form-field>
@@ -35,9 +35,8 @@
         <div class="col-sm-6">
             <mat-form-field>
                 <mat-select [formControl]="windowCtrl" placeholder="指定窗口" #windowSelect  [(ngModel)]="current.windowId">
-                    <mat-option *ngFor="let window of windows " [value]="window.id">
-                        {{window.id}} / {{window.location.x}} * {{window.location.y}} (x * y) / {{window.size.width}} *
-                        {{window.size.height}} (宽 * 高)
+                    <mat-option *ngFor="let window of omWindows " [value]="window.key">
+                      {{window.text}}
                     </mat-option>
                 </mat-select>
             </mat-form-field>
@@ -52,8 +51,8 @@
                         <ngx-mat-select-search [formControl]="resourceServerSideFilteringCtrl" [searching]="searching">
                         </ngx-mat-select-search>
                     </mat-option>
-                    <mat-option *ngFor="let resource of filteredServerSideResource | async" [value]="resource.fullName">
-                        {{resource.workspace}} / {{resource.name}}
+                    <mat-option *ngFor="let resource of omResources " [value]="resource.fullName">
+                       {{resource.text}}
                     </mat-option>
                 </mat-select>
             </mat-form-field>
