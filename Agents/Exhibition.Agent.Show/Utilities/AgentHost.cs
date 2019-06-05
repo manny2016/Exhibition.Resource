@@ -44,5 +44,12 @@ namespace Exhibition.Agent.Show
                 return name;
             }
         }
+        public static string Resource {
+            get
+            {
+                var text= ConfigurationManager.AppSettings["resource"];
+                return text;
+            }
+        }
     }
 }

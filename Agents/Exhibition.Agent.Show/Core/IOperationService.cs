@@ -12,11 +12,27 @@ namespace Exhibition.Core
     {
         [OperationContract]
         [WebInvoke(Method = "POST",
-            UriTemplate = "Run",
+            UriTemplate = "Run",              
             BodyStyle = WebMessageBodyStyle.Bare,
             RequestFormat = WebMessageFormat.Json,
             ResponseFormat = WebMessageFormat.Json)]
         Models::GeneralResponse<int> Run(Models::Directive directive);
 
+
+        [OperationContract]
+        [WebInvoke(Method = "GET",
+         UriTemplate = "Readme",
+         BodyStyle = WebMessageBodyStyle.Bare,
+         RequestFormat = WebMessageFormat.Json,
+         ResponseFormat = WebMessageFormat.Json)]
+        string Readme();
+
+        [OperationContract]
+        [WebInvoke(Method = "GET",
+         UriTemplate = "Shutdown",
+         BodyStyle = WebMessageBodyStyle.Bare,
+         RequestFormat = WebMessageFormat.Json,
+         ResponseFormat = WebMessageFormat.Json)]
+        void Shutdown();
     }
 }

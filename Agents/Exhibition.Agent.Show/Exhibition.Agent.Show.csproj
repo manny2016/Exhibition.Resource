@@ -72,24 +72,6 @@
     <Compile Include="Components\AxWebBrowser.designer.cs">
       <DependentUpon>AxWebBrowser.cs</DependentUpon>
     </Compile>
-    <Compile Include="Components\DSMediaPlayer.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Components\DSMediaPlayer.designer.cs">
-      <DependentUpon>DSMediaPlayer.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Components\ImagePlayer.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Components\ImagePlayer.designer.cs">
-      <DependentUpon>ImagePlayer.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Components\VideoPlayer.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Components\VideoPlayer.designer.cs">
-      <DependentUpon>VideoPlayer.cs</DependentUpon>
-    </Compile>
     <Compile Include="Core\IOperate.cs" />
     <Compile Include="Core\Models\WorkingState.cs" />
     <Compile Include="ForumMain.cs">
@@ -105,15 +87,6 @@
     <Compile Include="Utilities\AgentHost.cs" />
     <EmbeddedResource Include="Components\AxWebBrowser.resx">
       <DependentUpon>AxWebBrowser.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Components\DSMediaPlayer.resx">
-      <DependentUpon>DSMediaPlayer.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Components\ImagePlayer.resx">
-      <DependentUpon>ImagePlayer.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Components\VideoPlayer.resx">
-      <DependentUpon>VideoPlayer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ForumMain.resx">
       <DependentUpon>ForumMain.cs</DependentUpon>

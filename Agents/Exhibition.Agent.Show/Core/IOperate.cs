@@ -7,9 +7,13 @@ using System.Threading.Tasks;
 
 namespace Exhibition.Core
 {
-    public interface IOperate 
+    public interface IOperate
     {
         void Play(Resource resource);
+
+        void Next();
+
+        void Previous();
 
         void Stop();
     }

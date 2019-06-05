@@ -6,7 +6,6 @@ namespace Exhibition.Agent.Show
     using System.Windows.Forms;
     using Exhibition.Core.Models;
     using Exhibition.Core;
-    using System.IO;
     using System.Text;
     using System.Linq;
     using Models = Exhibition.Core.Models;
@@ -21,36 +20,67 @@ namespace Exhibition.Agent.Show
             InitializeComponent();
             this.Load += ForumMain_Load;
             this.LoadWindowConfiguration();
+            this.KeyPreview = true;
+            this.KeyUp += ForumMain_KeyUp;
+
         }
+
+        private void ForumMain_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyData == Keys.Escape)
+            {
+                Application.Exit();
+            }
+        }
+
         private MediaPlayerTerminal terminal;
         private Dictionary<string, WorkingState> states = new Dictionary<string, WorkingState>();
         private void ForumMain_Load(object sender, EventArgs e)
         {
             AgentHost.DirectiveReceived += AgentHost_DirectiveReceived;
+            this.FixWindowLocationByMonitor();
+        }
+
+
+        private void FixWindowLocationByMonitor()
+        {
+            var screens = Screen.AllScreens;
+            this.SetBounds(screens.Min(o => o.Bounds.X), screens.Min(o => o.Bounds.Y),
+                screens.Sum(o => o.Bounds.Width), screens.Max(o => o.Bounds.Height));
 
         }
         private void LoadWindowConfiguration()
         {
-            var url = string.Format(AgentHost.Api, "QueryTerminals");
-            var result = url.GetUriJsonContent<GeneralResponse<MediaPlayerTerminal[]>>((http) =>
-              {
-                  http.Method = "POST";
-                  http.ContentType = "application/json";
-                  using (var stream = new StreamWriter(http.GetRequestStream(), System.Text.Encoding.UTF8))
+            try
+            {
+                var url = string.Format(AgentHost.Api, "QueryTerminals");
+                var result = url.GetUriJsonContent<GeneralResponse<MediaPlayerTerminal[]>>((http) =>
                   {
-                      var body = new
+                      http.Method = "POST";
+                      http.ContentType = "application/json; charset=utf-8";
+                      var data = new
                       {
                           Keys = new string[] { AgentHost.TerminalName },
                           PrimaryKey = "Name",
                           TerminalTypes = new int[] { (int)TerminalTypes.MediaPlayer }
                       };
-                      var json = body.SerializeToJson();
-                      stream.Write(json);
-                      stream.Flush();
-                  }
-                  return http;
-              });
-            this.terminal = result.Data.FirstOrDefault();
+                      using (var stream = http.GetRequestStream())
+                      {
+                          var body = data.SerializeToJson();
+                          var buffers = UTF8Encoding.Default.GetBytes(body);
+                          stream.Write(buffers, 0, buffers.Length);
+                          stream.Flush();
+                      }
+
+
+                      return http;
+                  });
+                this.terminal = result.Data.FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
         private void AgentHost_DirectiveReceived(object sender, Models::Directive directive)
         {
@@ -60,7 +90,7 @@ namespace Exhibition.Agent.Show
             }
             else
             {
-
+                this.Run(sender, directive);
             }
         }
         private void Run(object sender, Models::Directive directive)
@@ -68,10 +98,19 @@ namespace Exhibition.Agent.Show
             switch (directive.Type)
             {
                 case DirectiveTypes.Next:
+                    if (states.ContainsKey(directive.Name))
+                    {
+                        states[directive.Name].Operator.Next();
+                    }
                     break;
                 case DirectiveTypes.Previous:
+                    if (states.ContainsKey(directive.Name))
+                    {
+                        states[directive.Name].Operator.Previous();
+                    }
                     break;
                 case DirectiveTypes.Run:
+                    GenernateOperator(directive)?.Play(directive.Resources[0]);
                     break;
                 case DirectiveTypes.Stop:
                     states[directive.Name]?.Operator.Stop();
@@ -91,24 +130,21 @@ namespace Exhibition.Agent.Show
                     Resources = directive.Resources,
                     Current = 0
                 };
-                state.Operator = CreatePlayer(state.Type, state.Window, directive.Resources[0]);
+                state.Operator = CreatePlayer(state.Type, directive.Name, state.Window, directive.Resources);
+                states[directive.Name] = state;
             }
             return states[directive.Name].Operator;
         }
 
-        private IOperate CreatePlayer(ResourceTypes type, Window window, Resource resource)
+        private IOperate CreatePlayer(ResourceTypes type, string name, Window window, Resource[] resource)
         {
             UserControl control = null;
             switch (type)
             {
                 case ResourceTypes.H5:
-                    control = new AxWebBrowser(resource);
-                    break;
                 case ResourceTypes.Image:
-                    control = new ImagePlayer(resource);
-                    break;
                 case ResourceTypes.Video:
-                    control = new DSMediaPlayer(resource);
+                    control = new AxWebBrowser(resource, name);
                     break;
                 case ResourceTypes.Folder:
                 case ResourceTypes.SerialPortDirective:
@@ -117,7 +153,7 @@ namespace Exhibition.Agent.Show
             }
             this.SuspendLayout();
             control.Width = window.Size.Width;
-            Height = window.Size.Height;
+            control.Height = window.Size.Height;
             control.Location = new System.Drawing.Point(window.Location.X, window.Location.Y);
             this.Controls.Add(control);
             this.ResumeLayout(false);
@@ -126,7 +162,7 @@ namespace Exhibition.Agent.Show
 
         private void RemovePlayerforNewDirective(Models::Directive directive)
         {
-            if (!states.ContainsKey(directive.Name))
+            if (states.ContainsKey(directive.Name)==false)
             {
                 foreach (var state in states)
                 {

@@ -39,7 +39,7 @@ namespace Exhibition.Core
             service.CreateOrUpdate(new MediaPlayerTerminal()
             {
                 Description = "视频播放器",
-                Name = "大屏",
+                Name = "01",
                 Settings = new MedaiPlayerSettings()
                 {
                     Endpoint = "http://192.168.0.102/api/common/run",

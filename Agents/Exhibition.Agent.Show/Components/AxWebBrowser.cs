@@ -10,37 +10,42 @@ namespace Exhibition.Components
 
     using Exhibition.Core;
     using System.IO;
-
+    using Exhibition.Agent.Show;
+    using System.Drawing;
+    using System.Collections.Generic;
+    using System.Linq;
     public partial class AxWebBrowser : UserControl, IOperate
     {
-
-        public AxWebBrowser(Resource resource)
+        private LinkedList<Resource> linked = null;
+        private LinkedListNode<Resource> current = null;
+        public AxWebBrowser(Resource[] resources, string name)
         {
+            linked = new LinkedList<Resource>(resources.OrderBy(o => o.Name));
+            current = linked.First;
             this.InitializeComponent();
             this.Load += AxWebBrowser_Load;
-            this.InitializeChromiumWebBrowser();
+            this.InitializeChromiumWebBrowser(name);
         }
 
         private void AxWebBrowser_Load(object sender, System.EventArgs e)
         {
-            this.Width = this.Parent.Width;
-            this.Height = this.Parent.Height;
+
             this.WebBrowser.Width = this.Width;
             this.WebBrowser.Height = this.Height;
         }
 
         CfrBrowser remoteBrowser;
         public Chromium.WebBrowser.ChromiumWebBrowser WebBrowser;
-        private void InitializeChromiumWebBrowser()
+        private void InitializeChromiumWebBrowser(string name)
         {
             this.SuspendLayout();
             this.WebBrowser = new ChromiumWebBrowser();
             this.WebBrowser.BackColor = System.Drawing.Color.White;
-            this.WebBrowser.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.WebBrowser.Location = new System.Drawing.Point(0, 0);
-            this.WebBrowser.Name = "WebBrowser";
+            //this.WebBrowser.Dock = System.Windows.Forms.DockStyle.Fill;
+            //this.WebBrowser.Location = new System.Drawing.Point(0, 0);
+            this.WebBrowser.Name = name;
             this.WebBrowser.RemoteCallbackInvokeMode = Chromium.WebBrowser.JSInvokeMode.Inherit;
-            this.WebBrowser.Size = new System.Drawing.Size(1441, 605);
+            //this.WebBrowser.Size = new System.Drawing.Size(1441, 605);
             this.WebBrowser.TabIndex = 2;
             this.WebBrowser.RemoteBrowserCreated += (s, e) =>
             {
@@ -52,12 +57,9 @@ namespace Exhibition.Components
 
         public void Play(Resource resource)
         {
-            using (var stream = new FileStream(resource.FullName, FileMode.Open, FileAccess.Read))
-            {
-                var reader = new StreamReader(stream);
-                var url = reader.ReadToEnd();
-                this.WebBrowser.LoadUrl(url);
-            }
+
+            var url = AgentHost.Resource + "/" + this.current.Value.FullName;            
+            this.WebBrowser.LoadUrl(url);
         }
 
         public void Stop()
@@ -69,5 +71,16 @@ namespace Exhibition.Components
             }
         }
 
+        public void Next()
+        {
+            this.current = this.current.Next ?? linked.Last;
+            this.Play(this.current.Value);
+        }
+
+        public void Previous()
+        {
+            this.current = this.current.Previous?? linked.First;
+            this.Play(this.current.Value);
+        }
     }
 }
