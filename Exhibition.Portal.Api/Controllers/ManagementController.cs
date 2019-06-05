@@ -106,25 +106,25 @@ namespace Exhibition.Portal.Api.Controllers
         {
             return new QueryTerminalResponse()
             {
-                Data = service.QueryTerminals(filter.Search).ToArray()
+              
             };
         }
 
         [Route("api/mgr/CreateTerminal"), HttpPost]
-        public TerminalActionResponse CreateTerminal(Models::Terminal terminal)
+        public TerminalActionResponse CreateTerminal(IBaseTerminal terminal)
         {
             return new TerminalActionResponse()
             {
-                Data = service.CreateOrUpdate(terminal)
+                
             };
         }
         [Route("api/mgr/DeleteTerminal"), HttpPost]
-        public GeneralResponse DeleteTerminal(Models::Terminal terminal)
+        public GeneralResponse DeleteTerminal(IBaseTerminal terminal)
         {
-            if (terminal == null || string.IsNullOrEmpty(terminal.Ip)) return null;
+            //if (terminal == null || string.IsNullOrEmpty(terminal.Ip)) return null;
             return new GeneralResponse()
             {
-                Data = service.DeleteTerminal(terminal.Ip)
+                //Data = service.DeleteTerminal(terminal.Ip)
             };
         }
 
@@ -133,7 +133,7 @@ namespace Exhibition.Portal.Api.Controllers
         {
             return new QueryDirectiveResponse()
             {
-                Data = this.service.QueryDirectives(filter).ToArray()
+               
             };
         }
 
@@ -142,7 +142,7 @@ namespace Exhibition.Portal.Api.Controllers
         {
             return new GeneralResponse()
             {
-                Data = this.service.CreateOrUpdate(directive)
+                //Data = this.service.CreateOrUpdate(directive)
             };
         }
 
@@ -151,7 +151,7 @@ namespace Exhibition.Portal.Api.Controllers
         {
             return new GeneralResponse()
             {
-                Data = this.service.DeleteDirective(directive)
+                //Data = this.service.DeleteDirective(directive)
             };
         }
 
@@ -184,7 +184,7 @@ namespace Exhibition.Portal.Api.Controllers
             var response = this.QueryTerminals(filter);
             return new BasicResponse<OptionModel[]>()
             {
-                Data = response.Data.Select(o=>o.Convert()).ToArray()
+                //Data = response.Data.Select(o=>o.Convert()).ToArray()
             };
         }
     }
