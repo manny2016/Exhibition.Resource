@@ -12,3 +12,7 @@
 /Exhibition.Portal.Api/wwwroot/node_modules/.bin
 /Exhibition.Portal.Api/wwwroot/node_modules
 /Exhibition.Portal.Api/assets/userfiles
+/Agents/Exhibition.Agent.Show/bin/Debug
+/Agents/Exhibition.Agent.Show/obj/Debug
+/packages
+/Test/UnitTest

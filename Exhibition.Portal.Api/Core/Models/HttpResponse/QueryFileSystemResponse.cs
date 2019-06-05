@@ -5,7 +5,7 @@ using Exhibition.Core.Models;
 
 namespace Exhibition.Portal.Api.Models
 {
-    public class QueryFileSystemResponse : BasicResponse<Resource[]>
+    public class QueryFileSystemResponse : GeneralResponse<Resource[]>
     {
 
         public QueryFileSystemResponse(string current) :

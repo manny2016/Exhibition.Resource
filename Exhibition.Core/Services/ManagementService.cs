@@ -13,7 +13,7 @@ namespace Exhibition.Core.Services
     using Microsoft.AspNetCore.Http;
     using System;
     using Dapper;
-    public class ManagementService
+    public class ManagementService : IManagementService
     {
         #region FileSystem Management
         public IEnumerable<Models::Resource> QueryResource(Models::QueryFilter filter)
@@ -196,7 +196,7 @@ namespace Exhibition.Core.Services
             var queryString = "SELECT COUNT(*) FROM Terminal WHERE Name=@name";
             using (var database = SQLiteFactory.Genernate())
             {
-                if (database.ExecuteScalar<int>(queryString,new { @name=terminal.Name}) > 0)
+                if (database.ExecuteScalar<int>(queryString, new { @name = terminal.Name }) > 0)
                 {
                     database.Execute(terminal.GenernateUpdateScript(), terminal.GenernateParameters());
                 }
@@ -212,6 +212,19 @@ namespace Exhibition.Core.Services
             {
                 database.Execute(terminal.GenernateDeleteScript(), terminal.GenernateParameters());
             }
+        }
+        public IEnumerable<IBaseTerminal> QueryTerminals(Models::SQLiteQueryFilter<string> filter)
+        {
+            var queryString = string.Concat("SELECT * FROM Terminal ", filter.GenernateConditionExpression());
+            using (var database = SQLiteFactory.Genernate())
+            {
+                return database.Query<Entities::Terminal>(queryString)
+                    .Select((ctx) =>
+                    {
+                        return ctx.Convert();
+                    });
+            }
+            
         }
         #endregion
 
@@ -236,6 +249,18 @@ namespace Exhibition.Core.Services
             using (var database = SQLiteFactory.Genernate())
             {
                 database.Execute(directive.GenernateDeleteScript(), directive.GenernateParameters());
+            }
+        }
+        public IEnumerable<Models::Directive> QueryDirectives(Models::SQLiteQueryFilter<string> filter)
+        {
+            var queryString = string.Concat("SELECT * FROM Directive ", filter.GenernateConditionExpression());
+            using (var database = SQLiteFactory.Genernate())
+            {
+                return database.Query<Entities::Directive>(queryString)
+                    .Select((ctx) =>
+                    {
+                        return ctx.Convert();
+                    });
             }
         }
         #endregion

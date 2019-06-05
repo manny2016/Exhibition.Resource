@@ -9,8 +9,8 @@ namespace Exhibition.Core
         /// <summary>
         /// 串口号
         /// </summary>
-        [Newtonsoft.Json.JsonProperty("SerialPort")]
-        public string SerialPort{ get; set; }
+        [Newtonsoft.Json.JsonProperty("portName")]
+        public string PortName{ get; set; }
 
         /// <summary>
         /// 数据位
@@ -31,7 +31,7 @@ namespace Exhibition.Core
         /// <summary>
         /// 停止位
         /// </summary>
-        [Newtonsoft.Json.JsonProperty("stopBits ")]
+        [Newtonsoft.Json.JsonProperty("stopBits")]
         public System.IO.Ports.StopBits StopBits { get; set; }
 
     }

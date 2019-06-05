@@ -61,7 +61,7 @@ namespace Exhibition.Core
                     BaudRate = 9600,
                     DataBits = 8,
                     Parity = System.IO.Ports.Parity.Even,
-                    SerialPort = "COM1",
+                    PortName = "COM1",
                     StopBits = System.IO.Ports.StopBits.One
                 }
             });

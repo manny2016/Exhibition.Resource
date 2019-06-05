@@ -110,11 +110,27 @@ WHERE Name = @name;
         {
             return "DELETE FROM Directive WHERE Name = @name";
         }
-        public static string GenernateWhereCase(this Models::SQLiteQueryFilter filter)
+        public static string GenernateConditionExpression(this Models::SQLiteQueryFilter<string> filter)
         {
             if (filter == null) return " WHERE 1=1 ";
-            if (string.IsNullOrEmpty(filter.Value)) return " WHERE 1=1 ";
-            return $" WHERE {filter.Name} LIKE '%{filter.Value.Replace("'", "''")}%'";
+            var conditions = new List<string>() { " WHERE 1=1 " };
+            if (filter.Keys != null && filter.Keys.Length > 0)
+            {
+                conditions.Add($"({filter.PrimaryKey} IN ({string.Join(",", filter.Keys.Select(o => string.Format("'{0}'", o)))}))");
+            }
+            if (filter.TerminalTypes != null && filter.TerminalTypes.Length > 0)
+            {
+                conditions.Add($"(Type IN ({string.Join(",", filter.TerminalTypes.Select(o => string.Format("{0}", (int)o)))}))");
+            }
+            if (filter.DirectiveTypes != null && filter.DirectiveTypes.Length > 0)
+            {
+                conditions.Add($"(Type IN ({string.Join(",", filter.DirectiveTypes.Select(o => string.Format("{0}", (int)o)))}))");
+            }
+            if (string.IsNullOrEmpty(filter.Search) == false)
+            {
+                conditions.Add($"(Name LIKE '%{filter.Search}%' OR Description LIKE '%{filter.Search}%')");
+            }
+            return string.Join(" AND ", conditions);
         }
 
         public static Models::OptionModel Convert(this IBaseTerminal terminal)

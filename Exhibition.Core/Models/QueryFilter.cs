@@ -15,11 +15,26 @@ namespace Exhibition.Core.Models
 
         [Newtonsoft.Json.JsonProperty("search")]
         public string Search { get; set; }
+
     }
-    public class SQLiteQueryFilter
+    public class SQLiteQueryFilter<T>
     {
-        public string Name { get; set; }
-        public string Value { get; set; }
+        [Newtonsoft.Json.JsonProperty("keys")]
+        public T[] Keys { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("primaryKey")]
+        public string PrimaryKey { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("search")]
+        public string Search { get; set; }
+
+
+        [Newtonsoft.Json.JsonProperty("terminalTypes")]
+        public TerminalTypes[] TerminalTypes { get; set; }
+
+
+        [Newtonsoft.Json.JsonProperty("directiveTypes")]
+        public DirectiveTypes[] DirectiveTypes { get; set; }
     }
     public class SQLiteDimQueryFilter
     {

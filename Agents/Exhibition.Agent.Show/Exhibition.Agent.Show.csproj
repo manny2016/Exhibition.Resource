@@ -1,0 +1,160 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{DC06EA61-C26F-43E3-891E-CF12084AB296}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Exhibition.Agent.Show</RootNamespace>
+    <AssemblyName>Exhibition.Agent.Show</AssemblyName>
+    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ChromiumFX, Version=3.3440.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\hxc.ChromiumFX.3.3440.1\lib\net40-client\ChromiumFX.dll</HintPath>
+    </Reference>
+    <Reference Include="ChromiumWebBrowser, Version=3.3440.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\hxc.ChromiumWebBrowser.3.3440.1\lib\net40-client\ChromiumWebBrowser.dll</HintPath>
+    </Reference>
+    <Reference Include="DirectShowLib-2005">
+      <HintPath>..\..\libs\DirectShowLib-2005.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Components\AxWebBrowser.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\AxWebBrowser.designer.cs">
+      <DependentUpon>AxWebBrowser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\DSMediaPlayer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\DSMediaPlayer.designer.cs">
+      <DependentUpon>DSMediaPlayer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\ImagePlayer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\ImagePlayer.designer.cs">
+      <DependentUpon>ImagePlayer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\VideoPlayer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\VideoPlayer.designer.cs">
+      <DependentUpon>VideoPlayer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\IOperate.cs" />
+    <Compile Include="Core\Models\WorkingState.cs" />
+    <Compile Include="ForumMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ForumMain.Designer.cs">
+      <DependentUpon>ForumMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Core\IOperationService.cs" />
+    <Compile Include="Services\OperationService.cs" />
+    <Compile Include="Utilities\AgentHost.cs" />
+    <EmbeddedResource Include="Components\AxWebBrowser.resx">
+      <DependentUpon>AxWebBrowser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\DSMediaPlayer.resx">
+      <DependentUpon>DSMediaPlayer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\ImagePlayer.resx">
+      <DependentUpon>ImagePlayer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\VideoPlayer.resx">
+      <DependentUpon>VideoPlayer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ForumMain.resx">
+      <DependentUpon>ForumMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Exhibition.Core\Exhibition.Core.csproj">
+      <Project>{0da484b5-77d4-47ce-890b-b892f011d34a}</Project>
+      <Name>Exhibition.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\..\packages\hxc.ChromiumFX.3.3440.1\build\hxc.ChromiumFX.targets" Condition="Exists('..\..\packages\hxc.ChromiumFX.3.3440.1\build\hxc.ChromiumFX.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\..\packages\hxc.ChromiumFX.3.3440.1\build\hxc.ChromiumFX.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\hxc.ChromiumFX.3.3440.1\build\hxc.ChromiumFX.targets'))" />
+  </Target>
+</Project>
