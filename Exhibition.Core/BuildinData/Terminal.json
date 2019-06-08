@@ -1,0 +1,308 @@
+﻿[
+  {
+    "Settings": {
+      "Ip": "192.168.0.102",
+      "Endpoint": "http://192.168.0.102/api/common/run",
+      "Windows": [
+        {
+          "Id": 1,
+          "Location": {
+            "X": 0,
+            "Y": 0
+          },
+          "Size": {
+            "Width": 1024,
+            "Height": 768
+          },
+          "Monitor": 0
+        },
+        {
+          "Id": 2,
+          "Location": {
+            "X": 1024,
+            "Y": 0
+          },
+          "Size": {
+            "Width": 1024,
+            "Height": 768
+          },
+          "Monitor": 0
+        },
+        {
+          "Id": 2,
+          "Location": {
+            "X": 2048,
+            "Y": 0
+          },
+          "Size": {
+            "Width": 1024,
+            "Height": 768
+          },
+          "Monitor": 0
+        }
+      ]
+    },
+    "Name": "PC-01",
+    "Description": "张集发布媒体控制主机",
+    "Type": 1
+  },
+  {
+    "Settings": {
+      "Ip": "192.168.0.102",
+      "Endpoint": "http://192.168.0.102/api/common/run",
+      "Windows": [
+        {
+          "Id": 1,
+          "Location": {
+            "X": 0,
+            "Y": 0
+          },
+          "Size": {
+            "Width": 1024,
+            "Height": 768
+          },
+          "Monitor": 0
+        },
+        {
+          "Id": 2,
+          "Location": {
+            "X": 1024,
+            "Y": 0
+          },
+          "Size": {
+            "Width": 1024,
+            "Height": 768
+          },
+          "Monitor": 0
+        },
+        {
+          "Id": 2,
+          "Location": {
+            "X": 2048,
+            "Y": 0
+          },
+          "Size": {
+            "Width": 1024,
+            "Height": 768
+          },
+          "Monitor": 0
+        }
+      ]
+    },
+    "Name": "PC-02",
+    "Description": "实践队伍媒体播放主机",
+    "Type": 1
+  },
+  {
+    "Settings": {
+      "Ip": "192.168.0.102",
+      "Endpoint": "http://192.168.0.102/api/common/run",
+      "Windows": [
+        {
+          "Id": 1,
+          "Location": {
+            "X": 0,
+            "Y": 0
+          },
+          "Size": {
+            "Width": 1024,
+            "Height": 768
+          },
+          "Monitor": 0
+        },
+        {
+          "Id": 2,
+          "Location": {
+            "X": 1024,
+            "Y": 0
+          },
+          "Size": {
+            "Width": 1024,
+            "Height": 768
+          },
+          "Monitor": 0
+        },
+        {
+          "Id": 2,
+          "Location": {
+            "X": 2048,
+            "Y": 0
+          },
+          "Size": {
+            "Width": 1024,
+            "Height": 768
+          },
+          "Monitor": 0
+        }
+      ]
+    },
+    "Name": "PC-03",
+    "Description": "实践阵地媒体控制",
+    "Type": 1
+  },
+  {
+    "Settings": {
+      "Ip": "192.168.0.102",
+      "Endpoint": "http://192.168.0.102/api/common/run",
+      "Windows": [
+        {
+          "Id": 1,
+          "Location": {
+            "X": 0,
+            "Y": 0
+          },
+          "Size": {
+            "Width": 1024,
+            "Height": 768
+          },
+          "Monitor": 0
+        },
+        {
+          "Id": 2,
+          "Location": {
+            "X": 1024,
+            "Y": 0
+          },
+          "Size": {
+            "Width": 1024,
+            "Height": 768
+          },
+          "Monitor": 0
+        },
+        {
+          "Id": 2,
+          "Location": {
+            "X": 2048,
+            "Y": 0
+          },
+          "Size": {
+            "Width": 1024,
+            "Height": 768
+          },
+          "Monitor": 0
+        }
+      ]
+    },
+    "Name": "PC-04",
+    "Description": "实践阵地滑轮媒体播放主机",
+    "Type": 1
+  },
+  {
+    "Settings": {
+      "Ip": "192.168.0.102",
+      "Endpoint": "http://192.168.0.102/api/common/run",
+      "Windows": [
+        {
+          "Id": 1,
+          "Location": {
+            "X": 0,
+            "Y": 0
+          },
+          "Size": {
+            "Width": 1024,
+            "Height": 768
+          },
+          "Monitor": 0
+        },
+        {
+          "Id": 2,
+          "Location": {
+            "X": 1024,
+            "Y": 0
+          },
+          "Size": {
+            "Width": 1024,
+            "Height": 768
+          },
+          "Monitor": 0
+        },
+        {
+          "Id": 2,
+          "Location": {
+            "X": 2048,
+            "Y": 0
+          },
+          "Size": {
+            "Width": 1024,
+            "Height": 768
+          },
+          "Monitor": 0
+        }
+      ]
+    },
+    "Name": "PC-05",
+    "Description": "时代价值媒体控制主机-01",
+    "Type": 1
+  },
+  {
+    "Settings": {
+      "Ip": "192.168.0.102",
+      "Endpoint": "http://192.168.0.102/api/common/run",
+      "Windows": [
+        {
+          "Id": 1,
+          "Location": {
+            "X": 0,
+            "Y": 0
+          },
+          "Size": {
+            "Width": 1024,
+            "Height": 768
+          },
+          "Monitor": 0
+        },
+        {
+          "Id": 2,
+          "Location": {
+            "X": 1024,
+            "Y": 0
+          },
+          "Size": {
+            "Width": 1024,
+            "Height": 768
+          },
+          "Monitor": 0
+        },
+        {
+          "Id": 2,
+          "Location": {
+            "X": 2048,
+            "Y": 0
+          },
+          "Size": {
+            "Width": 1024,
+            "Height": 768
+          },
+          "Monitor": 0
+        }
+      ]
+    },
+    "Name": "PC-06",
+    "Description": "时代价值媒体控制主机-02",
+    "Type": 1
+  },
+  {
+    "Settings": {
+      "PortName": "COM1",
+      "DataBits": 8,
+      "BaudRate": 9600,
+      "Parity": 1,
+      "StopBits": 1
+    },
+    "Name": "PLC-01",
+    "Description": "PLC中控主机",
+    "Type": 2
+  },
+  {
+    "Settings": {
+      "PortName": "COM1",
+      "DataBits": 8,
+      "baudRate": 9600,
+      "Parity": 1,
+      "StopBits": 1
+    },
+    "Name": "PLC-02",
+    "Description": "PLC中控主机",
+    "Type": 2
+  }
+]

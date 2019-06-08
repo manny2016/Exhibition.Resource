@@ -18,6 +18,9 @@ namespace Exhibition.Components
     {
         private LinkedList<Resource> linked = null;
         private LinkedListNode<Resource> current = null;
+        private Resource[] resources;
+        private Timer timer = new Timer();
+        private bool isAuto = false;
         public AxWebBrowser(Resource[] resources, string name)
         {
             linked = new LinkedList<Resource>(resources.OrderBy(o => o.Name));
@@ -25,6 +28,21 @@ namespace Exhibition.Components
             this.InitializeComponent();
             this.Load += AxWebBrowser_Load;
             this.InitializeChromiumWebBrowser(name);
+            this.timer.Interval = 5000;
+            this.timer.Tick += Timer_Tick;
+            this.resources = resources;
+        }
+
+        private void Timer_Tick(object sender, System.EventArgs e)
+        {
+            var allowtypes = new ResourceTypes[] { ResourceTypes.H5, ResourceTypes.Image };
+            if (this.isAuto && this.resources.All((ctx) =>
+            {
+                return allowtypes.Any(o => o.Equals(ctx));
+            }))
+            {
+                this.Next();
+            }
         }
 
         private void AxWebBrowser_Load(object sender, System.EventArgs e)
@@ -57,8 +75,8 @@ namespace Exhibition.Components
 
         public void Play(Resource resource)
         {
-
-            var url = AgentHost.Resource + "/" + this.current.Value.FullName;            
+            this.timer.Start();
+            var url = AgentHost.Resource + "/" + this.current.Value.FullName;
             this.WebBrowser.LoadUrl(url);
         }
 
@@ -66,6 +84,7 @@ namespace Exhibition.Components
         {
             if (this.IsDisposed == false)
             {
+                this.timer.Stop();
                 this.Parent.Controls.Remove(this);
                 base.Dispose(true);
             }
@@ -73,14 +92,22 @@ namespace Exhibition.Components
 
         public void Next()
         {
-            this.current = this.current.Next ?? linked.Last;
+            this.current = this.current.Next == null
+                ? linked.First
+                : this.current.Next;
+
             this.Play(this.current.Value);
         }
 
         public void Previous()
         {
-            this.current = this.current.Previous?? linked.First;
+            this.current = this.current.Previous == null ? linked.Last : this.current.Previous;
             this.Play(this.current.Value);
+        }
+
+        public void SwichMode()
+        {
+            this.isAuto = !this.isAuto;
         }
     }
 }

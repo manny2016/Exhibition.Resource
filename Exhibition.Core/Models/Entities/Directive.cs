@@ -15,9 +15,6 @@ namespace Exhibition.Core.Entities
         public virtual string Description { get; set; }
 
         
-        public virtual DirectiveTypes Type { get; set; }
-
-        
         public virtual string Target { get; set; }
 
         

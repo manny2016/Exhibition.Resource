@@ -2,6 +2,7 @@
 
 namespace Exhibition.Core.Models
 {
+    using Newtonsoft.Json;
     public class Directive
     {
 
@@ -12,12 +13,9 @@ namespace Exhibition.Core.Models
         public string Description { get; set; }
 
         
-        public DirectiveTypes Type { get; set; }
+        public IBaseTerminal Terminal { get; set; }
 
-        
-        public MediaPlayerTerminal Terminal { get; set; }
-
-        
+        [JsonProperty("DefaultWindow",NullValueHandling = NullValueHandling.Ignore)]
         public Window DefaultWindow { get; set; }
 
         

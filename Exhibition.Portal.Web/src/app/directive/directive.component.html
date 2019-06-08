@@ -20,9 +20,9 @@
                         <div class="table-responsive">
                             <table class="table">
                                 <thead class="text-primary">
-                                    <th>名称</th>
-                                    <th>类型</th>
-                                    <th>目标终端</th>
+                                    <th>名称</th>                                    
+                                    <th>指令说明</th>
+                                    <th>目标设备</th>                                    
                                     <th>播放窗口</th>
                                     <th>引用资源</th>
                                     <th></th>
@@ -31,34 +31,27 @@
                                     <tr *ngFor="let directive of directives">
                                         <td>
                                             {{directive.name}}
+                                        </td>                                  
+                                        <td>{{directive.description}}</td>
+                                        <td>
+                                            {{directive.terminal?.description}}
                                         </td>
                                         <td>
-                                            {{directive.type}}
-                                        </td>
-                                        <td>
-                                            {{directive.terminal.name}}
-                                        </td>
-                                        <td>
-                                            <div>
-                                                {{directive.window.id}} | {{directive.window.location.x}} * {{directive.window.location.y}} (x * y) | {{directive.window.size.width}}
-                                                * {{directive.window.size.height}} (宽 * 高)
-
+                                            <div *ngIf="directive.DefaultWindow!=null&& directive.DefaultWindow.id!=0">
+                                                {{directive.DefaultWindow.id}} | {{directive.DefaultWindow.location?.x}} *
+                                                 {{directive.DefaultWindow.location?.y}} (x * y) | 
+                                                {{directive.DefaultWindow.size?.width}}
+                                                * {{directive.DefaultWindow.size?.height}} (宽 * 高)
                                             </div>
                                         </td>
                                         <td >
-                                            <p *ngIf="directive.resource!=null">
-                                                    {{directive.resource.workspace}}/{{directive.resource.name}}
-                                            </p>
+                                            <p>{{JointResourceName(directive.resources)}}</p>
                                         </td>
                                         
                                         <td class="td-actions text-left">
                                             <button mat-raised-button type="button" (click)="OpenEdit(directive)" matTooltip="编辑" [matTooltipPosition]="'above'" class="btn btn-primary btn-link btn-sm btn-just-icon">
                                                 <i class="material-icons">edit</i>
-                                            </button>
-                                            <button mat-raised-button type="button" matTooltip="删除" (click)="DeleteDirective(directive)" [matTooltipPosition]="'above'"
-                                                class="btn btn-danger btn-link btn-sm btn-just-icon">
-                                                <i class="material-icons">close</i>
-                                            </button>
+                                            </button>                                        
                                         </td>
                                     </tr>
                                 </tbody>

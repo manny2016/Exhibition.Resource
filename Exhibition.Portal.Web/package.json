@@ -82,5 +82,13 @@
     "ts-node": "5.0.1",
     "tslint": "5.9.1",
     "typescript": "3.1.6"
+  },
+  "browser": {
+    "http": false,
+    "https": false,
+    "net": false,
+    "path": false,
+    "stream": false,
+    "tls": false
   }
 }

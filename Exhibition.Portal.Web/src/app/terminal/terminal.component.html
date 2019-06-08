@@ -10,46 +10,41 @@
                     <div class="card-body ">
                         <div class="inline-block">
                             <div class="dropdown">
-                                <button mat-raised-button (click)="OpenTerminalEdit({ip:'192.168.'})" class="btn btn-white  ">
+                                <!-- <button mat-raised-button (click)="OpenTerminalEdit({ip:'192.168.'})" class="btn btn-white  ">
                                     <i class="material-icons">home</i>
                                     新增
-                                </button>
+                                </button> -->
                             </div>
                             <div class="clearfix"></div>
                         </div>
                         <div class="table-responsive">
                             <table class="table">
                                 <thead class="text-primary">
-                                    <th>#Ip</th>
-                                    <th>名称</th>
-                                    <th>备注</th>
-                                    <th>播放窗口</th>
-                                    <th></th>
+                                    <th style="width: 10%">#名称</th>
+                                    <th style="width: 10%">类型</th>
+                                    <th style="width: 20%">说明</th>
+                                    <th>相关设置</th>                                    
+                                    <th></th>                                    
                                 </thead>
                                 <tbody>
                                     <tr *ngFor="let terminal of terminals">
                                         <td>
-                                            {{terminal.ip}}
+                                            {{terminal.name}}
                                         </td>
                                         <td>
-                                            {{terminal.name}}
+                                            {{GetTerminalTypeName(terminal.type)}}
                                         </td>
                                         <td>
                                             {{terminal.description}}
                                         </td>
-                                        <td><a (click)="OpenWindowEdit(terminal)" href="javascript:void(0)">{{terminal.windows.length}}</a>                                             
+                                        <td>{{GenernateTerminalSettings(terminal)}}
                                         </td>
                                         <td class="td-actions text-left">
                                             <button mat-raised-button type="button" (click)="OpenTerminalEdit(terminal)" matTooltip="编辑"
                                                 [matTooltipPosition]="'above'"
                                                 class="btn btn-primary btn-link btn-sm btn-just-icon">
                                                 <i class="material-icons">edit</i>
-                                            </button>
-                                            <button mat-raised-button type="button" matTooltip="删除"
-                                                (click)="DeleteTerminal(terminal)" [matTooltipPosition]="'above'"
-                                                class="btn btn-danger btn-link btn-sm btn-just-icon">
-                                                <i class="material-icons">close</i>
-                                            </button>
+                                            </button>                                          
                                         </td>
                                     </tr>
                                 </tbody>

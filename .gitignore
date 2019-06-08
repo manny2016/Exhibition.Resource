@@ -16,3 +16,7 @@
 /Agents/Exhibition.Agent.Show/obj/Debug
 /packages
 /Test/UnitTest
+/Agents/Exhibition/bin/Debug
+/Agents/Exhibition/obj/Debug
+/Test/ConsoleApp1/obj
+/Test/ConsoleApp1/bin/Debug/netcoreapp2.1

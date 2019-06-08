@@ -1,0 +1,62 @@
+<div class="modal-header">    
+    <h5 *ngIf="(current!=null&&current.ip!='')" class="modal-title" id="modal-basic-title">
+        ({{current.name}})
+    </h5>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-sm-6">
+            <mat-form-field class="example-full-width">
+                <input type="text" matInput  [(ngModel)]="current.name" placeholder="设备名称" value="{{current.name}}" disabled="disabled">
+            </mat-form-field>
+        </div>
+        <div class="col-sm-6">
+            <mat-form-field class="example-full-width">
+                <input matInput   value="{{GetTerminalTypeName(current.type)}}" placeholder="设备类型" disabled="disabled">
+                <input type="hidden" [(ngModel)]="current.type" />
+            </mat-form-field>
+        </div>
+    </div>
+    <h6>串口设置</h6>
+    <div class="row">
+        <div class="col-sm-6">
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="端口号" [(ngModel)]="current.settings.portName"
+                    value="{{current.settings.portName}}"/>
+            </mat-form-field>
+        </div>
+        <div class="col-sm-6">
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="波特率" [(ngModel)]="current.settings.baudRate"
+                    value="{{current.settings.baudRate}}"/>
+            </mat-form-field>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="数据位" [(ngModel)]="current.settings.dataBits"
+                    value="{{current.settings.dataBits}}"/>
+            </mat-form-field>
+        </div>
+        <div class="col-sm-4">
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="校验位(0:None,1:Odd,2:Even)" [(ngModel)]="current.settings.parity"
+                    value="{{current.settings.parity}}"/>
+            </mat-form-field>
+        </div>
+        <div class="col-sm-4">
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="停止位(0:None, 1:One, 2: Two, 3:OnePointFive)" [(ngModel)]="current.settings.stopBits"
+                    value="{{current.settings.stopBits}}"/>                    
+            </mat-form-field>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-danger" (click)="CreateOrUpdateTerminal(current)">保存</button>
+    <button type="button" class="btn btn-white" (click)="modalRef.close('Close')">关闭</button>
+</div>

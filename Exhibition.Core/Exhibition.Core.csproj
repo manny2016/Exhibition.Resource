@@ -27,4 +27,13 @@
     <Folder Include="Models\Filters\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="BuildinData\Directives.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="BuildinData\Terminal.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

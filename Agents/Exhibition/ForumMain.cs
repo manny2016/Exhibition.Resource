@@ -13,6 +13,7 @@ namespace Exhibition.Agent.Show
     using Exhibition.Agent.Show.Models;
     using Exhibition.Components;
 
+    public delegate void RunDirectiveDelegate(object sender, IOperateContext context);
     public partial class ForumMain : Form
     {
         public ForumMain()
@@ -82,38 +83,39 @@ namespace Exhibition.Agent.Show
 
             }
         }
-        private void AgentHost_DirectiveReceived(object sender, Models::Directive directive)
+        private void AgentHost_DirectiveReceived(object sender, OperationEventArgs e)
         {
             if (this.InvokeRequired)
             {
-                this.Invoke(new OperationEventHandler(this.Run), sender, directive);
+                this.Invoke(new RunDirectiveDelegate(this.Run), sender,e.Context);
             }
             else
             {
-                this.Run(sender, directive);
+                this.Run(sender, e.Context);
             }
         }
-        private void Run(object sender, Models::Directive directive)
+        private void Run(object sender, IOperateContext context)
         {
-            switch (directive.Type)
+            var name = context.Directive.Name;
+            switch (context.Type)
             {
                 case DirectiveTypes.Next:
-                    if (states.ContainsKey(directive.Name))
+                    if (states.ContainsKey(name))
                     {
-                        states[directive.Name].Operator.Next();
+                        states[name].Operator.Next();
                     }
                     break;
                 case DirectiveTypes.Previous:
-                    if (states.ContainsKey(directive.Name))
+                    if (states.ContainsKey(name))
                     {
-                        states[directive.Name].Operator.Previous();
+                        states[name].Operator.Previous();
                     }
                     break;
                 case DirectiveTypes.Run:
-                    GenernateOperator(directive)?.Play(directive.Resources[0]);
+                    GenernateOperator(context.Directive)?.Play(context.Directive.Resources[0]);
                     break;
                 case DirectiveTypes.Stop:
-                    states[directive.Name]?.Operator.Stop();
+                    states[context.Directive.Name]?.Operator.Stop();
                     break;
             }
         }

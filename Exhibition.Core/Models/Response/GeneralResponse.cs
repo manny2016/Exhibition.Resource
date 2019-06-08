@@ -4,6 +4,10 @@ namespace Exhibition.Core.Models
 {
     public class GeneralResponse<T>
     {
+        public GeneralResponse()
+        {
+            this.Success = true;
+        }
         [Newtonsoft.Json.JsonProperty("data")]
         public T Data { get; set; }
 

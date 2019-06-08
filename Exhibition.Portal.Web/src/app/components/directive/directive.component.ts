@@ -1,20 +1,21 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { NgbActiveModal, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { Terminal, Window } from 'app/models/terminal';
+
 import { ManagementService } from 'app/services/ManagementService';
-import { Directive, DirectiveforEditing } from 'app/models/Directive';
+
 import { environment } from 'environments/environment';
 import { FormControl } from '@angular/forms';
 import { MatSelect } from '@angular/material';
-import { Bank, BANKS } from "./demo-data";
+import { Bank, BANKS, BANKGROUPS } from "./demo-data";
 import { ReplaySubject, Subject } from 'rxjs';
 import { take, takeUntil } from 'rxjs/operators';
 import { DirectiveType } from '@angular/core/src/render3';
-import { Resource } from 'app/models/Resource';
+
 import { debounceTime, delay, tap, filter, map } from 'rxjs/operators';
 import { ChangeDetectorRef } from '@angular/core';
-import { OptionModel } from 'app/models/Directive';
+
 import { Type } from '../../../../node_modules/@angular/compiler';
+import { element } from 'protractor';
 
 @Component({
   selector: 'app-directive-content',
@@ -23,24 +24,12 @@ import { Type } from '../../../../node_modules/@angular/compiler';
   providers: [NgbActiveModal]
 })
 export class DirectiveContent implements OnInit {
-  @Input() current: DirectiveforEditing;
-  @Input() action: string;
-  @Input() terminals: Terminal[];
-  @Input() resources: Resource[];
-  @Input() types: any[];
-
-  /**Begin select of directive type */
-  public omDirectiveTypes: any[] = environment.types;
-  public omTerminals: OptionModel[];
-  public omResources: OptionModel[];
-  /** control for the selected bank */
-  public dtypeCtrl: FormControl = new FormControl();
-  /**End select of directive type */
-
-
+  @Input() current: any;
+  @Input() terminals: any[];
+  private currentTerminal: any;
+  public resources: any[];
+  public windows: any[];
   /**Begin select of terminal  */
-
-
 
 
   /** control for the selected bank */
@@ -48,22 +37,29 @@ export class DirectiveContent implements OnInit {
   /**End select of directive type */
 
   /**Begin select of window  */
-  protected omWindows: OptionModel[];
+
   /** control for the selected bank */
   public windowCtrl: FormControl = new FormControl();
   /**End select of directive type */
-  /** Start select of resource */
-  // protected resources: Resource[];
-  /** Start select of resource */
-  /** control for the selected bank for server side filtering */
-  public resourceServerSideCtrl: FormControl = new FormControl();
-  /** control for filter for server side. */
-  public resourceServerSideFilteringCtrl: FormControl = new FormControl();
-  /** indicate search operation is in progress */
+
+  /** list of bank groups */
+  protected bankGroups: any[] = BANKGROUPS;
+
+  /** control for the selected bank for option groups */
+  public bankGroupsCtrl: FormControl = new FormControl();
+
+  /** control for the MatSelect filter keyword for option groups */
+  public bankGroupsFilterCtrl: FormControl = new FormControl();
+
+  /** list of bank groups filtered by search keyword for option groups */
+  public filteredBankGroups: ReplaySubject<any[]> = new ReplaySubject<any[]>(1);
+  
+  @ViewChild('multiSelect') multiSelect: MatSelect;
+  @ViewChild('singleSelect') singleSelect: MatSelect;
+
+
   public searching: boolean = false;
 
-  /** list of banks filtered after simulating server side search */
-  public filteredServerSideResource: ReplaySubject<OptionModel[]> = new ReplaySubject<OptionModel[]>(1);
   /** Subject that emits when the component has been destroyed. */
   protected _onDestroy = new Subject<void>();
 
@@ -72,95 +68,69 @@ export class DirectiveContent implements OnInit {
 
   ngOnInit() {
     const that = this;
+    that.service.QueryResourceforChoosing({}).toPromise().then(res => {
+      // that.banks = res.data;
+      var temp: any = res.data;
+      that.bankGroups = temp;
+      that.filteredBankGroups.next(that.copyBankGroups(that.bankGroups));
+      that.bankGroupsFilterCtrl.valueChanges
+        .pipe(takeUntil(that._onDestroy))
+        .subscribe(() => {
+          that.filterBankGroups();
+        });
+    })
 
-    that.dtypeCtrl.setValue(that.current.type);
-    that.service.QueryResourceforChoosing({ current: "", search: "" }).toPromise().then(res => {
-      that.omResources = res.data;
-      console.log("that.omResources",that.omResources);
-      that.resourceServerSideCtrl.setValue(that.current.resourceFullName);
-    });
-    that.service.QueryTerminalforChoosing({ search: "" }).toPromise().then(res => {
-      that.omTerminals = res.data;
-      that.terminalCtrl.setValue(that.current.terminalIp);
-    });
-    that.terminalCtrl.setValue(that.current.terminalIp);
-    that.resourceServerSideCtrl.setValue(this.current.resourceFullName);
-    that.terminalCtrl.valueChanges.pipe()
+    //console.log(that.current.terminal);
     that.terminalCtrl.valueChanges
-      .pipe(takeUntil(that._onDestroy))
-      .subscribe(() => {
-        if (that.terminalCtrl.value) {
-          that.terminals.forEach(element => {
-            if (element.ip == that.terminalCtrl.value) {
-              that.omWindows = [];
-              element.windows.forEach(window => {
-                var text = window.id + " | " + window.location.x + " * " + window.location.y + " (x * y) |" +
-                  window.size.width + " * " + window.size.height + "(宽 * 高)";
-                that.omWindows.push({ key: window.id.toString(), text: text });
-              });
+      .pipe(takeUntil(this._onDestroy))
+      .subscribe(element => {
+        that.windows = element.settings.windows;
+        if (element.settings.windows) {
+          element.settings.windows.forEach(window => {
+            console.log(that.current.DefaultWindow, "->", window);
+            if (that.current.DefaultWindow != null && that.current.DefaultWindow.id != 0) {
+              if (that.current.DefaultWindow.id == window.id) {
+                that.windowCtrl.setValue(window);
+              }
             }
-            that.windowCtrl.setValue(this.current.windowId);
           });
         }
       });
-
-
-    that.resourceServerSideFilteringCtrl.valueChanges
-      .pipe(
-        filter(search => !!search),
-        tap(() => that.searching = true),
-        takeUntil(that._onDestroy),
-        debounceTime(2000),
-        map(search => {
-          // simulate server fetching and filtering data
-          if (search == null||search=="") {
-            return that.omResources;
-          }
-          return that.omResources.filter(resource => resource.text.toLowerCase().indexOf(search) > -1);
-        }),
-        delay(500)
-      )
-      .subscribe(filteredBanks => {
-        this.searching = false;
-        this.filteredServerSideResource.next(filteredBanks);
-      },
-        error => {
-          // no errors in our simulated example
-          this.searching = false;
-          // handle error...
-        });
-
   }
-  // public getIndexofTypes(key: number) {
-  //   for (let index = 0; index < this.directiveTypes.length; index++)
-  //     if (this.directiveTypes[index].key == key) {
-  //       return index;
-  //     }
-  //   return -1;
-  // }
+
 
   ngAfterViewInit() {
     const that = this;
+    //this.terminalCtrl.setValue(this.current.terminal);
+    that.terminals.forEach((element, index) => {
 
-
-    //that.windowCtrl.setValue(that.current.window.id);
+      if (element.name == that.current.terminal.name) {
+        that.terminalCtrl.setValue(that.terminals[index])
+        that.windows = element.settings.windows;
+        if (element.settings.windows) {
+          element.settings.windows.forEach(window => {            
+            if (that.current.DefaultWindow != null && that.current.DefaultWindow.id != 0) {
+              if (that.current.DefaultWindow.id == window.id) {
+                that.windowCtrl.setValue(window);
+              }
+            }
+          });
+        }
+      }
+    });
+   
+    that.cdRef.detectChanges();
   }
 
   ngOnDestroy() {
     this._onDestroy.next();
     this._onDestroy.complete();
   }
-  public CreateOrUpdateDirective(context: DirectiveforEditing) {
-    let directive:Directive = {
-      name : context.name,
-      terminal : this.GetChoosedTerminal(context.terminalIp),
-      window: this.windowCtrl.value,
-      description: context.description,
-      resource :this.GetChoosedResource(context.resourceFullName),
-      type :this.dtypeCtrl.value
-    };
-    console
-    this.service.CreateOrUpdateDirective(directive).toPromise()
+  public CreateOrUpdateDirective(context: any) {
+    context.terminal = this.terminalCtrl.value;
+    context.DefaultWindow = this.windowCtrl.value;
+    console.log(context.DefaultWindow);
+    this.service.CreateOrUpdateDirective(context).toPromise()
       .then(res => {
         if (res.success) {
           this.activeModal.close("Close");
@@ -170,20 +140,57 @@ export class DirectiveContent implements OnInit {
         }
       });
   }
-  protected GetChoosedTerminal(ip:string):Terminal{
-    this.terminals.forEach(element => {
-      if(ip==element.ip) return element;
-    });
-    return null;
-  }
-  protected GetChoosedResource(fullName:string):Resource{
-    this.resources.forEach(element => {
-      if(fullName==element.fullName) return element;
-    });
-    return null;
-  }
-  ngAfterViewChecked() {
-    
 
+
+  ngAfterViewChecked() {
+
+  }
+
+  protected filterBankGroups() {
+    if (!this.bankGroups) {
+      return;
+    }
+    // get the search keyword
+    let search = this.bankGroupsFilterCtrl.value;
+    const bankGroupsCopy = this.copyBankGroups(this.bankGroups);
+    if (!search) {
+      this.filteredBankGroups.next(bankGroupsCopy);
+      return;
+    } else {
+      search = search.toLowerCase();
+    }
+    // filter the banks
+    this.filteredBankGroups.next(
+      bankGroupsCopy.filter(bankGroup => {
+        const showBankGroup = bankGroup.name.toLowerCase().indexOf(search) > -1;
+        if (!showBankGroup) {
+          bankGroup.items = bankGroup.items.filter(bank => bank.name.toLowerCase().indexOf(search) > -1);
+        }
+        return bankGroup.items.length > 0;
+      })
+    );
+  }
+  protected setInitialValue() {
+    this.filteredBankGroups
+      .pipe(take(1), takeUntil(this._onDestroy))
+      .subscribe(() => {
+        // setting the compareWith property to a comparison function
+        // triggers initializing the selection according to the initial value of
+        // the form control (i.e. _initializeSelection())
+        // this needs to be done after the filteredBanks are loaded initially
+        // and after the mat-option elements are available
+        this.multiSelect.compareWith = (a: Bank, b: Bank) => a && b && a.id === b.id;
+      });
+  }
+
+  protected copyBankGroups(bankGroups: any[]) {
+    const bankGroupsCopy = [];
+    bankGroups.forEach(bankGroup => {
+      bankGroupsCopy.push({
+        name: bankGroup.name,
+        items: bankGroup.items.slice()
+      });
+    });
+    return bankGroupsCopy;
   }
 }

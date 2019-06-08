@@ -10,13 +10,15 @@ namespace Exhibition.Core
     [ServiceContract]
     public interface IOperationService
     {
+        
+
         [OperationContract]
         [WebInvoke(Method = "POST",
             UriTemplate = "Run",              
             BodyStyle = WebMessageBodyStyle.Bare,
             RequestFormat = WebMessageFormat.Json,
             ResponseFormat = WebMessageFormat.Json)]
-        Models::GeneralResponse<int> Run(Models::Directive directive);
+        Models::GeneralResponse<int> Run(Models::OperationContext context);
 
 
         [OperationContract]
@@ -26,6 +28,7 @@ namespace Exhibition.Core
          RequestFormat = WebMessageFormat.Json,
          ResponseFormat = WebMessageFormat.Json)]
         string Readme();
+
 
         [OperationContract]
         [WebInvoke(Method = "GET",

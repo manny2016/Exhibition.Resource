@@ -35,6 +35,36 @@ namespace Exhibition.Portal.Api.Controllers
             };
         }
 
+        [Route("api/mgr/QueryFileSystem"), HttpPost]
+        public GeneralResponse<Resource[]> QueryFileSystem(QueryFilter filter)
+        {
+            return new GeneralResponse<Resource[]>()
+            {
+                Data = this.service.QueryFileSystem(filter).ToArray()
+            };
+        }
+        [Route("api/mgr/QueryFileSystemforChoosing"), HttpPost]
+        public GeneralResponse<SelectOptionGroup<Resource>[]> QueryFileSystemforChoosing(QueryFilter filter)
+        {
+            return new GeneralResponse<SelectOptionGroup<Resource>[]>
+            {
+                Data = this.QueryFileSystem(filter).Data?
+                .Where(ctx => ctx.Type != ResourceTypes.Folder)
+                .GroupBy(o => o.Workspace)
+                .Select((ctx) =>
+                {
+                    return new SelectOptionGroup<Resource>()
+                    {
+                        Items = ctx.Select((item) =>
+                        {
+                            return item;
+
+                        }).ToArray(),
+                        Name = ctx.Key
+                    };
+                }).ToArray()
+            };
+        }
         [Route("api/mgr/CreateDirectory"), HttpPost]
         public GeneralResponse<Resource> CreateDirectory(ResourceRequestContext context)
         {
@@ -109,7 +139,43 @@ namespace Exhibition.Portal.Api.Controllers
                 Data = service.QueryTerminals(filter).ToArray()
             };
         }
+        [Route("api/mgr/CreateOrUpdateSerialPortTerminal"), HttpPost]
+        public GeneralResponse<int> CreateOrUpdateSerialPortTerminal(SerialPortTerminal terminal)
+        {
+            service.CreateOrUpdate(terminal);
+            return new GeneralResponse<int>();
+        }
 
+        [Route("api/mgr/CreateOrUpdateMediaPlayerTerminal"), HttpPost]
+        public GeneralResponse<int> CreateOrUpdateMediaPlayerTerminal(MediaPlayerTerminal terminal)
+        {
+            service.CreateOrUpdate(terminal);
+            return new GeneralResponse<int>();
+        }
+
+        [Route("api/mgr/CreateOrUpdateDirective"), HttpPost]
+        public GeneralResponse<int> CreateOrUpdateDirective(DirectiveEditModel model)
+        {
+            var directive = new Models::Directive()
+            {
+                Name = model.Name,
+                Resources = model.Resources,
+                Description = model.Description
+            };
+            switch ((TerminalTypes)model.Terminal.type)
+            {
+                case TerminalTypes.MediaPlayer:
+                    directive.Terminal = ((string)(model.Terminal.ToString())).DeserializeToObject<MediaPlayerTerminal>();
+                    directive.DefaultWindow = model.DefaultWindow;
+                    break;
+                case TerminalTypes.SerialPort:
+                    directive.Terminal = ((string)(model.Terminal.ToString())).DeserializeToObject<SerialPortTerminal>();
+                    directive.DefaultWindow = null;
+                    break;
+            }
+            service.CreateOrUpdate(directive);
+            return new GeneralResponse<int>();
+        }
         [Route("api/mgr/QueryDirectives"), HttpPost]
         public GeneralResponse<Models::Directive[]> QueryDirectives(SQLiteQueryFilter<string> filter)
         {
@@ -118,82 +184,18 @@ namespace Exhibition.Portal.Api.Controllers
                 Data = service.QueryDirectives(filter).ToArray()
             };
         }
-        //[Route("api/mgr/CreateTerminal"), HttpPost]
-        //public TerminalActionResponse CreateTerminal(IBaseTerminal terminal)
-        //{
-        //    return new TerminalActionResponse()
-        //    {
 
-        //    };
-        //}
-        //[Route("api/mgr/DeleteTerminal"), HttpPost]
-        //public GeneralResponse DeleteTerminal(IBaseTerminal terminal)
-        //{
-        //    //if (terminal == null || string.IsNullOrEmpty(terminal.Ip)) return null;
-        //    return new GeneralResponse()
-        //    {
-        //        //Data = service.DeleteTerminal(terminal.Ip)
-        //    };
-        //}
+        [Route("api/mgr/Execute"), HttpPost]
+        public GeneralResponse<int> Execute(OperateContext context)
+        {
+            var directive = this.service.QueryDirectives(new SQLiteQueryFilter<string>()
+            {
+                Keys = new string[] { context.Name },
+                PrimaryKey = "Name",
+            }).FirstOrDefault();
 
-        //[Route("api/mgr/QueryDirectives"), HttpPost]
-        //public QueryDirectiveResponse QueryDirectives(Models::SQLiteDimQueryFilter filter)
-        //{
-        //    return new QueryDirectiveResponse()
-        //    {
-
-        //    };
-        //}
-
-        //[Route("api/mgr/CreateOrUpdateDirective"), HttpPost]
-        //public GeneralResponse CreateOrUpdateDirective(Models::Directive directive)
-        //{
-        //    return new GeneralResponse()
-        //    {
-        //        //Data = this.service.CreateOrUpdate(directive)
-        //    };
-        //}
-
-        //[Route("api/mgr/DeleteDirective"), HttpPost]
-        //public GeneralResponse DeleteDirective(Models::Directive directive)
-        //{
-        //    return new GeneralResponse()
-        //    {
-        //        //Data = this.service.DeleteDirective(directive)
-        //    };
-        //}
-
-        //[Route("api/mgr/Execute"), HttpGet]
-        //public GeneralResponse Execute(string directiveName)
-        //{
-        //    return new GeneralResponse() { Data = 0 };
-        //}
-        //[Route("api/mgr/QueryFileSystem"), HttpPost]
-        //public QueryFileSystemResponse QueryFileSystem(QueryFilter filter)
-        //{
-        //    return new QueryFileSystemResponse()
-        //    {
-        //        Data = this.service.QueryFileSystem(filter).ToArray()
-        //    };
-        //}
-
-        //[Route("api/mgr/QueryFileSystemforChoosing"), HttpPost]
-        //public GeneralResponse<OptionModel[]> QueryFileSystemforChoosing(QueryFilter filter)
-        //{
-        //    var response = this.QueryFileSystem(filter);
-        //    return new GeneralResponse<OptionModel[]>()
-        //    {
-        //        Data = response.Data.Select(o => o.Convert()).ToArray()
-        //    };
-        //}
-        //[Route("api/mgr/QueryTerminalforChoosing"), HttpPost]
-        //public GeneralResponse<OptionModel[]> QueryTerminalforChoosing(SQLiteDimQueryFilter filter)
-        //{
-        //    var response = this.QueryTerminals(filter);
-        //    return new GeneralResponse<OptionModel[]>()
-        //    {
-        //        //Data = response.Data.Select(o=>o.Convert()).ToArray()
-        //    };
-        //}
+            this.service.Run(new OperationContext() { Type = context.Type, Directive = directive });
+            return new GeneralResponse<int>();
+        }
     }
 }

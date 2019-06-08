@@ -15,8 +15,9 @@ import { NgbModule, NgbModalModule, NgbModal } from "@ng-bootstrap/ng-bootstrap"
 import { DataTablesModule } from 'angular-datatables';
 import { AngularFileUploaderModule } from "angular-file-uploader";
 import { TerminalComponent } from "app/terminal/terminal.component"
-import { TerminalContent } from "app/components/terminaledit/TerminalContent.compnent"
-
+import { TerminalContent } from "app/components/terminaledit/TerminalContent.compnent";
+import {SerialPortEdit} from "app/components/serialport-terminal/SerialPortEdit.Component";
+import{MediaPlayerEdit} from "app/components/media-terminal/MediaPlayerEdit.Component";
 
 import {
   MatButtonModule,
@@ -28,8 +29,8 @@ import {
 } from '@angular/material';
 import { ResourceComponent } from 'app/resource/resource.component';
 import { from } from 'rxjs';
-import { Terminal } from 'app/models/terminal';
-import { WindowContent } from 'app/components/terminaledit/window.component';
+
+
 import { DirectiveComponent } from 'app/directive/directive.component';
 import { DirectiveContent } from 'app/components/directive/directive.component';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
@@ -59,9 +60,9 @@ import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
     NotificationsComponent,
     UpgradeComponent,
     ResourceComponent,
-    TerminalComponent, TerminalContent, WindowContent, DirectiveComponent, DirectiveContent
+    TerminalComponent, TerminalContent, MediaPlayerEdit, DirectiveComponent, DirectiveContent,SerialPortEdit
   ],
-  entryComponents: [TerminalContent, WindowContent, DirectiveContent]
+  entryComponents: [TerminalContent, MediaPlayerEdit, DirectiveContent,SerialPortEdit]
 })
 
 export class AdminLayoutModule { }

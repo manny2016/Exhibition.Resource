@@ -36,60 +36,10 @@ namespace Exhibition.Core
         public static void InitializeTestData()
         {
             var service = new ManagementService();
-            service.CreateOrUpdate(new MediaPlayerTerminal()
-            {
-                Description = "视频播放器",
-                Name = "01",
-                Settings = new MedaiPlayerSettings()
-                {
-                    Endpoint = "http://192.168.0.102/api/common/run",
-                    Ip = "192.168.0.102",
-                    Windows = new Window[] {
-                         new Window(){  Id =1, Location = new WinPoint(){ X=0,Y=0 } , Size= new WinSize(){  Width=1024, Height = 768} },
-                         new Window(){  Id =2, Location = new WinPoint(){ X=1024,Y=0 } , Size= new WinSize(){  Width=1024, Height = 768} },
-                         new Window(){  Id =2, Location = new WinPoint(){ X=2048,Y=0 } , Size= new WinSize(){  Width=1024, Height = 768} },
-                    }
-                }
-            });
-
-            service.CreateOrUpdate(new SerialPortTerminal()
-            {
-                Description = "PLC中控主机",
-                Name = "PLC",
-                Settings = new SerialPortSettings()
-                {
-                    BaudRate = 9600,
-                    DataBits = 8,
-                    Parity = System.IO.Ports.Parity.Even,
-                    PortName = "COM1",
-                    StopBits = System.IO.Ports.StopBits.One
-                }
-            });
-
-            service.CreateOrUpdate(new Directive()
-            {
-                DefaultWindow = new Window() { Id = 1, Location = new WinPoint() { X = 0, Y = 0 }, Size = new WinSize() { Width = 1024, Height = 768 } },
-                Description = "播放视频",
-                Name = "播放宣传片",
-                Resources = new Resource[] { new Resource() { Name = "1.avi", Workspace = "videos", Type = ResourceTypes.Video } },
-                Type = DirectiveTypes.Run,
-                Terminal = new MediaPlayerTerminal()
-                {
-                    Description = "视频播放器",
-                    Name = "大屏",
-                    Settings = new MedaiPlayerSettings()
-                    {
-                        Endpoint = "http://192.168.0.102/api/common/run",
-                        Ip = "192.168.0.102",
-                        Windows = new Window[] {
-                         new Window(){  Id =1, Location = new WinPoint(){ X=0,Y=0 } , Size= new WinSize(){  Width=1024, Height = 768} },
-                         new Window(){  Id =2, Location = new WinPoint(){ X=1024,Y=0 } , Size= new WinSize(){  Width=1024, Height = 768} },
-                         new Window(){  Id =2, Location = new WinPoint(){ X=2048,Y=0 } , Size= new WinSize(){  Width=1024, Height = 768} },
-                    }
-                    }
-                }
-
-            });
+          
+          
         }
+
+        
     }
 }

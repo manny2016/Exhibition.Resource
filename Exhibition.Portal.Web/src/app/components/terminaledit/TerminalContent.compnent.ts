@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { NgbActiveModal, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { Terminal } from 'app/models/terminal';
+// import { Terminal } from 'app/models/terminal';
 import { ManagementService } from 'app/services/ManagementService';
 
 
@@ -12,7 +12,7 @@ import { ManagementService } from 'app/services/ManagementService';
   
 })
 export class TerminalContent {
-  @Input() current:Terminal;
+  @Input() current:any;
   @Input() modalRef:NgbModalRef;  
   constructor(public service: ManagementService,
     public activeModal: NgbActiveModal) {}
@@ -20,20 +20,19 @@ export class TerminalContent {
      * 
      * @param terminal 
      */
-    public CreateOrUpdateTerminal(terminal: Terminal) {
+    public CreateOrUpdateTerminal(terminal: any) {
       const that = this;
       console.log(terminal);
-      that.service.CreateOrUpdateTerminal(terminal).toPromise().then(res=>{
-          if(res.success){
-            that.activeModal.close("Close");
-          }
-          else{
-              alert("Ip地址不允许为空或重复,请检查信息是否正确!");
-              
-          }            
-      })
-      .catch(error=>{
+      // that.service.CreateOrUpdateTerminal(terminal).toPromise().then(res=>{
+      //     if(res.success){
+      //       that.activeModal.close("Close");
+      //     }
+      //     else{
+      //         alert("Ip地址不允许为空或重复,请检查信息是否正确!");              
+      //     }            
+      // })
+      // .catch(error=>{
 
-      });
+      // });
   }
 }

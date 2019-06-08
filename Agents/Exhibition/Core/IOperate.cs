@@ -16,5 +16,7 @@ namespace Exhibition.Core
         void Previous();
 
         void Stop();
+
+        void SwichMode();
     }
 }

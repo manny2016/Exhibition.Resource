@@ -8,7 +8,7 @@ namespace Exhibition.Agent.Show
     using System.ServiceModel;
     using Models = Exhibition.Core.Models;
     using System.Configuration;
-    public delegate void OperationEventHandler(object sender, Models::Directive directive);
+    
     public static class AgentHost
     {
         public static event OperationEventHandler DirectiveReceived;
@@ -21,9 +21,9 @@ namespace Exhibition.Agent.Show
             };
             host.Open();
         }
-        public static void TriggerDirectiveEvent(object sender, Models::Directive directive)
+        public static void TriggerDirectiveEvent(object sender, OperationEventArgs e)
         {
-            DirectiveReceived?.Invoke(sender, directive);
+            DirectiveReceived?.Invoke(sender, e);
         }
 
         public static string Api

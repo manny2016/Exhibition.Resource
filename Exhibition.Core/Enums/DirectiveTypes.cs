@@ -7,9 +7,25 @@ namespace Exhibition.Core
 {
     public enum DirectiveTypes
     {
+        /// <summary>
+        /// 执行播放，开关机,音量调节等指令
+        /// </summary>
         Run = 1,
+        /// <summary>
+        /// 
+        /// </summary>
         Stop = 2,
+        /// <summary>
+        /// 上一个
+        /// </summary>
         Next = 3,
-        Previous = 4
+        /// <summary>
+        /// 下一个
+        /// </summary>
+        Previous = 4,
+        /// <summary>
+        /// 切换播放模式
+        /// </summary>
+        SwitchModel = 5
     }
 }

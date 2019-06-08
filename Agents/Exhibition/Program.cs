@@ -17,8 +17,7 @@ namespace Exhibition.Agent.Show
         /// </summary>
         [STAThread]
         static void Main()
-        {
-            var json = CreateDirective().SerializeToJson();
+        {            
 
             Application.ThreadExit += Application_ThreadExit;
             string assemblyDir = Path.GetDirectoryName(
@@ -57,7 +56,7 @@ namespace Exhibition.Agent.Show
                 Description = "播放视频",
                 Name = "播放宣传片",
                 Resources = new Resource[] { new Resource() { Name = "1.avi", Workspace = "videos", Type = ResourceTypes.Video } },
-                Type = DirectiveTypes.Run,
+                //Type = DirectiveTypes.Run,
                 Terminal = new MediaPlayerTerminal()
                 {
                     Description = "视频播放器",

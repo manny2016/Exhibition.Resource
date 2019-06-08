@@ -263,6 +263,21 @@ namespace Exhibition.Core.Services
                     });
             }
         }
+
+        public void Run(IOperateContext context)
+        {
+            var terminal = context.Directive.Terminal;
+            switch (terminal.Type)
+            {
+                case TerminalTypes.MediaPlayer:
+                    DirectiveInterpreter.Create(context)?.Execute();
+                    break;
+                case TerminalTypes.SerialPort:
+                    DirectiveInterpreter.Create(context)?.Execute();
+                    break;
+            }
+        }
+        
         #endregion
     }
 }

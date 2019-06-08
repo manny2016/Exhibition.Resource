@@ -6,6 +6,7 @@ namespace Exhibition.Core
 {
     public enum TerminalTypes
     {
+        NotSupport=-1,
         /// <summary>
         /// 播放器终端
         /// </summary>

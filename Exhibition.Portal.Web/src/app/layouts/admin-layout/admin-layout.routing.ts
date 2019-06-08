@@ -13,7 +13,7 @@ import { TerminalComponent } from 'app/terminal/terminal.component';
 import { DirectiveComponent } from 'app/directive/directive.component';
 
 export const AdminLayoutRoutes: Routes = [  
-    { path: 'dashboard',      component: DashboardComponent },
+    // { path: 'dashboard',      component: DashboardComponent },
     { path: 'resource',       component: ResourceComponent },
     { path: 'terminal',       component: TerminalComponent },
     { path: 'directive',      component: DirectiveComponent },

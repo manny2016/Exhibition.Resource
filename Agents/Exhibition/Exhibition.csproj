@@ -7,7 +7,7 @@
     <ProjectGuid>{DC06EA61-C26F-43E3-891E-CF12084AB296}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>Exhibition.Agent.Show</RootNamespace>
-    <AssemblyName>Exhibition.Agent.Show</AssemblyName>
+    <AssemblyName>Exhibition</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -73,7 +73,9 @@
       <DependentUpon>AxWebBrowser.cs</DependentUpon>
     </Compile>
     <Compile Include="Core\IOperate.cs" />
+    <Compile Include="Core\Models\OperationContext.cs" />
     <Compile Include="Core\Models\WorkingState.cs" />
+    <Compile Include="Core\OperationEventHandler.cs" />
     <Compile Include="ForumMain.cs">
       <SubType>Form</SubType>
     </Compile>

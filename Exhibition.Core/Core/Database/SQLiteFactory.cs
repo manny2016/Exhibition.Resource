@@ -59,8 +59,7 @@ CREATE TABLE  IF NOT EXISTS Terminal (
         {
             return @"
 CREATE TABLE IF NOT EXISTS Directive (
-    Name  varchar(100),
-    Type  INTEGER,
+    Name  varchar(100),    
     Description   varchar(100),
     Target TEXT,
 	DefaultWindow TEXT,

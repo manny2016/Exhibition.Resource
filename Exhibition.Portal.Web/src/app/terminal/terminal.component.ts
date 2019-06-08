@@ -1,11 +1,12 @@
 
 import { Component, OnInit, Pipe, Input } from '@angular/core';
-import { Terminal, Window, Point, Size } from 'app/models/terminal';
-import { ManagementService } from 'app/services/ManagementService';
-import { NgbModal, NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
-import { TerminalContent } from 'app/components/terminaledit/TerminalContent.compnent';
-import { WindowContent } from 'app/components/terminaledit/window.component';
 
+import { ManagementService } from 'app/services/ManagementService';
+import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { TerminalContent } from 'app/components/terminaledit/TerminalContent.compnent';
+import { SerialPortEdit } from 'app/components/serialport-terminal/SerialPortEdit.Component';
+//import { WindowContent } from 'app/components/terminaledit/window.component';
+import { MediaPlayerEdit } from "app/components/media-terminal/MediaPlayerEdit.Component";
 @Component({
     selector: 'app-terminal-component',
     templateUrl: './terminal.component.html',
@@ -15,8 +16,8 @@ import { WindowContent } from 'app/components/terminaledit/window.component';
 export class TerminalComponent implements OnInit {
     constructor(public service: ManagementService, private modalService: NgbModal) { }
     public dtOptions: DataTables.Settings = {};
-    public terminals: Terminal[];
-    public current: Terminal = null;
+    public terminals: any[];
+    public current: any = null;
     /**
      * 
      */
@@ -28,49 +29,45 @@ export class TerminalComponent implements OnInit {
      * 
      * @param content 
      */
-    public OpenTerminalEdit(content:Terminal) {
+    public OpenTerminalEdit(content: any) {
         const that = this;
-       // that.current = { ip: "", name: "", description: "", endpoint: "", schematic: "", editable:false, windows: [] };
-        const modalRef= that.modalService.open(TerminalContent,{ size: 'lg' });
-        modalRef.componentInstance.current = content;
-        modalRef.componentInstance.modalRef = modalRef;
-        modalRef.result.then(ctx=>{
-            that.Refresh();
-        });
+
+        if (content.type == 1) {
+
+            const modalRef = that.modalService.open(MediaPlayerEdit, { size: 'lg' });
+            modalRef.componentInstance.current = content;
+            modalRef.componentInstance.modalRef = modalRef;
+            modalRef.result.then(ctx => {
+                that.Refresh();
+            });
+            modalRef.dismiss = (reson => { });
+        }
+        if (content.type == 2) {
+            const modalRef = that.modalService.open(SerialPortEdit, { size: 'lg' });
+            modalRef.componentInstance.current = content;
+            modalRef.componentInstance.modalRef = modalRef;
+            modalRef.result.then(ctx => {
+                that.Refresh();
+            });
+            modalRef.dismiss = (reson => { });
+        }
     }
     /**
      * 
      */
-    public Refresh(){
+    public Refresh() {
         const that = this;
         that.service.QueryTerminals({ search: null }).toPromise().then(res => {
             that.terminals = res.data;
         });
     }
-    /**
-     * 
-     * @param context 
-     */
-    public DeleteTerminal(context:Terminal){
-        const that = this;
-        if (confirm("真的要删除吗?")) {
-          that.service.DeleteTerminal(context)
-            .toPromise().then(res => {
-              this.Refresh();
-            });
-        }
+
+
+    public GetTerminalTypeName(type: number) {
+        return this.service.GetTerminalTypeName(type);
+
     }
-    /**
-     * 
-     * @param content 
-     */
-    public OpenWindowEdit(content:Terminal){
-        const that = this;
-        const modalRef= that.modalService.open(WindowContent);
-        modalRef.componentInstance.current = content;
-        modalRef.componentInstance.modalRef = modalRef;
-        modalRef.result.then(ctx=>{
-            that.Refresh();
-        });
+    public GenernateTerminalSettings(terminal: any) {
+        return JSON.stringify(terminal.settings);
     }
 }

@@ -9,6 +9,7 @@ namespace Exhibition.Core
     using System.Linq;
     using System;
     using Exhibition.Core.Models;
+    using Newtonsoft.Json.Linq;
 
     public static class ModelExtension
     {
@@ -68,7 +69,6 @@ VALUES(@name,@type,@description,@settings);";
             var parameters = new DynamicParameters();
 
             parameters.Add("@name", directive.Name);
-            parameters.Add("@type", (int)directive.Type);
             parameters.Add("@description", directive.Description);
             parameters.Add("@target", directive.Terminal.SerializeToJson());
             parameters.Add("@defaultwindow", directive.DefaultWindow == null ? "{}" : directive.DefaultWindow.SerializeToJson());
@@ -79,15 +79,15 @@ VALUES(@name,@type,@description,@settings);";
         public static string GenernateInsertScript(this Models::Directive directive)
         {
             return @"
-INSERT INTO Directive(Name,Type,Description,Target,DefaultWindow,Resources)
-VALUES(@name,@type,@description,@target,@defaultwindow,@resources);
+INSERT INTO Directive(Name,Description,Target,DefaultWindow,Resources)
+VALUES(@name,@description,@target,@defaultwindow,@resources);
 ";
         }
 
         public static string GenernateUpdateScript(this Models::Directive directive)
         {
             return @"
-UPDATE Directive SET Target=@target,Defaultwindow=@defaultwindow,Type=@type,Description=@description,Resources=@resources
+UPDATE Directive SET Target=@target,Defaultwindow=@defaultwindow,Description=@description,Resources=@resources
 WHERE Name = @name;
 ";
         }
@@ -99,10 +99,10 @@ WHERE Name = @name;
             {
                 Description = directive.Description,
                 Name = directive.Name,
-                //Resource = directive.Context.DeserializeToObject<Models::Resource>(),
-                //Terminal = terminal,
-                Type = directive.Type,
-                //Window = terminal.Windows.FirstOrDefault(ctx => ctx.Id == directive.Window)
+                DefaultWindow = directive.DefaultWindow.DeserializeToObject<Window>(),
+                Resources = directive.Resources.DeserializeToObject<Resource[]>(),
+                Terminal = directive.Target.TrytoGetInstance(),
+
             };
         }
 
@@ -156,6 +156,23 @@ WHERE Name = @name;
                 Key = $"{ip}-{window.Id}",
                 Text = $"{window.Id}|{window.Location.X} * {window.Location.Y}(x * y) | {window.Size.Width} * {window.Size.Height} (width * height)"
             };
+        }
+
+        public static IBaseTerminal TrytoGetInstance(this string text)
+        {
+            var directly = "$.type";
+            var jObject = JObject.Parse(text.ToLower());
+            var intType = jObject.SelectToken(directly).Value<int?>();
+            var type = intType == null ? TerminalTypes.NotSupport : (TerminalTypes)intType; ;
+            if (type == TerminalTypes.NotSupport) throw new ArgumentNullException("Can't get terminal type,please check json string");
+            switch (type)
+            {
+                case TerminalTypes.MediaPlayer:
+                    return text.DeserializeToObject<MediaPlayerTerminal>();
+                case TerminalTypes.SerialPort:
+                    return text.DeserializeToObject<SerialPortTerminal>();
+            }
+            return null;
         }
     }
 }

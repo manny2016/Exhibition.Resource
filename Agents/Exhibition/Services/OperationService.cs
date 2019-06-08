@@ -16,9 +16,9 @@ namespace Exhibition.Core.Services
             return "this is a wcf api for control center.";
         }
 
-        public GeneralResponse<int> Run(Directive directive)
+        public GeneralResponse<int> Run(OperationContext context)
         {
-            AgentHost.TriggerDirectiveEvent(this, directive);
+            AgentHost.TriggerDirectiveEvent(this, new OperationEventArgs() { Context = context });
             return new GeneralResponse<int>()
             {
                 Success = true,

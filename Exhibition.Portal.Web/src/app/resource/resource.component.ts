@@ -1,10 +1,10 @@
 import { Component, OnInit, Pipe } from '@angular/core';
 import { HttpClient, HttpResponse, HttpRequest, HttpEvent } from '@angular/common/http';
 import { ManagementService } from '../services/ManagementService'
-import { Resource } from 'app/models/Resource';
+
 import { Subscription } from 'rxjs'
-import { QueryFilter } from 'app/models/queryFilter';
-import { ResourceRequestContext } from "app/models/ResourceRequestContext";
+
+
 
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { environment } from 'environments/environment.prod';
@@ -24,7 +24,7 @@ class DataTablesResponse {
 })
 export class ResourceComponent implements OnInit {
   public dtOptions: DataTables.Settings = {};
-  public resources: Resource[];
+  public resources: any[];
   public parent: string;
   public edittingContext: string;
   public workspace: string;
@@ -78,7 +78,7 @@ export class ResourceComponent implements OnInit {
     return ico;
   }
 
-  public ClickResource(model: Resource) {
+  public ClickResource(model: any) {
     const that = this;
     that.service.GetResources({ current: model.workspace, search: "" }).toPromise().then(res => {
       var source: any = res;
@@ -111,7 +111,7 @@ export class ResourceComponent implements OnInit {
    * 
    * @param current 
    */
-  public StartEditing(current: Resource) {
+  public StartEditing(current: any) {
     const that = this;
     this.edittingContext = current.name;
     current.editable = !current.editable;
@@ -134,7 +134,7 @@ export class ResourceComponent implements OnInit {
    * @param event 
    * @param resource 
    */
-  public OnInputBoxKeyPress(event: any, resource: Resource) {
+  public OnInputBoxKeyPress(event: any, resource: any) {
     const that = this;
     if (event.key == "Enter" && event.target.value != "") {
       console.log(resource.workspace);
@@ -171,7 +171,7 @@ export class ResourceComponent implements OnInit {
    * 
    * @param resource 
    */
-  public Delete(resource: Resource) {
+  public Delete(resource: any) {
     const that = this;
     if (confirm("真的要删除吗?")) {
       that.service.DeleteResource({ workspace: that.workspace, name: resource.name, newName: "" })

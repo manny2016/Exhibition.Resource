@@ -1,0 +1,53 @@
+<div class="modal-header">
+    <h5 *ngIf="(current!=null&&current.ip!='')" class="modal-title" id="modal-basic-title">
+        ({{current.name}})
+    </h5>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-sm-6">
+            <mat-form-field class="example-full-width">
+                <input type="text" matInput placeholder="设备名称" [(ngModel)]="current.name" value="{{current.name}}" disabled="disabled">
+            </mat-form-field>
+        </div>
+        <div class="col-sm-6">
+            <mat-form-field class="example-full-width">
+                <input matInput value="{{GetTerminalTypeName(current.type)}}"  placeholder="设备类型"  disabled="disabled">
+                <input type="hidden" [(ngModel)]="current.type" />
+            </mat-form-field>
+        </div>
+    </div>
+    <h6>播放窗口设置</h6>
+
+    <div class="row" *ngFor="let window of current.settings.windows">
+        <div class="col-sm-3">
+            <mat-form-field class="example-full-width">
+                <input type="text" matInput placeholder="横坐标(X)" [(ngModel)]="window.location.x"
+                    value="{{window.location.x}}">
+            </mat-form-field>
+        </div>
+        <div class="col-sm-3">
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="纵坐标(Y)" [(ngModel)]="window.location.y" value="{{window.location.y}}">
+            </mat-form-field>
+        </div>
+        <div class="col-sm-3">
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="宽度(width)" [(ngModel)]="window.size.width" value="{{window.size.width}}">
+            </mat-form-field>
+        </div>
+        <div class="col-sm-3">
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="高度(Height)" [(ngModel)]="window.size.height" value="{{window.size.height}}">
+            </mat-form-field>
+        </div>
+        <input type="hidden" [(ngModel)]="window.id" value="{{window.id}}">
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-danger" (click)="CreateOrUpdateTerminal(current)">保存</button>
+    <button type="button" class="btn btn-white" (click)="modalRef.close('Close')">关闭</button>
+</div>
