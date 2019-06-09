@@ -23,9 +23,18 @@ namespace Exhibition.Core
         /// 下一个
         /// </summary>
         Previous = 4,
+
         /// <summary>
         /// 切换播放模式
         /// </summary>
-        SwitchModel = 5
+        SwitchModel = 5,
+        /// <summary>
+        /// 向上滚动
+        /// </summary>
+        ScrollUp = 6,
+        /// <summary>
+        /// 向下滚动
+        /// </summary>
+        ScrollDown = 7
     }
 }

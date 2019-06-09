@@ -7,4 +7,5 @@ namespace Exhibition.Core.Models
         public Directive Directive { get; set; }
         public DirectiveTypes Type { get; set; }
     }
+    
 }

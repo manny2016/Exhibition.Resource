@@ -1,7 +1,4 @@
-﻿
-
-
-namespace Exhibition.Core.Services
+﻿namespace Exhibition.Core.Services
 {
     using System.Collections.Generic;
     using System.IO;
@@ -67,7 +64,7 @@ namespace Exhibition.Core.Services
                         yield break;
                     };
                     break;
-                case ResourceTypes.H5:
+                case ResourceTypes.TextPlain:
                 case ResourceTypes.Image:
                 case ResourceTypes.Video:
                     var fileinfo = new FileInfo(Path.Combine(workspace.ServerMap(), name));
@@ -136,9 +133,8 @@ namespace Exhibition.Core.Services
                     }
                     break;
                 case ResourceTypes.Image:
-                case ResourceTypes.Video:
-                case ResourceTypes.SerialPortDirective:
-                case ResourceTypes.H5:
+                case ResourceTypes.Video:                
+                case ResourceTypes.TextPlain:
                 default:
                     var fileinfo = new FileInfo(current);
                     if (!fileinfo.Exists)

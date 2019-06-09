@@ -73,6 +73,7 @@
       <DependentUpon>AxWebBrowser.cs</DependentUpon>
     </Compile>
     <Compile Include="Core\IOperate.cs" />
+    <Compile Include="Core\Models\MediaControlDirective.cs" />
     <Compile Include="Core\Models\OperationContext.cs" />
     <Compile Include="Core\Models\WorkingState.cs" />
     <Compile Include="Core\OperationEventHandler.cs" />

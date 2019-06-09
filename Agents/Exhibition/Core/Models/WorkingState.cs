@@ -22,8 +22,8 @@ namespace Exhibition.Agent.Show.Models
                     return ResourceTypes.Image;
                 if (this.Resources.All(o => o.Type == ResourceTypes.Video))
                     return ResourceTypes.Video;
-                if (this.Resources.All(o => o.Type == ResourceTypes.H5))
-                    return ResourceTypes.H5;
+                if (this.Resources.All(o => o.Type == ResourceTypes.TextPlain))
+                    return ResourceTypes.TextPlain;
 
                 return ResourceTypes.NotSupported;
             }

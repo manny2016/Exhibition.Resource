@@ -1,0 +1,38 @@
+2019-06-08 17:20:16 [1] INFO  User profile is available. Using 'C:\Users\Joey\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+ 
+2019-06-08 17:20:16 [8] INFO  Request starting HTTP/1.1 GET http://localhost:44378/api/values  
+ 
+2019-06-08 17:20:16 [9] INFO  Request starting HTTP/1.1 DEBUG http://localhost:50354/  0
+ 
+2019-06-08 17:20:17 [9] INFO  Request finished in 66.4521ms 200 
+ 
+2019-06-08 17:20:17 [8] INFO  Request finished in 552.9374ms 404 
+ 
+2019-06-08 17:22:20 [1] INFO  User profile is available. Using 'C:\Users\Joey\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+ 
+2019-06-08 17:22:20 [8] INFO  Request starting HTTP/1.1 DEBUG http://localhost:50354/  0
+ 
+2019-06-08 17:22:20 [10] INFO  Request starting HTTP/1.1 GET http://localhost:44378/api/values  
+ 
+2019-06-08 17:22:20 [8] INFO  Request finished in 43.2804ms 200 
+ 
+2019-06-08 17:22:20 [10] INFO  Request finished in 190.5639ms 404 
+ 
+2019-06-08 17:22:31 [7] INFO  Request starting HTTP/1.1 GET http://localhost:44378/api/mgr/readme  
+ 
+2019-06-08 17:22:31 [7] INFO  Route matched with {action = "Readme", controller = "Management"}. Executing controller action with signature System.String Readme() on controller Exhibition.Portal.Api.Controllers.ManagementController (Exhibition.Portal.Api).
+ 
+2019-06-08 17:22:31 [7] INFO  Executing action method Exhibition.Portal.Api.Controllers.ManagementController.Readme (Exhibition.Portal.Api) - Validation state: Valid
+ 
+2019-06-08 17:22:31 [7] INFO  Executed action method Exhibition.Portal.Api.Controllers.ManagementController.Readme (Exhibition.Portal.Api), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 0.363ms.
+ 
+2019-06-08 17:22:31 [7] INFO  Executing ObjectResult, writing value of type 'System.String'.
+ 
+2019-06-08 17:22:31 [7] INFO  Executed action Exhibition.Portal.Api.Controllers.ManagementController.Readme (Exhibition.Portal.Api) in 149.026ms
+ 
+2019-06-08 17:22:31 [7] INFO  Request finished in 336.693ms 200 text/plain; charset=utf-8
+ 
+2019-06-08 17:22:31 [8] INFO  Request starting HTTP/1.1 GET http://localhost:44378/favicon.ico  
+ 
+2019-06-08 17:22:31 [8] INFO  Request finished in 6.0151ms 404 
+ 

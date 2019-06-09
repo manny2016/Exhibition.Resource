@@ -3,12 +3,14 @@
 namespace Exhibition.Core
 {
     using System;
-    using System.Data.SQLite;
+    
     using System.IO;
     using System.Data;
     using Dapper;
     
     using System.Linq;
+    using System.Data.SQLite;
+
     public class SQLiteFactory
     {
         const string ConnectionString = "Data Source={0};Version=3;Pooling=True;Max Pool Size=100;";
@@ -22,12 +24,13 @@ namespace Exhibition.Core
             var fileInfo = new FileInfo(GetDataSource());
             if (!fileInfo.Exists)
             {
+                
                 SQLiteConnection.CreateFile(GetDataSource());
                 using (var database = Genernate())
                 {
                     database.Execute(GenernateTableScraptforTerminal());
                     database.Execute(GenernateTableScriptforDirective());
-                }
+                }             
             }
         }
         static string GenernateSQLiteConnectionString(string name = datasouece)
@@ -61,6 +64,7 @@ CREATE TABLE  IF NOT EXISTS Terminal (
 CREATE TABLE IF NOT EXISTS Directive (
     Name  varchar(100),    
     Description   varchar(100),
+    TargetName varchar(100),        
     Target TEXT,
 	DefaultWindow TEXT,
 	Resources TEXT,

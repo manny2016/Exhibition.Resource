@@ -1,0 +1,802 @@
+2019-06-09 10:14:59 [1] INFO  User profile is available. Using 'C:\Users\Joey\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+ 
+2019-06-09 10:15:00 [8] INFO  Request starting HTTP/1.1 DEBUG http://localhost:50354/  0
+ 
+2019-06-09 10:15:00 [8] INFO  Request finished in 46.7327ms 200 
+ 
+2019-06-09 10:15:28 [1] INFO  User profile is available. Using 'C:\Users\Joey\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+ 
+2019-06-09 10:15:29 [10] INFO  Request starting HTTP/1.1 GET http://localhost:44378/api/values  
+ 
+2019-06-09 10:15:29 [8] INFO  Request starting HTTP/1.1 DEBUG http://localhost:50354/  0
+ 
+2019-06-09 10:15:29 [8] INFO  Request finished in 42.0012ms 200 
+ 
+2019-06-09 10:15:29 [10] INFO  Request finished in 292.8619ms 404 
+ 
+2019-06-09 10:15:53 [8] INFO  Request starting HTTP/1.1 POST http://localhost:44378/api/mgr/QueryFileSystemforChoosing application/json 5
+ 
+2019-06-09 10:15:53 [8] INFO  Route matched with {action = "QueryFileSystemforChoosing", controller = "Management"}. Executing controller action with signature Exhibition.Core.Models.GeneralResponse`1[Exhibition.Portal.Api.Models.SelectOptionGroup`1[Exhibition.Core.Models.Resource][]] QueryFileSystemforChoosing(Exhibition.Core.Models.QueryFilter) on controller Exhibition.Portal.Api.Controllers.ManagementController (Exhibition.Portal.Api).
+ 
+2019-06-09 10:15:53 [8] INFO  Executing action method Exhibition.Portal.Api.Controllers.ManagementController.QueryFileSystemforChoosing (Exhibition.Portal.Api) - Validation state: Valid
+ 
+2019-06-09 10:15:53 [8] INFO  Executed action method Exhibition.Portal.Api.Controllers.ManagementController.QueryFileSystemforChoosing (Exhibition.Portal.Api), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 17.7972ms.
+ 
+2019-06-09 10:15:53 [8] INFO  Executing ObjectResult, writing value of type 'Exhibition.Core.Models.GeneralResponse`1[[Exhibition.Portal.Api.Models.SelectOptionGroup`1[[Exhibition.Core.Models.Resource, Exhibition.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]][], Exhibition.Portal.Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+ 
+2019-06-09 10:15:54 [8] INFO  Executed action Exhibition.Portal.Api.Controllers.ManagementController.QueryFileSystemforChoosing (Exhibition.Portal.Api) in 383.3052ms
+ 
+2019-06-09 10:15:54 [8] INFO  Request finished in 470.4662ms 200 application/json; charset=utf-8
+ 
+2019-06-09 10:16:11 [7] INFO  Request starting HTTP/1.1 POST http://localhost:44378/api/mgr/QueryFileSystemforChoosing application/json 26
+ 
+2019-06-09 10:16:11 [7] INFO  Route matched with {action = "QueryFileSystemforChoosing", controller = "Management"}. Executing controller action with signature Exhibition.Core.Models.GeneralResponse`1[Exhibition.Portal.Api.Models.SelectOptionGroup`1[Exhibition.Core.Models.Resource][]] QueryFileSystemforChoosing(Exhibition.Core.Models.QueryFilter) on controller Exhibition.Portal.Api.Controllers.ManagementController (Exhibition.Portal.Api).
+ 
+2019-06-09 10:16:11 [7] INFO  Executing action method Exhibition.Portal.Api.Controllers.ManagementController.QueryFileSystemforChoosing (Exhibition.Portal.Api) - Validation state: Valid
+ 
+2019-06-09 10:16:11 [7] INFO  Executed action method Exhibition.Portal.Api.Controllers.ManagementController.QueryFileSystemforChoosing (Exhibition.Portal.Api), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 9.3321ms.
+ 
+2019-06-09 10:16:11 [7] INFO  Executing ObjectResult, writing value of type 'Exhibition.Core.Models.GeneralResponse`1[[Exhibition.Portal.Api.Models.SelectOptionGroup`1[[Exhibition.Core.Models.Resource, Exhibition.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]][], Exhibition.Portal.Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+ 
+2019-06-09 10:16:11 [7] INFO  Executed action Exhibition.Portal.Api.Controllers.ManagementController.QueryFileSystemforChoosing (Exhibition.Portal.Api) in 53.5609ms
+ 
+2019-06-09 10:16:11 [7] INFO  Request finished in 78.0256ms 200 application/json; charset=utf-8
+ 
+2019-06-09 10:18:08 [19] INFO  Request starting HTTP/1.1 POST http://localhost:44378/api/mgr/QueryFileSystemforChoosing application/json 26
+ 
+2019-06-09 10:18:08 [19] INFO  Route matched with {action = "QueryFileSystemforChoosing", controller = "Management"}. Executing controller action with signature Exhibition.Core.Models.GeneralResponse`1[Exhibition.Portal.Api.Models.SelectOptionGroup`1[Exhibition.Core.Models.Resource][]] QueryFileSystemforChoosing(Exhibition.Core.Models.QueryFilter) on controller Exhibition.Portal.Api.Controllers.ManagementController (Exhibition.Portal.Api).
+ 
+2019-06-09 10:18:08 [19] INFO  Executing action method Exhibition.Portal.Api.Controllers.ManagementController.QueryFileSystemforChoosing (Exhibition.Portal.Api) - Validation state: Valid
+ 
+2019-06-09 10:18:08 [19] INFO  Executed action method Exhibition.Portal.Api.Controllers.ManagementController.QueryFileSystemforChoosing (Exhibition.Portal.Api), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 2.3635ms.
+ 
+2019-06-09 10:18:08 [19] INFO  Executing ObjectResult, writing value of type 'Exhibition.Core.Models.GeneralResponse`1[[Exhibition.Portal.Api.Models.SelectOptionGroup`1[[Exhibition.Core.Models.Resource, Exhibition.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]][], Exhibition.Portal.Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+ 
+2019-06-09 10:18:08 [19] INFO  Executed action Exhibition.Portal.Api.Controllers.ManagementController.QueryFileSystemforChoosing (Exhibition.Portal.Api) in 56.2611ms
+ 
+2019-06-09 10:18:08 [19] INFO  Request finished in 75.0764ms 200 application/json; charset=utf-8
+ 
+2019-06-09 10:18:32 [13] INFO  Request starting HTTP/1.1 POST http://localhost:44378/api/mgr/QueryFileSystemforChoosing application/json 27
+ 
+2019-06-09 10:18:32 [13] INFO  Route matched with {action = "QueryFileSystemforChoosing", controller = "Management"}. Executing controller action with signature Exhibition.Core.Models.GeneralResponse`1[Exhibition.Portal.Api.Models.SelectOptionGroup`1[Exhibition.Core.Models.Resource][]] QueryFileSystemforChoosing(Exhibition.Core.Models.QueryFilter) on controller Exhibition.Portal.Api.Controllers.ManagementController (Exhibition.Portal.Api).
+ 
+2019-06-09 10:18:32 [13] INFO  Executing action method Exhibition.Portal.Api.Controllers.ManagementController.QueryFileSystemforChoosing (Exhibition.Portal.Api) - Validation state: Valid
+ 
+2019-06-09 10:18:32 [13] INFO  Executed action method Exhibition.Portal.Api.Controllers.ManagementController.QueryFileSystemforChoosing (Exhibition.Portal.Api), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 0.767ms.
+ 
+2019-06-09 10:18:32 [13] INFO  Executing ObjectResult, writing value of type 'Exhibition.Core.Models.GeneralResponse`1[[Exhibition.Portal.Api.Models.SelectOptionGroup`1[[Exhibition.Core.Models.Resource, Exhibition.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]][], Exhibition.Portal.Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+ 
+2019-06-09 10:18:32 [13] INFO  Executed action Exhibition.Portal.Api.Controllers.ManagementController.QueryFileSystemforChoosing (Exhibition.Portal.Api) in 33.8388ms
+ 
+2019-06-09 10:18:32 [13] INFO  Request finished in 50.0125ms 200 application/json; charset=utf-8
+ 
+2019-06-09 10:20:40 [1] INFO  User profile is available. Using 'C:\Users\Joey\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+ 
+2019-06-09 10:20:41 [7] INFO  Request starting HTTP/1.1 DEBUG http://localhost:50354/  0
+ 
+2019-06-09 10:20:41 [9] INFO  Request starting HTTP/1.1 GET http://localhost:44378/api/values  
+ 
+2019-06-09 10:20:41 [7] INFO  Request finished in 65.654ms 200 
+ 
+2019-06-09 10:20:41 [9] INFO  Request finished in 230.7191ms 404 
+ 
+2019-06-09 10:20:47 [7] INFO  Request starting HTTP/1.1 POST http://localhost:44378/api/mgr/QueryFileSystemforChoosing application/json 26
+ 
+2019-06-09 10:20:47 [7] INFO  Route matched with {action = "QueryFileSystemforChoosing", controller = "Management"}. Executing controller action with signature Exhibition.Core.Models.GeneralResponse`1[Exhibition.Portal.Api.Models.SelectOptionGroup`1[Exhibition.Core.Models.Resource][]] QueryFileSystemforChoosing(Exhibition.Core.Models.QueryFilter) on controller Exhibition.Portal.Api.Controllers.ManagementController (Exhibition.Portal.Api).
+ 
+2019-06-09 10:20:47 [7] INFO  Executing action method Exhibition.Portal.Api.Controllers.ManagementController.QueryFileSystemforChoosing (Exhibition.Portal.Api) - Validation state: Valid
+ 
+2019-06-09 10:20:47 [7] INFO  Executed action method Exhibition.Portal.Api.Controllers.ManagementController.QueryFileSystemforChoosing (Exhibition.Portal.Api), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 27.2389ms.
+ 
+2019-06-09 10:20:47 [7] INFO  Executing ObjectResult, writing value of type 'Exhibition.Core.Models.GeneralResponse`1[[Exhibition.Portal.Api.Models.SelectOptionGroup`1[[Exhibition.Core.Models.Resource, Exhibition.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]][], Exhibition.Portal.Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+ 
+2019-06-09 10:20:48 [7] INFO  Executed action Exhibition.Portal.Api.Controllers.ManagementController.QueryFileSystemforChoosing (Exhibition.Portal.Api) in 426.9933ms
+ 
+2019-06-09 10:20:48 [7] INFO  Request finished in 491.8221ms 200 application/json; charset=utf-8
+ 
+2019-06-09 11:15:18 [1] INFO  User profile is available. Using 'C:\Users\Joey\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+ 
+2019-06-09 11:15:19 [7] INFO  Request starting HTTP/1.1 DEBUG http://localhost:50354/  0
+ 
+2019-06-09 11:15:19 [8] INFO  Request starting HTTP/1.1 GET http://localhost:44378/api/values  
+ 
+2019-06-09 11:15:19 [7] INFO  Request finished in 48.3123ms 200 
+ 
+2019-06-09 11:15:19 [8] INFO  Request finished in 230.5035ms 404 
+ 
+2019-06-09 11:16:48 [16] INFO  Request starting HTTP/1.1 POST http://localhost:44378/api/mgr/Run application/json 29
+ 
+2019-06-09 11:16:48 [16] INFO  Request finished in 15.2245ms 404 
+ 
+2019-06-09 11:16:48 [16] INFO  Connection id "0HLNCH2PORCTC", Request id "0HLNCH2PORCTC:00000001": the application completed without reading the entire request body.
+ 
+2019-06-09 11:17:21 [15] INFO  Request starting HTTP/1.1 POST http://localhost:44378/api/mgr/Run application/json 29
+ 
+2019-06-09 11:17:21 [15] INFO  Request finished in 6.4843ms 404 
+ 
+2019-06-09 11:17:21 [15] INFO  Connection id "0HLNCH2PORCTC", Request id "0HLNCH2PORCTC:00000002": the application completed without reading the entire request body.
+ 
+2019-06-09 11:17:31 [7] INFO  Request starting HTTP/1.1 POST http://localhost:44378/api/mgr/Execute application/json 29
+ 
+2019-06-09 11:17:31 [7] INFO  Route matched with {action = "Execute", controller = "Management"}. Executing controller action with signature Exhibition.Core.Models.GeneralResponse`1[System.Int32] Execute(Exhibition.Portal.Api.Models.OperateContext) on controller Exhibition.Portal.Api.Controllers.ManagementController (Exhibition.Portal.Api).
+ 
+2019-06-09 11:17:32 [7] INFO  Executing action method Exhibition.Portal.Api.Controllers.ManagementController.Execute (Exhibition.Portal.Api) - Validation state: Valid
+ 
+2019-06-09 11:18:13 [1] INFO  User profile is available. Using 'C:\Users\Joey\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+ 
+2019-06-09 11:18:14 [8] INFO  Request starting HTTP/1.1 DEBUG http://localhost:50354/  0
+ 
+2019-06-09 11:18:14 [10] INFO  Request starting HTTP/1.1 GET http://localhost:44378/api/values  
+ 
+2019-06-09 11:18:14 [8] INFO  Request finished in 81.0978ms 200 
+ 
+2019-06-09 11:18:14 [10] INFO  Request finished in 253.6671ms 404 
+ 
+2019-06-09 11:18:20 [9] INFO  Request starting HTTP/1.1 POST http://localhost:44378/api/mgr/Execute application/json 29
+ 
+2019-06-09 11:18:20 [9] INFO  Route matched with {action = "Execute", controller = "Management"}. Executing controller action with signature Exhibition.Core.Models.GeneralResponse`1[System.Int32] Execute(Exhibition.Portal.Api.Models.OperateContext) on controller Exhibition.Portal.Api.Controllers.ManagementController (Exhibition.Portal.Api).
+ 
+2019-06-09 11:18:20 [9] INFO  Executing action method Exhibition.Portal.Api.Controllers.ManagementController.Execute (Exhibition.Portal.Api) - Validation state: Valid
+ 
+2019-06-09 12:00:29 [1] INFO  User profile is available. Using 'C:\Users\Joey\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+ 
+2019-06-09 12:00:30 [8] INFO  Request starting HTTP/1.1 GET http://localhost:44378/api/values  
+ 
+2019-06-09 12:00:30 [10] INFO  Request starting HTTP/1.1 DEBUG http://localhost:50354/  0
+ 
+2019-06-09 12:00:30 [10] INFO  Request finished in 55.0607ms 200 
+ 
+2019-06-09 12:00:30 [8] INFO  Request finished in 240.3673ms 404 
+ 
+2019-06-09 12:01:05 [9] INFO  Request starting HTTP/1.1 OPTIONS http://localhost:44378/api/mgr/QueryTerminals  
+ 
+2019-06-09 12:01:05 [9] INFO  Policy execution successful.
+ 
+2019-06-09 12:01:05 [9] INFO  Request finished in 117.8937ms 204 
+ 
+2019-06-09 12:01:05 [7] INFO  Request starting HTTP/1.1 POST http://localhost:44378/api/mgr/QueryTerminals application/json 15
+ 
+2019-06-09 12:01:05 [7] INFO  Policy execution successful.
+ 
+2019-06-09 12:01:05 [7] INFO  Route matched with {action = "QueryTerminals", controller = "Management"}. Executing controller action with signature Exhibition.Core.Models.GeneralResponse`1[Exhibition.Core.IBaseTerminal[]] QueryTerminals(Exhibition.Core.Models.SQLiteQueryFilter`1[System.String]) on controller Exhibition.Portal.Api.Controllers.ManagementController (Exhibition.Portal.Api).
+ 
+2019-06-09 12:01:06 [7] INFO  Executing action method Exhibition.Portal.Api.Controllers.ManagementController.QueryTerminals (Exhibition.Portal.Api) - Validation state: Valid
+ 
+2019-06-09 12:01:06 [7] INFO  Executed action method Exhibition.Portal.Api.Controllers.ManagementController.QueryTerminals (Exhibition.Portal.Api), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 612.8183ms.
+ 
+2019-06-09 12:01:06 [7] INFO  Executing ObjectResult, writing value of type 'Exhibition.Core.Models.GeneralResponse`1[[Exhibition.Core.IBaseTerminal[], Exhibition.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+ 
+2019-06-09 12:01:06 [7] INFO  Executed action Exhibition.Portal.Api.Controllers.ManagementController.QueryTerminals (Exhibition.Portal.Api) in 970.8205ms
+ 
+2019-06-09 12:01:07 [7] INFO  Request finished in 1102.6604ms 200 application/json; charset=utf-8
+ 
+2019-06-09 12:01:24 [7] INFO  Request starting HTTP/1.1 OPTIONS http://localhost:44378/api/mgr/QueryTerminals  
+ 
+2019-06-09 12:01:24 [7] INFO  Policy execution successful.
+ 
+2019-06-09 12:01:24 [7] INFO  Request finished in 137.8762ms 204 
+ 
+2019-06-09 12:01:24 [15] INFO  Request starting HTTP/1.1 POST http://localhost:44378/api/mgr/QueryTerminals application/json 15
+ 
+2019-06-09 12:01:24 [15] INFO  Policy execution successful.
+ 
+2019-06-09 12:01:24 [15] INFO  Route matched with {action = "QueryTerminals", controller = "Management"}. Executing controller action with signature Exhibition.Core.Models.GeneralResponse`1[Exhibition.Core.IBaseTerminal[]] QueryTerminals(Exhibition.Core.Models.SQLiteQueryFilter`1[System.String]) on controller Exhibition.Portal.Api.Controllers.ManagementController (Exhibition.Portal.Api).
+ 
+2019-06-09 12:01:24 [15] INFO  Executing action method Exhibition.Portal.Api.Controllers.ManagementController.QueryTerminals (Exhibition.Portal.Api) - Validation state: Valid
+ 
+2019-06-09 12:01:24 [15] INFO  Executed action method Exhibition.Portal.Api.Controllers.ManagementController.QueryTerminals (Exhibition.Portal.Api), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 5.9643ms.
+ 
+2019-06-09 12:01:24 [15] INFO  Executing ObjectResult, writing value of type 'Exhibition.Core.Models.GeneralResponse`1[[Exhibition.Core.IBaseTerminal[], Exhibition.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+ 
+2019-06-09 12:01:24 [15] INFO  Executed action Exhibition.Portal.Api.Controllers.ManagementController.QueryTerminals (Exhibition.Portal.Api) in 37.3882ms
+ 
+2019-06-09 12:01:24 [15] INFO  Request finished in 83.8616ms 200 application/json; charset=utf-8
+ 
+2019-06-09 12:01:48 [7] INFO  Request starting HTTP/1.1 OPTIONS http://localhost:44378/api/mgr/CreateOrUpdateMediaPlayerTerminal  
+ 
+2019-06-09 12:01:48 [7] INFO  Policy execution successful.
+ 
+2019-06-09 12:01:48 [7] INFO  Request finished in 21.0117ms 204 
+ 
+2019-06-09 12:01:48 [14] INFO  Request starting HTTP/1.1 POST http://localhost:44378/api/mgr/CreateOrUpdateMediaPlayerTerminal application/json 387
+ 
+2019-06-09 12:01:48 [14] INFO  Policy execution successful.
+ 
+2019-06-09 12:01:48 [14] INFO  Route matched with {action = "CreateOrUpdateMediaPlayerTerminal", controller = "Management"}. Executing controller action with signature Exhibition.Core.Models.GeneralResponse`1[System.Int32] CreateOrUpdateMediaPlayerTerminal(Exhibition.Core.Models.MediaPlayerTerminal) on controller Exhibition.Portal.Api.Controllers.ManagementController (Exhibition.Portal.Api).
+ 
+2019-06-09 12:01:48 [14] INFO  Executing action method Exhibition.Portal.Api.Controllers.ManagementController.CreateOrUpdateMediaPlayerTerminal (Exhibition.Portal.Api) - Validation state: Valid
+ 
+2019-06-09 12:07:46 [1] INFO  User profile is available. Using 'C:\Users\Joey\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+ 
+2019-06-09 12:07:47 [9] INFO  Request starting HTTP/1.1 DEBUG http://localhost:50354/  0
+ 
+2019-06-09 12:07:47 [8] INFO  Request starting HTTP/1.1 GET http://localhost:44378/api/values  
+ 
+2019-06-09 12:07:47 [9] INFO  Request finished in 48.0424ms 200 
+ 
+2019-06-09 12:07:47 [8] INFO  Request finished in 207.6637ms 404 
+ 
+2019-06-09 12:08:00 [7] INFO  Request starting HTTP/1.1 OPTIONS http://localhost:44378/api/mgr/CreateOrUpdateMediaPlayerTerminal  
+ 
+2019-06-09 12:08:00 [7] INFO  Policy execution successful.
+ 
+2019-06-09 12:08:00 [7] INFO  Request finished in 8.7384ms 204 
+ 
+2019-06-09 12:08:00 [9] INFO  Request starting HTTP/1.1 POST http://localhost:44378/api/mgr/CreateOrUpdateMediaPlayerTerminal application/json 387
+ 
+2019-06-09 12:08:00 [9] INFO  Policy execution successful.
+ 
+2019-06-09 12:08:00 [9] INFO  Route matched with {action = "CreateOrUpdateMediaPlayerTerminal", controller = "Management"}. Executing controller action with signature Exhibition.Core.Models.GeneralResponse`1[System.Int32] CreateOrUpdateMediaPlayerTerminal(Exhibition.Core.Models.MediaPlayerTerminal) on controller Exhibition.Portal.Api.Controllers.ManagementController (Exhibition.Portal.Api).
+ 
+2019-06-09 12:08:00 [9] INFO  Executing action method Exhibition.Portal.Api.Controllers.ManagementController.CreateOrUpdateMediaPlayerTerminal (Exhibition.Portal.Api) - Validation state: Valid
+ 
+2019-06-09 12:15:11 [1] INFO  User profile is available. Using 'C:\Users\Joey\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+ 
+2019-06-09 12:15:12 [9] INFO  Request starting HTTP/1.1 GET http://localhost:44378/api/values  
+ 
+2019-06-09 12:15:12 [8] INFO  Request starting HTTP/1.1 DEBUG http://localhost:50354/  0
+ 
+2019-06-09 12:15:12 [8] INFO  Request finished in 40.044ms 200 
+ 
+2019-06-09 12:15:12 [9] INFO  Request finished in 171.175ms 404 
+ 
+2019-06-09 12:15:20 [8] INFO  Request starting HTTP/1.1 OPTIONS http://localhost:44378/api/mgr/CreateOrUpdateMediaPlayerTerminal  
+ 
+2019-06-09 12:15:20 [8] INFO  Policy execution successful.
+ 
+2019-06-09 12:15:21 [8] INFO  Request finished in 17.5863ms 204 
+ 
+2019-06-09 12:15:21 [8] INFO  Request starting HTTP/1.1 POST http://localhost:44378/api/mgr/CreateOrUpdateMediaPlayerTerminal application/json 387
+ 
+2019-06-09 12:15:21 [8] INFO  Policy execution successful.
+ 
+2019-06-09 12:15:21 [8] INFO  Route matched with {action = "CreateOrUpdateMediaPlayerTerminal", controller = "Management"}. Executing controller action with signature Exhibition.Core.Models.GeneralResponse`1[System.Int32] CreateOrUpdateMediaPlayerTerminal(Exhibition.Core.Models.MediaPlayerTerminal) on controller Exhibition.Portal.Api.Controllers.ManagementController (Exhibition.Portal.Api).
+ 
+2019-06-09 12:15:21 [8] INFO  Executing action method Exhibition.Portal.Api.Controllers.ManagementController.CreateOrUpdateMediaPlayerTerminal (Exhibition.Portal.Api) - Validation state: Valid
+ 
+2019-06-09 12:15:25 [8] INFO  Executed action method Exhibition.Portal.Api.Controllers.ManagementController.CreateOrUpdateMediaPlayerTerminal (Exhibition.Portal.Api), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 3900.7396ms.
+ 
+2019-06-09 12:15:25 [8] INFO  Executing ObjectResult, writing value of type 'Exhibition.Core.Models.GeneralResponse`1[[System.Int32, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+ 
+2019-06-09 12:15:25 [8] INFO  Executed action Exhibition.Portal.Api.Controllers.ManagementController.CreateOrUpdateMediaPlayerTerminal (Exhibition.Portal.Api) in 4195.7171ms
+ 
+2019-06-09 12:15:25 [8] INFO  Request finished in 4269.8199ms 200 application/json; charset=utf-8
+ 
+2019-06-09 12:15:28 [7] INFO  Request starting HTTP/1.1 OPTIONS http://localhost:44378/api/mgr/QueryTerminals  
+ 
+2019-06-09 12:15:28 [7] INFO  Policy execution successful.
+ 
+2019-06-09 12:15:28 [7] INFO  Request finished in 6.312ms 204 
+ 
+2019-06-09 12:15:28 [7] INFO  Request starting HTTP/1.1 POST http://localhost:44378/api/mgr/QueryTerminals application/json 15
+ 
+2019-06-09 12:15:28 [7] INFO  Policy execution successful.
+ 
+2019-06-09 12:15:28 [7] INFO  Route matched with {action = "QueryTerminals", controller = "Management"}. Executing controller action with signature Exhibition.Core.Models.GeneralResponse`1[Exhibition.Core.IBaseTerminal[]] QueryTerminals(Exhibition.Core.Models.SQLiteQueryFilter`1[System.String]) on controller Exhibition.Portal.Api.Controllers.ManagementController (Exhibition.Portal.Api).
+ 
+2019-06-09 12:15:28 [7] INFO  Executing action method Exhibition.Portal.Api.Controllers.ManagementController.QueryTerminals (Exhibition.Portal.Api) - Validation state: Valid
+ 
+2019-06-09 12:15:28 [7] INFO  Executed action method Exhibition.Portal.Api.Controllers.ManagementController.QueryTerminals (Exhibition.Portal.Api), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 67.0589ms.
+ 
+2019-06-09 12:15:28 [7] INFO  Executing ObjectResult, writing value of type 'Exhibition.Core.Models.GeneralResponse`1[[Exhibition.Core.IBaseTerminal[], Exhibition.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+ 
+2019-06-09 12:15:28 [7] INFO  Executed action Exhibition.Portal.Api.Controllers.ManagementController.QueryTerminals (Exhibition.Portal.Api) in 116.9678ms
+ 
+2019-06-09 12:15:29 [7] INFO  Request finished in 157.0394ms 200 application/json; charset=utf-8
+ 
+2019-06-09 12:15:37 [7] INFO  Request starting HTTP/1.1 OPTIONS http://localhost:44378/api/mgr/QueryTerminals  
+ 
+2019-06-09 12:15:37 [7] INFO  Policy execution successful.
+ 
+2019-06-09 12:15:37 [7] INFO  Request finished in 145.3903ms 204 
+ 
+2019-06-09 12:15:37 [13] INFO  Request starting HTTP/1.1 POST http://localhost:44378/api/mgr/QueryTerminals application/json 15
+ 
+2019-06-09 12:15:37 [13] INFO  Policy execution successful.
+ 
+2019-06-09 12:15:37 [13] INFO  Route matched with {action = "QueryTerminals", controller = "Management"}. Executing controller action with signature Exhibition.Core.Models.GeneralResponse`1[Exhibition.Core.IBaseTerminal[]] QueryTerminals(Exhibition.Core.Models.SQLiteQueryFilter`1[System.String]) on controller Exhibition.Portal.Api.Controllers.ManagementController (Exhibition.Portal.Api).
+ 
+2019-06-09 12:15:37 [13] INFO  Executing action method Exhibition.Portal.Api.Controllers.ManagementController.QueryTerminals (Exhibition.Portal.Api) - Validation state: Valid
+ 
+2019-06-09 12:15:37 [13] INFO  Executed action method Exhibition.Portal.Api.Controllers.ManagementController.QueryTerminals (Exhibition.Portal.Api), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 10.8872ms.
+ 
+2019-06-09 12:15:37 [13] INFO  Executing ObjectResult, writing value of type 'Exhibition.Core.Models.GeneralResponse`1[[Exhibition.Core.IBaseTerminal[], Exhibition.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+ 
+2019-06-09 12:15:37 [13] INFO  Executed action Exhibition.Portal.Api.Controllers.ManagementController.QueryTerminals (Exhibition.Portal.Api) in 37.6415ms
+ 
+2019-06-09 12:15:37 [13] INFO  Request finished in 104.7583ms 200 application/json; charset=utf-8
+ 
+2019-06-09 12:15:40 [7] INFO  Request starting HTTP/1.1 OPTIONS http://localhost:44378/api/mgr/QueryDirectives  
+ 
+2019-06-09 12:15:40 [8] INFO  Request starting HTTP/1.1 POST http://localhost:44378/api/mgr/QueryTerminals application/json 13
+ 
+2019-06-09 12:15:40 [7] INFO  Policy execution successful.
+ 
+2019-06-09 12:15:40 [8] INFO  Policy execution successful.
+ 
+2019-06-09 12:15:40 [7] INFO  Request finished in 34.1999ms 204 
+ 
+2019-06-09 12:15:40 [8] INFO  Route matched with {action = "QueryTerminals", controller = "Management"}. Executing controller action with signature Exhibition.Core.Models.GeneralResponse`1[Exhibition.Core.IBaseTerminal[]] QueryTerminals(Exhibition.Core.Models.SQLiteQueryFilter`1[System.String]) on controller Exhibition.Portal.Api.Controllers.ManagementController (Exhibition.Portal.Api).
+ 
+2019-06-09 12:15:40 [7] INFO  Request starting HTTP/1.1 POST http://localhost:44378/api/mgr/QueryDirectives application/json 15
+ 
+2019-06-09 12:15:40 [7] INFO  Policy execution successful.
+ 
+2019-06-09 12:15:40 [8] INFO  Executing action method Exhibition.Portal.Api.Controllers.ManagementController.QueryTerminals (Exhibition.Portal.Api) - Validation state: Valid
+ 
+2019-06-09 12:15:40 [7] INFO  Route matched with {action = "QueryDirectives", controller = "Management"}. Executing controller action with signature Exhibition.Core.Models.GeneralResponse`1[Exhibition.Core.Models.Directive[]] QueryDirectives(Exhibition.Core.Models.SQLiteQueryFilter`1[System.String]) on controller Exhibition.Portal.Api.Controllers.ManagementController (Exhibition.Portal.Api).
+ 
+2019-06-09 12:15:40 [7] INFO  Executing action method Exhibition.Portal.Api.Controllers.ManagementController.QueryDirectives (Exhibition.Portal.Api) - Validation state: Valid
+ 
+2019-06-09 12:15:40 [8] INFO  Executed action method Exhibition.Portal.Api.Controllers.ManagementController.QueryTerminals (Exhibition.Portal.Api), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 43.1419ms.
+ 
+2019-06-09 12:15:40 [8] INFO  Executing ObjectResult, writing value of type 'Exhibition.Core.Models.GeneralResponse`1[[Exhibition.Core.IBaseTerminal[], Exhibition.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+ 
+2019-06-09 12:15:40 [8] INFO  Executed action Exhibition.Portal.Api.Controllers.ManagementController.QueryTerminals (Exhibition.Portal.Api) in 87.2623ms
+ 
+2019-06-09 12:15:40 [8] INFO  Request finished in 156.8894ms 200 application/json; charset=utf-8
+ 
+2019-06-09 12:15:40 [7] INFO  Executed action method Exhibition.Portal.Api.Controllers.ManagementController.QueryDirectives (Exhibition.Portal.Api), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 58.6935ms.
+ 
+2019-06-09 12:15:40 [7] INFO  Executing ObjectResult, writing value of type 'Exhibition.Core.Models.GeneralResponse`1[[Exhibition.Core.Models.Directive[], Exhibition.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+ 
+2019-06-09 12:15:40 [7] INFO  Executed action Exhibition.Portal.Api.Controllers.ManagementController.QueryDirectives (Exhibition.Portal.Api) in 112.9106ms
+ 
+2019-06-09 12:15:40 [7] INFO  Request finished in 159.9023ms 200 application/json; charset=utf-8
+ 
+2019-06-09 17:20:21 [1] INFO  User profile is available. Using 'C:\Users\Joey\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+ 
+2019-06-09 17:20:22 [8] INFO  Request starting HTTP/1.1 GET http://localhost:44378/api/values  
+ 
+2019-06-09 17:20:22 [10] INFO  Request starting HTTP/1.1 DEBUG http://localhost:50354/  0
+ 
+2019-06-09 17:20:22 [10] INFO  Request finished in 57.2901ms 200 
+ 
+2019-06-09 17:20:22 [8] INFO  Request finished in 231.491ms 404 
+ 
+2019-06-09 18:51:33 [1] INFO  User profile is available. Using 'C:\Users\Joey\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+ 
+2019-06-09 18:51:33 [10] INFO  Request starting HTTP/1.1 POST http://localhost:44378/api/mgr/QueryTerminals application/json; charset=utf-8 55
+ 
+2019-06-09 18:51:33 [10] INFO  Route matched with {action = "QueryTerminals", controller = "Management"}. Executing controller action with signature Exhibition.Core.Models.GeneralResponse`1[Exhibition.Core.IBaseTerminal[]] QueryTerminals(Exhibition.Core.Models.SQLiteQueryFilter`1[System.String]) on controller Exhibition.Portal.Api.Controllers.ManagementController (Exhibition.Portal.Api).
+ 
+2019-06-09 18:51:33 [10] INFO  Executing action method Exhibition.Portal.Api.Controllers.ManagementController.QueryTerminals (Exhibition.Portal.Api) - Validation state: Valid
+ 
+2019-06-09 18:51:34 [10] INFO  Executed action method Exhibition.Portal.Api.Controllers.ManagementController.QueryTerminals (Exhibition.Portal.Api), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 195.2285ms.
+ 
+2019-06-09 18:51:34 [10] INFO  Executing ObjectResult, writing value of type 'Exhibition.Core.Models.GeneralResponse`1[[Exhibition.Core.IBaseTerminal[], Exhibition.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+ 
+2019-06-09 18:51:34 [10] INFO  Executed action Exhibition.Portal.Api.Controllers.ManagementController.QueryTerminals (Exhibition.Portal.Api) in 443.3217ms
+ 
+2019-06-09 18:51:34 [10] INFO  Request finished in 623.7044ms 200 application/json; charset=utf-8
+ 
+2019-06-09 18:53:59 [1] INFO  User profile is available. Using 'C:\Users\Joey\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+ 
+2019-06-09 18:54:00 [9] INFO  Request starting HTTP/1.1 DEBUG http://localhost:50354/  0
+ 
+2019-06-09 18:54:00 [7] INFO  Request starting HTTP/1.1 GET http://localhost:44378/api/values  
+ 
+2019-06-09 18:54:00 [9] INFO  Request finished in 47.8595ms 200 
+ 
+2019-06-09 18:54:00 [7] INFO  Request finished in 193.9241ms 404 
+ 
+2019-06-09 18:54:25 [7] INFO  Request starting HTTP/1.1 POST http://localhost:44378/api/mgr/Execute application/json 29
+ 
+2019-06-09 18:54:25 [7] INFO  Route matched with {action = "Execute", controller = "Management"}. Executing controller action with signature Exhibition.Core.Models.GeneralResponse`1[System.Int32] Execute(Exhibition.Portal.Api.Models.OperateContext) on controller Exhibition.Portal.Api.Controllers.ManagementController (Exhibition.Portal.Api).
+ 
+2019-06-09 18:54:25 [7] INFO  Executing action method Exhibition.Portal.Api.Controllers.ManagementController.Execute (Exhibition.Portal.Api) - Validation state: Valid
+ 
+2019-06-09 18:54:25 [7] INFO  Run directive:{"Name":"D-01","Type":1}
+ 
+2019-06-09 18:54:26 [7] ERROR Execute error:Directive Context:{"Directive":{"Name":"D-01","Description":"媒体播放指令","Terminal":{"Settings":{"Ip":"192.168.0.102","Endpoint":"http://192.168.0.102/api/common/run","Windows":[{"Id":1,"Location":{"X":0,"Y":0},"Size":{"Width":1024,"Height":768},"Monitor":0},{"Id":2,"Location":{"X":1024,"Y":0},"Size":{"Width":1024,"Height":768},"Monitor":0},{"Id":2,"Location":{"X":2048,"Y":0},"Size":{"Width":1024,"Height":768},"Monitor":0}]},"Name":"PC-01","Description":"张集发布媒体控制主机","Type":1},"DefaultWindow":{"Id":1,"Location":{"X":0,"Y":0},"Size":{"Width":1024,"Height":768},"Monitor":0},"Resources":[{"Name":"3.jpg","Type":3,"Workspace":"Images","FullName":"Images/3.jpg","Sorting":0}]},"Type":1},{"ClassName":"System.Net.WebException","Message":"The remote server returned an error: (405) Method Not Allowed.","Data":null,"InnerException":null,"HelpURL":null,"StackTraceString":"   at Exhibition.Core.DefaultTransientFaultHandler`1.Execute() in D:\\Workspace\\repos\\Exhibition.Resource\\Exhibition.Core\\Utilities\\TransientFaultHandler\\DefaultTransientFaultHandler.cs:line 50\r\n   at Exhibition.Core.HttpExtension.GetUriContent(String uri, Func`2 funcSetCustomSettings, Encoding defaultEncoding, ITransientFaultDetecter`1 faultDetecter, Int32 retryThreshold) in D:\\Workspace\\repos\\Exhibition.Resource\\Exhibition.Core\\Common\\Extensions\\HttpExtension.cs:line 70\r\n   at Exhibition.Core.HttpExtension.GetUriContent[T](String uri, Func`2 funcDeserialize, Func`2 funcSetCustomSettings, Encoding defaultEncoding, ITransientFaultDetecter`1 faultDetecter, Int32 retryThreshold) in D:\\Workspace\\repos\\Exhibition.Resource\\Exhibition.Core\\Common\\Extensions\\HttpExtension.cs:line 81\r\n   at Exhibition.Core.HttpExtension.GetUriJsonContent[T](String uri, Func`2 funcSetCustomSettings, Encoding defaultEncoding, ITransientFaultDetecter`1 faultDetecter, Int32 retryThreshold) in D:\\Workspace\\repos\\Exhibition.Resource\\Exhibition.Core\\Common\\Extensions\\HttpExtension.cs:line 95\r\n   at Exhibition.Core.Services.MediaDirectiveInterpreter.Execute() in D:\\Workspace\\repos\\Exhibition.Resource\\Exhibition.Core\\Services\\Interpreters\\MediaDirectiveInterpreter.cs:line 22","RemoteStackTraceString":null,"RemoteStackIndex":0,"ExceptionMethod":null,"HResult":-2146233079,"Source":"Exhibition.Core","WatsonBuckets":null}
+ 
+2019-06-09 18:54:26 [7] INFO  Executed action method Exhibition.Portal.Api.Controllers.ManagementController.Execute (Exhibition.Portal.Api), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 982.8499ms.
+ 
+2019-06-09 18:54:26 [7] INFO  Executing ObjectResult, writing value of type 'Exhibition.Core.Models.GeneralResponse`1[[System.Int32, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+ 
+2019-06-09 18:54:26 [7] INFO  Executed action Exhibition.Portal.Api.Controllers.ManagementController.Execute (Exhibition.Portal.Api) in 1207.5256ms
+ 
+2019-06-09 18:54:26 [7] INFO  Request finished in 1277.3542ms 200 application/json; charset=utf-8
+ 
+2019-06-09 18:54:44 [9] INFO  Request starting HTTP/1.1 POST http://localhost:44378/api/mgr/Execute application/json 29
+ 
+2019-06-09 18:54:44 [9] INFO  Route matched with {action = "Execute", controller = "Management"}. Executing controller action with signature Exhibition.Core.Models.GeneralResponse`1[System.Int32] Execute(Exhibition.Portal.Api.Models.OperateContext) on controller Exhibition.Portal.Api.Controllers.ManagementController (Exhibition.Portal.Api).
+ 
+2019-06-09 18:54:44 [9] INFO  Executing action method Exhibition.Portal.Api.Controllers.ManagementController.Execute (Exhibition.Portal.Api) - Validation state: Valid
+ 
+2019-06-09 18:54:54 [9] INFO  Run directive:{"Name":"D-01","Type":1}
+ 
+2019-06-09 18:55:42 [9] INFO  Run directive:{"Name":"D-01","Type":1}
+ 
+2019-06-09 18:56:04 [9] ERROR Execute error:Directive Context:{"Directive":{"Name":"D-01","Description":"媒体播放指令","Terminal":{"Settings":{"Ip":"192.168.0.102","Endpoint":"http://192.168.0.102/api/common/run","Windows":[{"Id":1,"Location":{"X":0,"Y":0},"Size":{"Width":1024,"Height":768},"Monitor":0},{"Id":2,"Location":{"X":1024,"Y":0},"Size":{"Width":1024,"Height":768},"Monitor":0},{"Id":2,"Location":{"X":2048,"Y":0},"Size":{"Width":1024,"Height":768},"Monitor":0}]},"Name":"PC-01","Description":"张集发布媒体控制主机","Type":1},"DefaultWindow":{"Id":1,"Location":{"X":0,"Y":0},"Size":{"Width":1024,"Height":768},"Monitor":0},"Resources":[{"Name":"3.jpg","Type":3,"Workspace":"Images","FullName":"Images/3.jpg","Sorting":0}]},"Type":1},{"ClassName":"System.Net.WebException","Message":"The remote server returned an error: (405) Method Not Allowed.","Data":null,"InnerException":null,"HelpURL":null,"StackTraceString":"   at Exhibition.Core.DefaultTransientFaultHandler`1.Execute() in D:\\Workspace\\repos\\Exhibition.Resource\\Exhibition.Core\\Utilities\\TransientFaultHandler\\DefaultTransientFaultHandler.cs:line 50\r\n   at Exhibition.Core.HttpExtension.GetUriContent(String uri, Func`2 funcSetCustomSettings, Encoding defaultEncoding, ITransientFaultDetecter`1 faultDetecter, Int32 retryThreshold) in D:\\Workspace\\repos\\Exhibition.Resource\\Exhibition.Core\\Common\\Extensions\\HttpExtension.cs:line 70\r\n   at Exhibition.Core.HttpExtension.GetUriContent[T](String uri, Func`2 funcDeserialize, Func`2 funcSetCustomSettings, Encoding defaultEncoding, ITransientFaultDetecter`1 faultDetecter, Int32 retryThreshold) in D:\\Workspace\\repos\\Exhibition.Resource\\Exhibition.Core\\Common\\Extensions\\HttpExtension.cs:line 81\r\n   at Exhibition.Core.HttpExtension.GetUriJsonContent[T](String uri, Func`2 funcSetCustomSettings, Encoding defaultEncoding, ITransientFaultDetecter`1 faultDetecter, Int32 retryThreshold) in D:\\Workspace\\repos\\Exhibition.Resource\\Exhibition.Core\\Common\\Extensions\\HttpExtension.cs:line 95\r\n   at Exhibition.Core.Services.MediaDirectiveInterpreter.Execute() in D:\\Workspace\\repos\\Exhibition.Resource\\Exhibition.Core\\Services\\Interpreters\\MediaDirectiveInterpreter.cs:line 22","RemoteStackTraceString":null,"RemoteStackIndex":0,"ExceptionMethod":null,"HResult":-2146233079,"Source":"Exhibition.Core","WatsonBuckets":null}
+ 
+2019-06-09 18:56:04 [9] INFO  Executed action method Exhibition.Portal.Api.Controllers.ManagementController.Execute (Exhibition.Portal.Api), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 80058.6596ms.
+ 
+2019-06-09 18:56:04 [9] INFO  Executing ObjectResult, writing value of type 'Exhibition.Core.Models.GeneralResponse`1[[System.Int32, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+ 
+2019-06-09 18:56:04 [9] INFO  Executed action Exhibition.Portal.Api.Controllers.ManagementController.Execute (Exhibition.Portal.Api) in 80097.3206ms
+ 
+2019-06-09 18:56:04 [9] INFO  Request finished in 80113.3292ms 200 application/json; charset=utf-8
+ 
+2019-06-09 18:56:18 [9] INFO  Request starting HTTP/1.1 POST http://localhost:44378/api/mgr/Execute application/json 29
+ 
+2019-06-09 18:56:18 [9] INFO  Route matched with {action = "Execute", controller = "Management"}. Executing controller action with signature Exhibition.Core.Models.GeneralResponse`1[System.Int32] Execute(Exhibition.Portal.Api.Models.OperateContext) on controller Exhibition.Portal.Api.Controllers.ManagementController (Exhibition.Portal.Api).
+ 
+2019-06-09 18:56:18 [9] INFO  Executing action method Exhibition.Portal.Api.Controllers.ManagementController.Execute (Exhibition.Portal.Api) - Validation state: Valid
+ 
+2019-06-09 18:56:24 [9] INFO  Run directive:{"Name":"D-01","Type":1}
+ 
+2019-06-09 18:56:31 [9] ERROR Execute error:Directive Context:{"Directive":{"Name":"D-01","Description":"媒体播放指令","Terminal":{"Settings":{"Ip":"192.168.0.102","Endpoint":"http://192.168.0.102/api/common/run","Windows":[{"Id":1,"Location":{"X":0,"Y":0},"Size":{"Width":1024,"Height":768},"Monitor":0},{"Id":2,"Location":{"X":1024,"Y":0},"Size":{"Width":1024,"Height":768},"Monitor":0},{"Id":2,"Location":{"X":2048,"Y":0},"Size":{"Width":1024,"Height":768},"Monitor":0}]},"Name":"PC-01","Description":"张集发布媒体控制主机","Type":1},"DefaultWindow":{"Id":1,"Location":{"X":0,"Y":0},"Size":{"Width":1024,"Height":768},"Monitor":0},"Resources":[{"Name":"3.jpg","Type":3,"Workspace":"Images","FullName":"Images/3.jpg","Sorting":0}]},"Type":1},{"ClassName":"System.Net.WebException","Message":"The remote server returned an error: (405) Method Not Allowed.","Data":null,"InnerException":null,"HelpURL":null,"StackTraceString":"   at Exhibition.Core.DefaultTransientFaultHandler`1.Execute() in D:\\Workspace\\repos\\Exhibition.Resource\\Exhibition.Core\\Utilities\\TransientFaultHandler\\DefaultTransientFaultHandler.cs:line 50\r\n   at Exhibition.Core.HttpExtension.GetUriContent(String uri, Func`2 funcSetCustomSettings, Encoding defaultEncoding, ITransientFaultDetecter`1 faultDetecter, Int32 retryThreshold) in D:\\Workspace\\repos\\Exhibition.Resource\\Exhibition.Core\\Common\\Extensions\\HttpExtension.cs:line 70\r\n   at Exhibition.Core.HttpExtension.GetUriContent[T](String uri, Func`2 funcDeserialize, Func`2 funcSetCustomSettings, Encoding defaultEncoding, ITransientFaultDetecter`1 faultDetecter, Int32 retryThreshold) in D:\\Workspace\\repos\\Exhibition.Resource\\Exhibition.Core\\Common\\Extensions\\HttpExtension.cs:line 81\r\n   at Exhibition.Core.HttpExtension.GetUriJsonContent[T](String uri, Func`2 funcSetCustomSettings, Encoding defaultEncoding, ITransientFaultDetecter`1 faultDetecter, Int32 retryThreshold) in D:\\Workspace\\repos\\Exhibition.Resource\\Exhibition.Core\\Common\\Extensions\\HttpExtension.cs:line 95\r\n   at Exhibition.Core.Services.MediaDirectiveInterpreter.Execute() in D:\\Workspace\\repos\\Exhibition.Resource\\Exhibition.Core\\Services\\Interpreters\\MediaDirectiveInterpreter.cs:line 22","RemoteStackTraceString":null,"RemoteStackIndex":0,"ExceptionMethod":null,"HResult":-2146233079,"Source":"Exhibition.Core","WatsonBuckets":null}
+ 
+2019-06-09 18:56:53 [9] ERROR Execute error:Directive Context:{"Directive":{"Name":"D-01","Description":"媒体播放指令","Terminal":{"Settings":{"Ip":"192.168.0.102","Endpoint":"http://192.168.0.102/api/common/run","Windows":[{"Id":1,"Location":{"X":0,"Y":0},"Size":{"Width":1024,"Height":768},"Monitor":0},{"Id":2,"Location":{"X":1024,"Y":0},"Size":{"Width":1024,"Height":768},"Monitor":0},{"Id":2,"Location":{"X":2048,"Y":0},"Size":{"Width":1024,"Height":768},"Monitor":0}]},"Name":"PC-01","Description":"张集发布媒体控制主机","Type":1},"DefaultWindow":{"Id":1,"Location":{"X":0,"Y":0},"Size":{"Width":1024,"Height":768},"Monitor":0},"Resources":[{"Name":"3.jpg","Type":3,"Workspace":"Images","FullName":"Images/3.jpg","Sorting":0}]},"Type":1},{"ClassName":"System.Net.WebException","Message":"The remote server returned an error: (405) Method Not Allowed.","Data":null,"InnerException":null,"HelpURL":null,"StackTraceString":"   at Exhibition.Core.DefaultTransientFaultHandler`1.Execute() in D:\\Workspace\\repos\\Exhibition.Resource\\Exhibition.Core\\Utilities\\TransientFaultHandler\\DefaultTransientFaultHandler.cs:line 50\r\n   at Exhibition.Core.HttpExtension.GetUriContent(String uri, Func`2 funcSetCustomSettings, Encoding defaultEncoding, ITransientFaultDetecter`1 faultDetecter, Int32 retryThreshold) in D:\\Workspace\\repos\\Exhibition.Resource\\Exhibition.Core\\Common\\Extensions\\HttpExtension.cs:line 70\r\n   at Exhibition.Core.HttpExtension.GetUriContent[T](String uri, Func`2 funcDeserialize, Func`2 funcSetCustomSettings, Encoding defaultEncoding, ITransientFaultDetecter`1 faultDetecter, Int32 retryThreshold) in D:\\Workspace\\repos\\Exhibition.Resource\\Exhibition.Core\\Common\\Extensions\\HttpExtension.cs:line 81\r\n   at Exhibition.Core.HttpExtension.GetUriJsonContent[T](String uri, Func`2 funcSetCustomSettings, Encoding defaultEncoding, ITransientFaultDetecter`1 faultDetecter, Int32 retryThreshold) in D:\\Workspace\\repos\\Exhibition.Resource\\Exhibition.Core\\Common\\Extensions\\HttpExtension.cs:line 95\r\n   at Exhibition.Core.Services.MediaDirectiveInterpreter.Execute() in D:\\Workspace\\repos\\Exhibition.Resource\\Exhibition.Core\\Services\\Interpreters\\MediaDirectiveInterpreter.cs:line 22","RemoteStackTraceString":null,"RemoteStackIndex":0,"ExceptionMethod":null,"HResult":-2146233079,"Source":"Exhibition.Core","WatsonBuckets":null}
+ 
+2019-06-09 18:56:53 [9] INFO  Executed action method Exhibition.Portal.Api.Controllers.ManagementController.Execute (Exhibition.Portal.Api), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 35370.9422ms.
+ 
+2019-06-09 18:56:53 [9] INFO  Executing ObjectResult, writing value of type 'Exhibition.Core.Models.GeneralResponse`1[[System.Int32, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+ 
+2019-06-09 18:56:53 [9] INFO  Executed action Exhibition.Portal.Api.Controllers.ManagementController.Execute (Exhibition.Portal.Api) in 35409.286ms
+ 
+2019-06-09 18:56:53 [9] INFO  Request finished in 35449.4217ms 200 application/json; charset=utf-8
+ 
+2019-06-09 18:58:10 [9] INFO  Request starting HTTP/1.1 POST http://localhost:44378/api/mgr/Execute application/json 29
+ 
+2019-06-09 18:58:10 [9] INFO  Route matched with {action = "Execute", controller = "Management"}. Executing controller action with signature Exhibition.Core.Models.GeneralResponse`1[System.Int32] Execute(Exhibition.Portal.Api.Models.OperateContext) on controller Exhibition.Portal.Api.Controllers.ManagementController (Exhibition.Portal.Api).
+ 
+2019-06-09 18:58:10 [9] INFO  Executing action method Exhibition.Portal.Api.Controllers.ManagementController.Execute (Exhibition.Portal.Api) - Validation state: Valid
+ 
+2019-06-09 18:58:10 [9] INFO  Run directive:{"Name":"D-01","Type":1}
+ 
+2019-06-09 18:58:40 [9] ERROR Execute error:Directive Context:{"Directive":{"Name":"D-01","Description":"张集发布媒体控制主机","Terminal":{"Settings":{"Ip":"192.168.0.102","Endpoint":"http://localhost:8888/api/OperationService","Windows":[{"Id":1,"Location":{"X":0,"Y":0},"Size":{"Width":1024,"Height":768},"Monitor":0},{"Id":2,"Location":{"X":1024,"Y":0},"Size":{"Width":1024,"Height":768},"Monitor":0},{"Id":2,"Location":{"X":2048,"Y":0},"Size":{"Width":1024,"Height":768},"Monitor":0}]},"Name":"PC-01","Description":"张集发布媒体控制主机","Type":1},"DefaultWindow":{"Id":1,"Location":{"X":0,"Y":0},"Size":{"Width":1024,"Height":768},"Monitor":0},"Resources":[{"Name":"Images","Type":1,"Workspace":"Images","FullName":"Images","Sorting":0},{"Name":"1.jpg","Type":3,"Workspace":"Images","FullName":"Images/1.jpg","Sorting":0},{"Name":"2.jpg","Type":3,"Workspace":"Images","FullName":"Images/2.jpg","Sorting":0},{"Name":"3.jpg","Type":3,"Workspace":"Images","FullName":"Images/3.jpg","Sorting":0},{"Name":"4.jpg","Type":3,"Workspace":"Images","FullName":"Images/4.jpg","Sorting":0},{"Name":"5.jpg","Type":3,"Workspace":"Images","FullName":"Images/5.jpg","Sorting":0}]},"Type":1},{"ClassName":"System.Net.WebException","Message":"The remote server returned an error: (404) Not Found.","Data":null,"InnerException":null,"HelpURL":null,"StackTraceString":"   at Exhibition.Core.DefaultTransientFaultHandler`1.Execute() in D:\\Workspace\\repos\\Exhibition.Resource\\Exhibition.Core\\Utilities\\TransientFaultHandler\\DefaultTransientFaultHandler.cs:line 50\r\n   at Exhibition.Core.HttpExtension.GetUriContent(String uri, Func`2 funcSetCustomSettings, Encoding defaultEncoding, ITransientFaultDetecter`1 faultDetecter, Int32 retryThreshold) in D:\\Workspace\\repos\\Exhibition.Resource\\Exhibition.Core\\Common\\Extensions\\HttpExtension.cs:line 70\r\n   at Exhibition.Core.HttpExtension.GetUriContent[T](String uri, Func`2 funcDeserialize, Func`2 funcSetCustomSettings, Encoding defaultEncoding, ITransientFaultDetecter`1 faultDetecter, Int32 retryThreshold) in D:\\Workspace\\repos\\Exhibition.Resource\\Exhibition.Core\\Common\\Extensions\\HttpExtension.cs:line 81\r\n   at Exhibition.Core.HttpExtension.GetUriJsonContent[T](String uri, Func`2 funcSetCustomSettings, Encoding defaultEncoding, ITransientFaultDetecter`1 faultDetecter, Int32 retryThreshold) in D:\\Workspace\\repos\\Exhibition.Resource\\Exhibition.Core\\Common\\Extensions\\HttpExtension.cs:line 95\r\n   at Exhibition.Core.Services.MediaDirectiveInterpreter.Execute() in D:\\Workspace\\repos\\Exhibition.Resource\\Exhibition.Core\\Services\\Interpreters\\MediaDirectiveInterpreter.cs:line 22","RemoteStackTraceString":null,"RemoteStackIndex":0,"ExceptionMethod":null,"HResult":-2146233079,"Source":"Exhibition.Core","WatsonBuckets":null}
+ 
+2019-06-09 18:58:40 [9] INFO  Executed action method Exhibition.Portal.Api.Controllers.ManagementController.Execute (Exhibition.Portal.Api), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 30108.0949ms.
+ 
+2019-06-09 18:58:40 [9] INFO  Executing ObjectResult, writing value of type 'Exhibition.Core.Models.GeneralResponse`1[[System.Int32, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+ 
+2019-06-09 18:58:40 [9] INFO  Executed action Exhibition.Portal.Api.Controllers.ManagementController.Execute (Exhibition.Portal.Api) in 30130.4673ms
+ 
+2019-06-09 18:58:40 [9] INFO  Request finished in 30163.8408ms 200 application/json; charset=utf-8
+ 
+2019-06-09 18:58:43 [9] INFO  Request starting HTTP/1.1 POST http://localhost:44378/api/mgr/Execute application/json 29
+ 
+2019-06-09 18:58:43 [9] INFO  Route matched with {action = "Execute", controller = "Management"}. Executing controller action with signature Exhibition.Core.Models.GeneralResponse`1[System.Int32] Execute(Exhibition.Portal.Api.Models.OperateContext) on controller Exhibition.Portal.Api.Controllers.ManagementController (Exhibition.Portal.Api).
+ 
+2019-06-09 18:58:43 [9] INFO  Executing action method Exhibition.Portal.Api.Controllers.ManagementController.Execute (Exhibition.Portal.Api) - Validation state: Valid
+ 
+2019-06-09 18:58:43 [9] INFO  Run directive:{"Name":"D-01","Type":1}
+ 
+2019-06-09 18:58:54 [9] ERROR Execute error:Directive Context:{"Directive":{"Name":"D-01","Description":"张集发布媒体控制主机","Terminal":{"Settings":{"Ip":"192.168.0.102","Endpoint":"http://localhost:8888/api/OperationService","Windows":[{"Id":1,"Location":{"X":0,"Y":0},"Size":{"Width":1024,"Height":768},"Monitor":0},{"Id":2,"Location":{"X":1024,"Y":0},"Size":{"Width":1024,"Height":768},"Monitor":0},{"Id":2,"Location":{"X":2048,"Y":0},"Size":{"Width":1024,"Height":768},"Monitor":0}]},"Name":"PC-01","Description":"张集发布媒体控制主机","Type":1},"DefaultWindow":{"Id":1,"Location":{"X":0,"Y":0},"Size":{"Width":1024,"Height":768},"Monitor":0},"Resources":[{"Name":"Images","Type":1,"Workspace":"Images","FullName":"Images","Sorting":0},{"Name":"1.jpg","Type":3,"Workspace":"Images","FullName":"Images/1.jpg","Sorting":0},{"Name":"2.jpg","Type":3,"Workspace":"Images","FullName":"Images/2.jpg","Sorting":0},{"Name":"3.jpg","Type":3,"Workspace":"Images","FullName":"Images/3.jpg","Sorting":0},{"Name":"4.jpg","Type":3,"Workspace":"Images","FullName":"Images/4.jpg","Sorting":0},{"Name":"5.jpg","Type":3,"Workspace":"Images","FullName":"Images/5.jpg","Sorting":0}]},"Type":1},{"ClassName":"System.Net.WebException","Message":"The remote server returned an error: (404) Not Found.","Data":null,"InnerException":null,"HelpURL":null,"StackTraceString":"   at Exhibition.Core.DefaultTransientFaultHandler`1.Execute() in D:\\Workspace\\repos\\Exhibition.Resource\\Exhibition.Core\\Utilities\\TransientFaultHandler\\DefaultTransientFaultHandler.cs:line 50\r\n   at Exhibition.Core.HttpExtension.GetUriContent(String uri, Func`2 funcSetCustomSettings, Encoding defaultEncoding, ITransientFaultDetecter`1 faultDetecter, Int32 retryThreshold) in D:\\Workspace\\repos\\Exhibition.Resource\\Exhibition.Core\\Common\\Extensions\\HttpExtension.cs:line 70\r\n   at Exhibition.Core.HttpExtension.GetUriContent[T](String uri, Func`2 funcDeserialize, Func`2 funcSetCustomSettings, Encoding defaultEncoding, ITransientFaultDetecter`1 faultDetecter, Int32 retryThreshold) in D:\\Workspace\\repos\\Exhibition.Resource\\Exhibition.Core\\Common\\Extensions\\HttpExtension.cs:line 81\r\n   at Exhibition.Core.HttpExtension.GetUriJsonContent[T](String uri, Func`2 funcSetCustomSettings, Encoding defaultEncoding, ITransientFaultDetecter`1 faultDetecter, Int32 retryThreshold) in D:\\Workspace\\repos\\Exhibition.Resource\\Exhibition.Core\\Common\\Extensions\\HttpExtension.cs:line 95\r\n   at Exhibition.Core.Services.MediaDirectiveInterpreter.Execute() in D:\\Workspace\\repos\\Exhibition.Resource\\Exhibition.Core\\Services\\Interpreters\\MediaDirectiveInterpreter.cs:line 22","RemoteStackTraceString":null,"RemoteStackIndex":0,"ExceptionMethod":null,"HResult":-2146233079,"Source":"Exhibition.Core","WatsonBuckets":null}
+ 
+2019-06-09 18:58:54 [9] INFO  Executed action method Exhibition.Portal.Api.Controllers.ManagementController.Execute (Exhibition.Portal.Api), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 10561.6697ms.
+ 
+2019-06-09 18:58:54 [9] INFO  Executing ObjectResult, writing value of type 'Exhibition.Core.Models.GeneralResponse`1[[System.Int32, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+ 
+2019-06-09 18:58:54 [9] INFO  Executed action Exhibition.Portal.Api.Controllers.ManagementController.Execute (Exhibition.Portal.Api) in 10576.8652ms
+ 
+2019-06-09 18:58:54 [9] INFO  Request finished in 10596.7433ms 200 application/json; charset=utf-8
+ 
+2019-06-09 18:59:16 [9] INFO  Request starting HTTP/1.1 POST http://localhost:44378/api/mgr/Execute application/json 29
+ 
+2019-06-09 18:59:16 [9] INFO  Route matched with {action = "Execute", controller = "Management"}. Executing controller action with signature Exhibition.Core.Models.GeneralResponse`1[System.Int32] Execute(Exhibition.Portal.Api.Models.OperateContext) on controller Exhibition.Portal.Api.Controllers.ManagementController (Exhibition.Portal.Api).
+ 
+2019-06-09 18:59:16 [9] INFO  Executing action method Exhibition.Portal.Api.Controllers.ManagementController.Execute (Exhibition.Portal.Api) - Validation state: Valid
+ 
+2019-06-09 18:59:16 [9] INFO  Run directive:{"Name":"D-01","Type":1}
+ 
+2019-06-09 19:01:24 [1] INFO  User profile is available. Using 'C:\Users\Joey\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+ 
+2019-06-09 19:01:25 [8] INFO  Request starting HTTP/1.1 GET http://localhost:44378/api/values  
+ 
+2019-06-09 19:01:25 [7] INFO  Request starting HTTP/1.1 DEBUG http://localhost:50354/  0
+ 
+2019-06-09 19:01:25 [7] INFO  Request finished in 38.9428ms 200 
+ 
+2019-06-09 19:01:25 [8] INFO  Request finished in 176.8063ms 404 
+ 
+2019-06-09 19:01:28 [8] INFO  Request starting HTTP/1.1 POST http://localhost:44378/api/mgr/Execute application/json 29
+ 
+2019-06-09 19:01:28 [8] INFO  Route matched with {action = "Execute", controller = "Management"}. Executing controller action with signature Exhibition.Core.Models.GeneralResponse`1[System.Int32] Execute(Exhibition.Portal.Api.Models.OperateContext) on controller Exhibition.Portal.Api.Controllers.ManagementController (Exhibition.Portal.Api).
+ 
+2019-06-09 19:01:28 [8] INFO  Executing action method Exhibition.Portal.Api.Controllers.ManagementController.Execute (Exhibition.Portal.Api) - Validation state: Valid
+ 
+2019-06-09 19:01:28 [8] INFO  Run directive:{"Name":"D-01","Type":1}
+ 
+2019-06-09 19:01:31 [8] ERROR Execute error:Directive Context:{"Directive":{"Name":"D-01","Description":"张集发布媒体控制主机","Terminal":{"Settings":{"Ip":"192.168.0.102","Endpoint":"http://localhost:8888/api/OperationService/Run","Windows":[{"Id":1,"Location":{"X":0,"Y":0},"Size":{"Width":1024,"Height":768},"Monitor":0},{"Id":2,"Location":{"X":1024,"Y":0},"Size":{"Width":1024,"Height":768},"Monitor":0},{"Id":2,"Location":{"X":2048,"Y":0},"Size":{"Width":1024,"Height":768},"Monitor":0}]},"Name":"PC-01","Description":"张集发布媒体控制主机","Type":1},"DefaultWindow":{"Id":1,"Location":{"X":0,"Y":0},"Size":{"Width":1024,"Height":768},"Monitor":0},"Resources":[{"Name":"Images","Type":1,"Workspace":"Images","FullName":"Images","Sorting":0},{"Name":"1.jpg","Type":3,"Workspace":"Images","FullName":"Images/1.jpg","Sorting":0},{"Name":"2.jpg","Type":3,"Workspace":"Images","FullName":"Images/2.jpg","Sorting":0},{"Name":"3.jpg","Type":3,"Workspace":"Images","FullName":"Images/3.jpg","Sorting":0},{"Name":"4.jpg","Type":3,"Workspace":"Images","FullName":"Images/4.jpg","Sorting":0},{"Name":"5.jpg","Type":3,"Workspace":"Images","FullName":"Images/5.jpg","Sorting":0}]},"Type":1},{"ClassName":"System.Net.WebException","Message":"No connection could be made because the target machine actively refused it No connection could be made because the target machine actively refused it","Data":null,"InnerException":{"Message":"No connection could be made because the target machine actively refused it","Data":{},"InnerException":{"ClassName":"System.Net.Sockets.SocketException","Message":"No connection could be made because the target machine actively refused it","Data":null,"InnerException":null,"HelpURL":null,"StackTraceString":"   at System.Net.Http.ConnectHelper.ConnectAsync(String host, Int32 port, CancellationToken cancellationToken)","RemoteStackTraceString":null,"RemoteStackIndex":0,"ExceptionMethod":null,"HResult":-2147467259,"Source":"System.Private.CoreLib","WatsonBuckets":null,"NativeErrorCode":10061},"StackTrace":"   at System.Net.Http.ConnectHelper.ConnectAsync(String host, Int32 port, CancellationToken cancellationToken)\r\n   at System.Threading.Tasks.ValueTask`1.get_Result()\r\n   at System.Net.Http.HttpConnectionPool.CreateConnectionAsync(HttpRequestMessage request, CancellationToken cancellationToken)\r\n   at System.Threading.Tasks.ValueTask`1.get_Result()\r\n   at System.Net.Http.HttpConnectionPool.WaitForCreatedConnectionAsync(ValueTask`1 creationTask)\r\n   at System.Threading.Tasks.ValueTask`1.get_Result()\r\n   at System.Net.Http.HttpConnectionPool.SendWithRetryAsync(HttpRequestMessage request, Boolean doRequestAuth, CancellationToken cancellationToken)\r\n   at System.Net.Http.RedirectHandler.SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)\r\n   at System.Net.Http.DiagnosticsHandler.SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)\r\n   at System.Net.Http.HttpClient.FinishSendAsyncUnbuffered(Task`1 sendTask, HttpRequestMessage request, CancellationTokenSource cts, Boolean disposeCts)\r\n   at System.Net.HttpWebRequest.SendRequest()\r\n   at System.Net.HttpWebRequest.GetResponse()","HelpLink":null,"Source":"System.Net.Http","HResult":-2147467259},"HelpURL":null,"StackTraceString":"   at Exhibition.Core.DefaultTransientFaultHandler`1.Execute() in D:\\Workspace\\repos\\Exhibition.Resource\\Exhibition.Core\\Utilities\\TransientFaultHandler\\DefaultTransientFaultHandler.cs:line 50\r\n   at Exhibition.Core.HttpExtension.GetUriContent(String uri, Func`2 funcSetCustomSettings, Encoding defaultEncoding, ITransientFaultDetecter`1 faultDetecter, Int32 retryThreshold) in D:\\Workspace\\repos\\Exhibition.Resource\\Exhibition.Core\\Common\\Extensions\\HttpExtension.cs:line 70\r\n   at Exhibition.Core.HttpExtension.GetUriContent[T](String uri, Func`2 funcDeserialize, Func`2 funcSetCustomSettings, Encoding defaultEncoding, ITransientFaultDetecter`1 faultDetecter, Int32 retryThreshold) in D:\\Workspace\\repos\\Exhibition.Resource\\Exhibition.Core\\Common\\Extensions\\HttpExtension.cs:line 81\r\n   at Exhibition.Core.HttpExtension.GetUriJsonContent[T](String uri, Func`2 funcSetCustomSettings, Encoding defaultEncoding, ITransientFaultDetecter`1 faultDetecter, Int32 retryThreshold) in D:\\Workspace\\repos\\Exhibition.Resource\\Exhibition.Core\\Common\\Extensions\\HttpExtension.cs:line 95\r\n   at Exhibition.Core.Services.MediaDirectiveInterpreter.Execute() in D:\\Workspace\\repos\\Exhibition.Resource\\Exhibition.Core\\Services\\Interpreters\\MediaDirectiveInterpreter.cs:line 22","RemoteStackTraceString":null,"RemoteStackIndex":0,"ExceptionMethod":null,"HResult":-2147467259,"Source":"Exhibition.Core","WatsonBuckets":null}
+ 
+2019-06-09 19:01:31 [8] INFO  Executed action method Exhibition.Portal.Api.Controllers.ManagementController.Execute (Exhibition.Portal.Api), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 2925.381ms.
+ 
+2019-06-09 19:01:31 [8] INFO  Executing ObjectResult, writing value of type 'Exhibition.Core.Models.GeneralResponse`1[[System.Int32, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+ 
+2019-06-09 19:01:31 [8] INFO  Executed action Exhibition.Portal.Api.Controllers.ManagementController.Execute (Exhibition.Portal.Api) in 3192.513ms
+ 
+2019-06-09 19:01:31 [8] INFO  Request finished in 3257.1664ms 200 application/json; charset=utf-8
+ 
+2019-06-09 19:01:41 [7] INFO  Request starting HTTP/1.1 POST http://localhost:44378/api/mgr/Execute application/json 29
+ 
+2019-06-09 19:01:41 [7] INFO  Route matched with {action = "Execute", controller = "Management"}. Executing controller action with signature Exhibition.Core.Models.GeneralResponse`1[System.Int32] Execute(Exhibition.Portal.Api.Models.OperateContext) on controller Exhibition.Portal.Api.Controllers.ManagementController (Exhibition.Portal.Api).
+ 
+2019-06-09 19:01:41 [7] INFO  Executing action method Exhibition.Portal.Api.Controllers.ManagementController.Execute (Exhibition.Portal.Api) - Validation state: Valid
+ 
+2019-06-09 19:01:41 [7] INFO  Run directive:{"Name":"D-01","Type":1}
+ 
+2019-06-09 19:01:42 [7] ERROR Execute error:Directive Context:{"Directive":{"Name":"D-01","Description":"张集发布媒体控制主机","Terminal":{"Settings":{"Ip":"192.168.0.102","Endpoint":"http://localhost:8888/api/OperationService/Run","Windows":[{"Id":1,"Location":{"X":0,"Y":0},"Size":{"Width":1024,"Height":768},"Monitor":0},{"Id":2,"Location":{"X":1024,"Y":0},"Size":{"Width":1024,"Height":768},"Monitor":0},{"Id":2,"Location":{"X":2048,"Y":0},"Size":{"Width":1024,"Height":768},"Monitor":0}]},"Name":"PC-01","Description":"张集发布媒体控制主机","Type":1},"DefaultWindow":{"Id":1,"Location":{"X":0,"Y":0},"Size":{"Width":1024,"Height":768},"Monitor":0},"Resources":[{"Name":"Images","Type":1,"Workspace":"Images","FullName":"Images","Sorting":0},{"Name":"1.jpg","Type":3,"Workspace":"Images","FullName":"Images/1.jpg","Sorting":0},{"Name":"2.jpg","Type":3,"Workspace":"Images","FullName":"Images/2.jpg","Sorting":0},{"Name":"3.jpg","Type":3,"Workspace":"Images","FullName":"Images/3.jpg","Sorting":0},{"Name":"4.jpg","Type":3,"Workspace":"Images","FullName":"Images/4.jpg","Sorting":0},{"Name":"5.jpg","Type":3,"Workspace":"Images","FullName":"Images/5.jpg","Sorting":0}]},"Type":1},{"ClassName":"System.NullReferenceException","Message":"Object reference not set to an instance of an object.","Data":null,"InnerException":null,"HelpURL":null,"StackTraceString":"   at Exhibition.Core.DefaultHttpTransientFaultDetecter.DetectException(Exception condition, Boolean ifHasDetailsErrorMessageThrow) in D:\\Workspace\\repos\\Exhibition.Resource\\Exhibition.Core\\Utilities\\TransientFaultHandler\\DefaultHttpTransientFaultDetecter.cs:line 46\r\n   at Exhibition.Core.ExceptionTransientFaultDetecter.Detect(Exception condition, Boolean ifHasDetailErrorMessageThrowIt) in D:\\Workspace\\repos\\Exhibition.Resource\\Exhibition.Core\\Utilities\\TransientFaultHandler\\ExceptionTransientFaultDetecter.cs:line 23\r\n   at Exhibition.Core.DefaultTransientFaultHandler`1.Execute() in D:\\Workspace\\repos\\Exhibition.Resource\\Exhibition.Core\\Utilities\\TransientFaultHandler\\DefaultTransientFaultHandler.cs:line 45\r\n   at Exhibition.Core.HttpExtension.GetUriContent(String uri, Func`2 funcSetCustomSettings, Encoding defaultEncoding, ITransientFaultDetecter`1 faultDetecter, Int32 retryThreshold) in D:\\Workspace\\repos\\Exhibition.Resource\\Exhibition.Core\\Common\\Extensions\\HttpExtension.cs:line 70\r\n   at Exhibition.Core.HttpExtension.GetUriContent[T](String uri, Func`2 funcDeserialize, Func`2 funcSetCustomSettings, Encoding defaultEncoding, ITransientFaultDetecter`1 faultDetecter, Int32 retryThreshold) in D:\\Workspace\\repos\\Exhibition.Resource\\Exhibition.Core\\Common\\Extensions\\HttpExtension.cs:line 81\r\n   at Exhibition.Core.HttpExtension.GetUriJsonContent[T](String uri, Func`2 funcSetCustomSettings, Encoding defaultEncoding, ITransientFaultDetecter`1 faultDetecter, Int32 retryThreshold) in D:\\Workspace\\repos\\Exhibition.Resource\\Exhibition.Core\\Common\\Extensions\\HttpExtension.cs:line 95\r\n   at Exhibition.Core.Services.MediaDirectiveInterpreter.Execute() in D:\\Workspace\\repos\\Exhibition.Resource\\Exhibition.Core\\Services\\Interpreters\\MediaDirectiveInterpreter.cs:line 22","RemoteStackTraceString":null,"RemoteStackIndex":0,"ExceptionMethod":null,"HResult":-2147467261,"Source":"Exhibition.Core","WatsonBuckets":null}
+ 
+2019-06-09 19:01:42 [7] INFO  Executed action method Exhibition.Portal.Api.Controllers.ManagementController.Execute (Exhibition.Portal.Api), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 680.2261ms.
+ 
+2019-06-09 19:01:42 [7] INFO  Executing ObjectResult, writing value of type 'Exhibition.Core.Models.GeneralResponse`1[[System.Int32, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+ 
+2019-06-09 19:01:42 [7] INFO  Executed action Exhibition.Portal.Api.Controllers.ManagementController.Execute (Exhibition.Portal.Api) in 712.7942ms
+ 
+2019-06-09 19:01:42 [7] INFO  Request finished in 742.19ms 200 application/json; charset=utf-8
+ 
+2019-06-09 19:02:04 [14] INFO  Request starting HTTP/1.1 POST http://localhost:44378/api/mgr/Execute application/json 29
+ 
+2019-06-09 19:02:04 [14] INFO  Route matched with {action = "Execute", controller = "Management"}. Executing controller action with signature Exhibition.Core.Models.GeneralResponse`1[System.Int32] Execute(Exhibition.Portal.Api.Models.OperateContext) on controller Exhibition.Portal.Api.Controllers.ManagementController (Exhibition.Portal.Api).
+ 
+2019-06-09 19:02:04 [14] INFO  Executing action method Exhibition.Portal.Api.Controllers.ManagementController.Execute (Exhibition.Portal.Api) - Validation state: Valid
+ 
+2019-06-09 19:02:04 [14] INFO  Run directive:{"Name":"D-01","Type":1}
+ 
+2019-06-09 19:02:17 [14] ERROR Execute error:Directive Context:{"Directive":{"Name":"D-01","Description":"张集发布媒体控制主机","Terminal":{"Settings":{"Ip":"192.168.0.102","Endpoint":"http://localhost:8888/api/OperationService/Run","Windows":[{"Id":1,"Location":{"X":0,"Y":0},"Size":{"Width":1024,"Height":768},"Monitor":0},{"Id":2,"Location":{"X":1024,"Y":0},"Size":{"Width":1024,"Height":768},"Monitor":0},{"Id":2,"Location":{"X":2048,"Y":0},"Size":{"Width":1024,"Height":768},"Monitor":0}]},"Name":"PC-01","Description":"张集发布媒体控制主机","Type":1},"DefaultWindow":{"Id":1,"Location":{"X":0,"Y":0},"Size":{"Width":1024,"Height":768},"Monitor":0},"Resources":[{"Name":"Images","Type":1,"Workspace":"Images","FullName":"Images","Sorting":0},{"Name":"1.jpg","Type":3,"Workspace":"Images","FullName":"Images/1.jpg","Sorting":0},{"Name":"2.jpg","Type":3,"Workspace":"Images","FullName":"Images/2.jpg","Sorting":0},{"Name":"3.jpg","Type":3,"Workspace":"Images","FullName":"Images/3.jpg","Sorting":0},{"Name":"4.jpg","Type":3,"Workspace":"Images","FullName":"Images/4.jpg","Sorting":0},{"Name":"5.jpg","Type":3,"Workspace":"Images","FullName":"Images/5.jpg","Sorting":0}]},"Type":1},{"ClassName":"System.NullReferenceException","Message":"Object reference not set to an instance of an object.","Data":null,"InnerException":null,"HelpURL":null,"StackTraceString":"   at Exhibition.Core.DefaultHttpTransientFaultDetecter.DetectException(Exception condition, Boolean ifHasDetailsErrorMessageThrow) in D:\\Workspace\\repos\\Exhibition.Resource\\Exhibition.Core\\Utilities\\TransientFaultHandler\\DefaultHttpTransientFaultDetecter.cs:line 46\r\n   at Exhibition.Core.ExceptionTransientFaultDetecter.Detect(Exception condition, Boolean ifHasDetailErrorMessageThrowIt) in D:\\Workspace\\repos\\Exhibition.Resource\\Exhibition.Core\\Utilities\\TransientFaultHandler\\ExceptionTransientFaultDetecter.cs:line 23\r\n   at Exhibition.Core.DefaultTransientFaultHandler`1.Execute() in D:\\Workspace\\repos\\Exhibition.Resource\\Exhibition.Core\\Utilities\\TransientFaultHandler\\DefaultTransientFaultHandler.cs:line 45\r\n   at Exhibition.Core.HttpExtension.GetUriContent(String uri, Func`2 funcSetCustomSettings, Encoding defaultEncoding, ITransientFaultDetecter`1 faultDetecter, Int32 retryThreshold) in D:\\Workspace\\repos\\Exhibition.Resource\\Exhibition.Core\\Common\\Extensions\\HttpExtension.cs:line 70\r\n   at Exhibition.Core.HttpExtension.GetUriContent[T](String uri, Func`2 funcDeserialize, Func`2 funcSetCustomSettings, Encoding defaultEncoding, ITransientFaultDetecter`1 faultDetecter, Int32 retryThreshold) in D:\\Workspace\\repos\\Exhibition.Resource\\Exhibition.Core\\Common\\Extensions\\HttpExtension.cs:line 81\r\n   at Exhibition.Core.HttpExtension.GetUriJsonContent[T](String uri, Func`2 funcSetCustomSettings, Encoding defaultEncoding, ITransientFaultDetecter`1 faultDetecter, Int32 retryThreshold) in D:\\Workspace\\repos\\Exhibition.Resource\\Exhibition.Core\\Common\\Extensions\\HttpExtension.cs:line 95\r\n   at Exhibition.Core.Services.MediaDirectiveInterpreter.Execute() in D:\\Workspace\\repos\\Exhibition.Resource\\Exhibition.Core\\Services\\Interpreters\\MediaDirectiveInterpreter.cs:line 22","RemoteStackTraceString":null,"RemoteStackIndex":0,"ExceptionMethod":null,"HResult":-2147467261,"Source":"Exhibition.Core","WatsonBuckets":null}
+ 
+2019-06-09 19:04:14 [14] ERROR Execute error:Directive Context:{"Directive":{"Name":"D-01","Description":"张集发布媒体控制主机","Terminal":{"Settings":{"Ip":"192.168.0.102","Endpoint":"http://localhost:8888/api/OperationService/Run","Windows":[{"Id":1,"Location":{"X":0,"Y":0},"Size":{"Width":1024,"Height":768},"Monitor":0},{"Id":2,"Location":{"X":1024,"Y":0},"Size":{"Width":1024,"Height":768},"Monitor":0},{"Id":2,"Location":{"X":2048,"Y":0},"Size":{"Width":1024,"Height":768},"Monitor":0}]},"Name":"PC-01","Description":"张集发布媒体控制主机","Type":1},"DefaultWindow":{"Id":1,"Location":{"X":0,"Y":0},"Size":{"Width":1024,"Height":768},"Monitor":0},"Resources":[{"Name":"Images","Type":1,"Workspace":"Images","FullName":"Images","Sorting":0},{"Name":"1.jpg","Type":3,"Workspace":"Images","FullName":"Images/1.jpg","Sorting":0},{"Name":"2.jpg","Type":3,"Workspace":"Images","FullName":"Images/2.jpg","Sorting":0},{"Name":"3.jpg","Type":3,"Workspace":"Images","FullName":"Images/3.jpg","Sorting":0},{"Name":"4.jpg","Type":3,"Workspace":"Images","FullName":"Images/4.jpg","Sorting":0},{"Name":"5.jpg","Type":3,"Workspace":"Images","FullName":"Images/5.jpg","Sorting":0}]},"Type":1},{"ClassName":"System.NullReferenceException","Message":"Object reference not set to an instance of an object.","Data":null,"InnerException":null,"HelpURL":null,"StackTraceString":"   at Exhibition.Core.DefaultHttpTransientFaultDetecter.DetectException(Exception condition, Boolean ifHasDetailsErrorMessageThrow) in D:\\Workspace\\repos\\Exhibition.Resource\\Exhibition.Core\\Utilities\\TransientFaultHandler\\DefaultHttpTransientFaultDetecter.cs:line 46\r\n   at Exhibition.Core.ExceptionTransientFaultDetecter.Detect(Exception condition, Boolean ifHasDetailErrorMessageThrowIt) in D:\\Workspace\\repos\\Exhibition.Resource\\Exhibition.Core\\Utilities\\TransientFaultHandler\\ExceptionTransientFaultDetecter.cs:line 23\r\n   at Exhibition.Core.DefaultTransientFaultHandler`1.Execute() in D:\\Workspace\\repos\\Exhibition.Resource\\Exhibition.Core\\Utilities\\TransientFaultHandler\\DefaultTransientFaultHandler.cs:line 45\r\n   at Exhibition.Core.HttpExtension.GetUriContent(String uri, Func`2 funcSetCustomSettings, Encoding defaultEncoding, ITransientFaultDetecter`1 faultDetecter, Int32 retryThreshold) in D:\\Workspace\\repos\\Exhibition.Resource\\Exhibition.Core\\Common\\Extensions\\HttpExtension.cs:line 70\r\n   at Exhibition.Core.HttpExtension.GetUriContent[T](String uri, Func`2 funcDeserialize, Func`2 funcSetCustomSettings, Encoding defaultEncoding, ITransientFaultDetecter`1 faultDetecter, Int32 retryThreshold) in D:\\Workspace\\repos\\Exhibition.Resource\\Exhibition.Core\\Common\\Extensions\\HttpExtension.cs:line 81\r\n   at Exhibition.Core.HttpExtension.GetUriJsonContent[T](String uri, Func`2 funcSetCustomSettings, Encoding defaultEncoding, ITransientFaultDetecter`1 faultDetecter, Int32 retryThreshold) in D:\\Workspace\\repos\\Exhibition.Resource\\Exhibition.Core\\Common\\Extensions\\HttpExtension.cs:line 95\r\n   at Exhibition.Core.Services.MediaDirectiveInterpreter.Execute() in D:\\Workspace\\repos\\Exhibition.Resource\\Exhibition.Core\\Services\\Interpreters\\MediaDirectiveInterpreter.cs:line 22","RemoteStackTraceString":null,"RemoteStackIndex":0,"ExceptionMethod":null,"HResult":-2147467261,"Source":"Exhibition.Core","WatsonBuckets":null}
+ 
+2019-06-09 19:04:14 [14] INFO  Executed action method Exhibition.Portal.Api.Controllers.ManagementController.Execute (Exhibition.Portal.Api), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 129566.297ms.
+ 
+2019-06-09 19:04:14 [14] INFO  Executing ObjectResult, writing value of type 'Exhibition.Core.Models.GeneralResponse`1[[System.Int32, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+ 
+2019-06-09 19:04:14 [14] INFO  Executed action Exhibition.Portal.Api.Controllers.ManagementController.Execute (Exhibition.Portal.Api) in 129605.1665ms
+ 
+2019-06-09 19:04:14 [14] INFO  Request finished in 129626.2639ms 200 application/json; charset=utf-8
+ 
+2019-06-09 19:04:17 [14] INFO  Request starting HTTP/1.1 POST http://localhost:44378/api/mgr/Execute application/json 29
+ 
+2019-06-09 19:04:17 [14] INFO  Route matched with {action = "Execute", controller = "Management"}. Executing controller action with signature Exhibition.Core.Models.GeneralResponse`1[System.Int32] Execute(Exhibition.Portal.Api.Models.OperateContext) on controller Exhibition.Portal.Api.Controllers.ManagementController (Exhibition.Portal.Api).
+ 
+2019-06-09 19:04:17 [14] INFO  Executing action method Exhibition.Portal.Api.Controllers.ManagementController.Execute (Exhibition.Portal.Api) - Validation state: Valid
+ 
+2019-06-09 19:04:17 [14] INFO  Run directive:{"Name":"D-01","Type":1}
+ 
+2019-06-09 20:56:35 [1] INFO  User profile is available. Using 'C:\Users\Joey\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+ 
+2019-06-09 20:56:36 [9] INFO  Request starting HTTP/1.1 DEBUG http://localhost:50354/  0
+ 
+2019-06-09 20:56:36 [8] INFO  Request starting HTTP/1.1 GET http://localhost:44378/api/values  
+ 
+2019-06-09 20:56:36 [9] INFO  Request finished in 53.0768ms 200 
+ 
+2019-06-09 20:56:36 [8] INFO  Request finished in 237.878ms 404 
+ 
+2019-06-09 20:57:08 [7] INFO  Request starting HTTP/1.1 POST http://localhost:44378/api/mgr/Execute application/json 29
+ 
+2019-06-09 20:57:08 [7] INFO  Route matched with {action = "Execute", controller = "Management"}. Executing controller action with signature Exhibition.Core.Models.GeneralResponse`1[System.Int32] Execute(Exhibition.Portal.Api.Models.OperateContext) on controller Exhibition.Portal.Api.Controllers.ManagementController (Exhibition.Portal.Api).
+ 
+2019-06-09 20:57:08 [7] INFO  Executing action method Exhibition.Portal.Api.Controllers.ManagementController.Execute (Exhibition.Portal.Api) - Validation state: Valid
+ 
+2019-06-09 20:57:08 [7] INFO  Run directive:{"Name":"D-02","Type":1}
+ 
+2019-06-09 20:57:23 [7] INFO  Executed action Exhibition.Portal.Api.Controllers.ManagementController.Execute (Exhibition.Portal.Api) in 14993.2725ms
+ 
+2019-06-09 20:57:23 [7] ERROR An unhandled exception has occurred while executing the request.
+ 
+System.IO.DirectoryNotFoundException: Could not find a part of the path 'D:\Workspace\repos\Exhibition.Resource\Exhibition.Portal.Api\assets\userfiles\Links'.
+   at System.IO.Enumeration.FileSystemEnumerator`1.CreateDirectoryHandle(String path, Boolean ignoreNotFound)
+   at System.IO.Enumeration.FileSystemEnumerator`1..ctor(String directory, EnumerationOptions options)
+   at System.IO.Enumeration.FileSystemEnumerable`1..ctor(String directory, FindTransform transform, EnumerationOptions options)
+   at System.IO.Enumeration.FileSystemEnumerableFactory.FileInfos(String directory, String expression, EnumerationOptions options)
+   at System.IO.DirectoryInfo.InternalEnumerateInfos(String path, String searchPattern, SearchTarget searchTarget, EnumerationOptions options)
+   at System.IO.DirectoryInfo.GetFiles(String searchPattern, EnumerationOptions enumerationOptions)
+   at System.IO.DirectoryInfo.GetFiles()
+   at Exhibition.Core.Services.ManagementService.FindSubDirectory(DirectoryInfo directory, String search)+MoveNext() in D:\Workspace\repos\Exhibition.Resource\Exhibition.Core\Services\ManagementService.cs:line 171
+   at Exhibition.Core.Services.ManagementService.QueryFileSystem(QueryFilter filter)+MoveNext() in D:\Workspace\repos\Exhibition.Resource\Exhibition.Core\Services\ManagementService.cs:line 164
+   at System.Linq.Enumerable.SelectManySingleSelectorIterator`2.MoveNext()
+   at System.Collections.Generic.LargeArrayBuilder`1.AddRange(IEnumerable`1 items)
+   at System.Collections.Generic.SparseArrayBuilder`1.AddRange(IEnumerable`1 items)
+   at System.Collections.Generic.SparseArrayBuilder`1.ReserveOrAdd(IEnumerable`1 items)
+   at System.Linq.Enumerable.Concat2Iterator`1.ToArray()
+   at System.Linq.Enumerable.ToArray[TSource](IEnumerable`1 source)
+   at Exhibition.Portal.Api.Controllers.ManagementController.Execute(OperateContext context) in D:\Workspace\repos\Exhibition.Resource\Exhibition.Portal.Api\Controllers\ManagementController.cs:line 207
+   at lambda_method(Closure , Object , Object[] )
+   at Microsoft.Extensions.Internal.ObjectMethodExecutor.Execute(Object target, Object[] parameters)
+   at Microsoft.AspNetCore.Mvc.Internal.ActionMethodExecutor.SyncObjectResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeNextActionFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Rethrow(ActionExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeInnerFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResourceFilter()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeFilterPipelineAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeAsync()
+   at Microsoft.AspNetCore.Builder.RouterMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Cors.Infrastructure.CorsMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Cors.Infrastructure.CorsMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Cors.Infrastructure.CorsMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2019-06-09 20:57:23 [7] INFO  Request finished in 15236.6976ms 500 text/html; charset=utf-8
+ 
+2019-06-09 20:57:28 [13] INFO  Request starting HTTP/1.1 POST http://localhost:44378/api/mgr/Execute application/json 29
+ 
+2019-06-09 20:57:28 [13] INFO  Route matched with {action = "Execute", controller = "Management"}. Executing controller action with signature Exhibition.Core.Models.GeneralResponse`1[System.Int32] Execute(Exhibition.Portal.Api.Models.OperateContext) on controller Exhibition.Portal.Api.Controllers.ManagementController (Exhibition.Portal.Api).
+ 
+2019-06-09 20:57:28 [13] INFO  Executing action method Exhibition.Portal.Api.Controllers.ManagementController.Execute (Exhibition.Portal.Api) - Validation state: Valid
+ 
+2019-06-09 20:57:28 [13] INFO  Run directive:{"Name":"D-02","Type":1}
+ 
+2019-06-09 20:57:43 [13] INFO  Executed action Exhibition.Portal.Api.Controllers.ManagementController.Execute (Exhibition.Portal.Api) in 14873.4697ms
+ 
+2019-06-09 20:57:43 [13] ERROR An unhandled exception has occurred while executing the request.
+ 
+System.IO.DirectoryNotFoundException: Could not find a part of the path 'D:\Workspace\repos\Exhibition.Resource\Exhibition.Portal.Api\assets\userfiles\Links'.
+   at System.IO.Enumeration.FileSystemEnumerator`1.CreateDirectoryHandle(String path, Boolean ignoreNotFound)
+   at System.IO.Enumeration.FileSystemEnumerator`1..ctor(String directory, EnumerationOptions options)
+   at System.IO.Enumeration.FileSystemEnumerable`1..ctor(String directory, FindTransform transform, EnumerationOptions options)
+   at System.IO.Enumeration.FileSystemEnumerableFactory.FileInfos(String directory, String expression, EnumerationOptions options)
+   at System.IO.DirectoryInfo.InternalEnumerateInfos(String path, String searchPattern, SearchTarget searchTarget, EnumerationOptions options)
+   at System.IO.DirectoryInfo.GetFiles(String searchPattern, EnumerationOptions enumerationOptions)
+   at System.IO.DirectoryInfo.GetFiles()
+   at Exhibition.Core.Services.ManagementService.FindSubDirectory(DirectoryInfo directory, String search)+MoveNext() in D:\Workspace\repos\Exhibition.Resource\Exhibition.Core\Services\ManagementService.cs:line 171
+   at Exhibition.Core.Services.ManagementService.QueryFileSystem(QueryFilter filter)+MoveNext() in D:\Workspace\repos\Exhibition.Resource\Exhibition.Core\Services\ManagementService.cs:line 164
+   at System.Linq.Enumerable.SelectManySingleSelectorIterator`2.MoveNext()
+   at System.Collections.Generic.LargeArrayBuilder`1.AddRange(IEnumerable`1 items)
+   at System.Collections.Generic.SparseArrayBuilder`1.AddRange(IEnumerable`1 items)
+   at System.Collections.Generic.SparseArrayBuilder`1.ReserveOrAdd(IEnumerable`1 items)
+   at System.Linq.Enumerable.Concat2Iterator`1.ToArray()
+   at System.Linq.Enumerable.ToArray[TSource](IEnumerable`1 source)
+   at Exhibition.Portal.Api.Controllers.ManagementController.Execute(OperateContext context) in D:\Workspace\repos\Exhibition.Resource\Exhibition.Portal.Api\Controllers\ManagementController.cs:line 207
+   at lambda_method(Closure , Object , Object[] )
+   at Microsoft.Extensions.Internal.ObjectMethodExecutor.Execute(Object target, Object[] parameters)
+   at Microsoft.AspNetCore.Mvc.Internal.ActionMethodExecutor.SyncObjectResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeNextActionFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Rethrow(ActionExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeInnerFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResourceFilter()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeFilterPipelineAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeAsync()
+   at Microsoft.AspNetCore.Builder.RouterMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Cors.Infrastructure.CorsMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Cors.Infrastructure.CorsMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Cors.Infrastructure.CorsMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2019-06-09 20:57:43 [13] INFO  Request finished in 14930.0014ms 500 text/html; charset=utf-8
+ 
+2019-06-09 20:58:21 [15] INFO  Request starting HTTP/1.1 POST http://localhost:44378/api/mgr/Execute application/json 29
+ 
+2019-06-09 20:58:21 [15] INFO  Route matched with {action = "Execute", controller = "Management"}. Executing controller action with signature Exhibition.Core.Models.GeneralResponse`1[System.Int32] Execute(Exhibition.Portal.Api.Models.OperateContext) on controller Exhibition.Portal.Api.Controllers.ManagementController (Exhibition.Portal.Api).
+ 
+2019-06-09 20:58:21 [15] INFO  Executing action method Exhibition.Portal.Api.Controllers.ManagementController.Execute (Exhibition.Portal.Api) - Validation state: Valid
+ 
+2019-06-09 20:58:21 [15] INFO  Run directive:{"Name":"D-02","Type":1}
+ 
+2019-06-09 20:59:36 [15] ERROR Execute error:Directive Context:{"Directive":{"Name":"D-02","Description":"实践队伍媒体播放主机","Terminal":{"Settings":{"Ip":"192.168.0.102","Endpoint":"http://localhost:8888/api/OperationService/Run","Windows":[{"Id":1,"Location":{"X":0,"Y":0},"Size":{"Width":1024,"Height":768},"Monitor":0},{"Id":2,"Location":{"X":1024,"Y":0},"Size":{"Width":1024,"Height":768},"Monitor":0},{"Id":2,"Location":{"X":2048,"Y":0},"Size":{"Width":1024,"Height":768},"Monitor":0}]},"Name":"PC-02","Description":"实践队伍媒体播放主机","Type":1},"DefaultWindow":{"Id":1,"Location":{"X":0,"Y":0},"Size":{"Width":1024,"Height":768},"Monitor":0},"Resources":[{"Name":"20190515.txt","Type":4,"Workspace":"Links","FullName":"Links/20190515.txt","Sorting":0},{"Name":"20190520-01.txt","Type":4,"Workspace":"Links","FullName":"Links/20190520-01.txt","Sorting":0},{"Name":"20190520-02.txt","Type":4,"Workspace":"Links","FullName":"Links/20190520-02.txt","Sorting":0}]},"Type":1},{"ClassName":"System.Net.WebException","Message":"No connection could be made because the target machine actively refused it No connection could be made because the target machine actively refused it","Data":null,"InnerException":{"Message":"No connection could be made because the target machine actively refused it","Data":{},"InnerException":{"ClassName":"System.Net.Sockets.SocketException","Message":"No connection could be made because the target machine actively refused it","Data":null,"InnerException":null,"HelpURL":null,"StackTraceString":"   at System.Net.Http.ConnectHelper.ConnectAsync(String host, Int32 port, CancellationToken cancellationToken)","RemoteStackTraceString":null,"RemoteStackIndex":0,"ExceptionMethod":null,"HResult":-2147467259,"Source":"System.Private.CoreLib","WatsonBuckets":null,"NativeErrorCode":10061},"StackTrace":"   at System.Net.Http.ConnectHelper.ConnectAsync(String host, Int32 port, CancellationToken cancellationToken)\r\n   at System.Threading.Tasks.ValueTask`1.get_Result()\r\n   at System.Net.Http.HttpConnectionPool.CreateConnectionAsync(HttpRequestMessage request, CancellationToken cancellationToken)\r\n   at System.Threading.Tasks.ValueTask`1.get_Result()\r\n   at System.Net.Http.HttpConnectionPool.WaitForCreatedConnectionAsync(ValueTask`1 creationTask)\r\n   at System.Threading.Tasks.ValueTask`1.get_Result()\r\n   at System.Net.Http.HttpConnectionPool.SendWithRetryAsync(HttpRequestMessage request, Boolean doRequestAuth, CancellationToken cancellationToken)\r\n   at System.Net.Http.RedirectHandler.SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)\r\n   at System.Net.Http.DiagnosticsHandler.SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)\r\n   at System.Net.Http.HttpClient.FinishSendAsyncUnbuffered(Task`1 sendTask, HttpRequestMessage request, CancellationTokenSource cts, Boolean disposeCts)\r\n   at System.Net.HttpWebRequest.SendRequest()\r\n   at System.Net.HttpWebRequest.GetResponse()","HelpLink":null,"Source":"System.Net.Http","HResult":-2147467259},"HelpURL":null,"StackTraceString":"   at Exhibition.Core.DefaultTransientFaultHandler`1.Execute() in D:\\Workspace\\repos\\Exhibition.Resource\\Exhibition.Core\\Utilities\\TransientFaultHandler\\DefaultTransientFaultHandler.cs:line 50\r\n   at Exhibition.Core.HttpExtension.GetUriContent(String uri, Func`2 funcSetCustomSettings, Encoding defaultEncoding, ITransientFaultDetecter`1 faultDetecter, Int32 retryThreshold) in D:\\Workspace\\repos\\Exhibition.Resource\\Exhibition.Core\\Common\\Extensions\\HttpExtension.cs:line 70\r\n   at Exhibition.Core.HttpExtension.GetUriContent[T](String uri, Func`2 funcDeserialize, Func`2 funcSetCustomSettings, Encoding defaultEncoding, ITransientFaultDetecter`1 faultDetecter, Int32 retryThreshold) in D:\\Workspace\\repos\\Exhibition.Resource\\Exhibition.Core\\Common\\Extensions\\HttpExtension.cs:line 81\r\n   at Exhibition.Core.HttpExtension.GetUriJsonContent[T](String uri, Func`2 funcSetCustomSettings, Encoding defaultEncoding, ITransientFaultDetecter`1 faultDetecter, Int32 retryThreshold) in D:\\Workspace\\repos\\Exhibition.Resource\\Exhibition.Core\\Common\\Extensions\\HttpExtension.cs:line 95\r\n   at Exhibition.Core.Services.MediaDirectiveInterpreter.Execute() in D:\\Workspace\\repos\\Exhibition.Resource\\Exhibition.Core\\Services\\Interpreters\\MediaDirectiveInterpreter.cs:line 22","RemoteStackTraceString":null,"RemoteStackIndex":0,"ExceptionMethod":null,"HResult":-2147467259,"Source":"Exhibition.Core","WatsonBuckets":null}
+ 
+2019-06-09 20:59:36 [15] INFO  Executed action method Exhibition.Portal.Api.Controllers.ManagementController.Execute (Exhibition.Portal.Api), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 74332.4681ms.
+ 
+2019-06-09 20:59:36 [15] INFO  Executing ObjectResult, writing value of type 'Exhibition.Core.Models.GeneralResponse`1[[System.Int32, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+ 
+2019-06-09 20:59:36 [15] INFO  Executed action Exhibition.Portal.Api.Controllers.ManagementController.Execute (Exhibition.Portal.Api) in 74386.7259ms
+ 
+2019-06-09 20:59:36 [15] INFO  Request finished in 74404.303ms 200 application/json; charset=utf-8
+ 
+2019-06-09 21:00:04 [9] INFO  Request starting HTTP/1.1 POST http://localhost:44378/api/mgr/Execute application/json 29
+ 
+2019-06-09 21:00:04 [9] INFO  Route matched with {action = "Execute", controller = "Management"}. Executing controller action with signature Exhibition.Core.Models.GeneralResponse`1[System.Int32] Execute(Exhibition.Portal.Api.Models.OperateContext) on controller Exhibition.Portal.Api.Controllers.ManagementController (Exhibition.Portal.Api).
+ 
+2019-06-09 21:00:04 [9] INFO  Executing action method Exhibition.Portal.Api.Controllers.ManagementController.Execute (Exhibition.Portal.Api) - Validation state: Valid
+ 
+2019-06-09 21:00:04 [9] INFO  Run directive:{"Name":"D-02","Type":1}
+ 
+2019-06-09 21:01:20 [9] INFO  Executed action method Exhibition.Portal.Api.Controllers.ManagementController.Execute (Exhibition.Portal.Api), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 76034.5112ms.
+ 
+2019-06-09 21:01:20 [9] INFO  Executing ObjectResult, writing value of type 'Exhibition.Core.Models.GeneralResponse`1[[System.Int32, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+ 
+2019-06-09 21:01:20 [9] INFO  Executed action Exhibition.Portal.Api.Controllers.ManagementController.Execute (Exhibition.Portal.Api) in 76087.4482ms
+ 
+2019-06-09 21:01:20 [9] INFO  Request finished in 76106.2656ms 200 application/json; charset=utf-8
+ 
+2019-06-09 21:03:40 [1] INFO  User profile is available. Using 'C:\Users\Joey\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+ 
+2019-06-09 21:03:41 [8] INFO  Request starting HTTP/1.1 GET http://localhost:44378/api/values  
+ 
+2019-06-09 21:03:41 [7] INFO  Request starting HTTP/1.1 DEBUG http://localhost:50354/  0
+ 
+2019-06-09 21:03:41 [7] INFO  Request finished in 31.3134ms 200 
+ 
+2019-06-09 21:03:41 [8] INFO  Request finished in 229.1474ms 404 
+ 
+2019-06-09 21:10:07 [1] INFO  User profile is available. Using 'C:\Users\Joey\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+ 
+2019-06-09 21:10:07 [11] INFO  Request starting HTTP/1.1 GET http://localhost:44378/api/values  
+ 
+2019-06-09 21:10:08 [11] INFO  Request finished in 148.8689ms 404 
+ 
+2019-06-09 22:44:02 [1] INFO  User profile is available. Using 'C:\Users\Joey\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+ 
+2019-06-09 22:44:03 [8] INFO  Request starting HTTP/1.1 DEBUG http://localhost:50354/  0
+ 
+2019-06-09 22:44:03 [10] INFO  Request starting HTTP/1.1 GET http://localhost:44378/api/values  
+ 
+2019-06-09 22:44:03 [8] INFO  Request finished in 49.572ms 200 
+ 
+2019-06-09 22:44:03 [10] INFO  Request finished in 218.056ms 404 
+ 
+2019-06-09 22:46:17 [15] INFO  Request starting HTTP/1.1 POST http://localhost:44378/api/mgr/Execute application/json 29
+ 
+2019-06-09 22:46:17 [15] INFO  Route matched with {action = "Execute", controller = "Management"}. Executing controller action with signature Exhibition.Core.Models.GeneralResponse`1[System.Int32] Execute(Exhibition.Portal.Api.Models.OperateContext) on controller Exhibition.Portal.Api.Controllers.ManagementController (Exhibition.Portal.Api).
+ 
+2019-06-09 22:46:18 [15] INFO  Executing action method Exhibition.Portal.Api.Controllers.ManagementController.Execute (Exhibition.Portal.Api) - Validation state: Valid
+ 
+2019-06-09 22:46:18 [15] INFO  Run directive:{"Name":"S-01","Type":1}
+ 
+2019-06-09 22:46:35 [15] INFO  Executed action Exhibition.Portal.Api.Controllers.ManagementController.Execute (Exhibition.Portal.Api) in 17510.4118ms
+ 
+2019-06-09 22:46:35 [15] ERROR An unhandled exception has occurred while executing the request.
+ 
+System.NullReferenceException: Need run ConfigureServiceProvider first
+   at Exhibition.Core.Host.GetService[T]() in D:\Workspace\repos\Exhibition.Resource\Exhibition.Core\Utilities\Host.cs:line 37
+   at Exhibition.Core.Services.SerialDirectiveInterpreter.Execute() in D:\Workspace\repos\Exhibition.Resource\Exhibition.Core\Services\Interpreters\SerialDirectiveInterpreter.cs:line 17
+   at Exhibition.Core.Services.ManagementService.Run(IOperateContext context) in D:\Workspace\repos\Exhibition.Resource\Exhibition.Core\Services\ManagementService.cs:line 272
+   at Exhibition.Portal.Api.Controllers.ManagementController.Execute(OperateContext context) in D:\Workspace\repos\Exhibition.Resource\Exhibition.Portal.Api\Controllers\ManagementController.cs:line 212
+   at lambda_method(Closure , Object , Object[] )
+   at Microsoft.Extensions.Internal.ObjectMethodExecutor.Execute(Object target, Object[] parameters)
+   at Microsoft.AspNetCore.Mvc.Internal.ActionMethodExecutor.SyncObjectResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeNextActionFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Rethrow(ActionExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeInnerFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResourceFilter()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeFilterPipelineAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeAsync()
+   at Microsoft.AspNetCore.Builder.RouterMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Cors.Infrastructure.CorsMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Cors.Infrastructure.CorsMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Cors.Infrastructure.CorsMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2019-06-09 22:46:35 [15] INFO  Request finished in 17781.0367ms 500 text/html; charset=utf-8
+ 
+2019-06-09 22:46:41 [7] INFO  Request starting HTTP/1.1 POST http://localhost:44378/api/mgr/Execute application/json 29
+ 
+2019-06-09 22:46:41 [7] INFO  Route matched with {action = "Execute", controller = "Management"}. Executing controller action with signature Exhibition.Core.Models.GeneralResponse`1[System.Int32] Execute(Exhibition.Portal.Api.Models.OperateContext) on controller Exhibition.Portal.Api.Controllers.ManagementController (Exhibition.Portal.Api).
+ 
+2019-06-09 22:46:41 [7] INFO  Executing action method Exhibition.Portal.Api.Controllers.ManagementController.Execute (Exhibition.Portal.Api) - Validation state: Valid
+ 
+2019-06-09 22:46:41 [7] INFO  Run directive:{"Name":"S-01","Type":1}
+ 
+2019-06-09 22:47:21 [1] INFO  User profile is available. Using 'C:\Users\Joey\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+ 
+2019-06-09 22:47:21 [7] INFO  Request starting HTTP/1.1 DEBUG http://localhost:50354/  0
+ 
+2019-06-09 22:47:21 [9] INFO  Request starting HTTP/1.1 GET http://localhost:44378/api/values  
+ 
+2019-06-09 22:47:21 [7] INFO  Request finished in 88.8496ms 200 
+ 
+2019-06-09 22:47:22 [9] INFO  Request finished in 235.1665ms 404 
+ 
+2019-06-09 22:50:07 [1] INFO  User profile is available. Using 'C:\Users\Joey\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+ 
+2019-06-09 22:50:07 [9] INFO  Request starting HTTP/1.1 GET http://localhost:44378/api/values  
+ 
+2019-06-09 22:50:07 [8] INFO  Request starting HTTP/1.1 DEBUG http://localhost:50354/  0
+ 
+2019-06-09 22:50:07 [8] INFO  Request finished in 44.2142ms 200 
+ 
+2019-06-09 22:50:08 [9] INFO  Request finished in 181.7644ms 404 
+ 
+2019-06-09 23:03:29 [1] INFO  User profile is available. Using 'C:\Users\Joey\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+ 
+2019-06-09 23:04:57 [1] INFO  User profile is available. Using 'C:\Users\Joey\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+ 
+2019-06-09 23:04:57 [10] INFO  Request starting HTTP/1.1 GET http://localhost:44378/api/values  
+ 
+2019-06-09 23:04:57 [10] INFO  Request finished in 90.6211ms 404 
+ 

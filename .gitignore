@@ -20,3 +20,7 @@
 /Agents/Exhibition/obj/Debug
 /Test/ConsoleApp1/obj
 /Test/ConsoleApp1/bin/Debug/netcoreapp2.1
+/Exhibition.Core/bin/Release/netstandard2.0
+/Exhibition.Portal.Api/bin/Release/netcoreapp2.1
+/Exhibition.Portal.Api/assets/Images
+/Agents/Exhibition/obj/Release

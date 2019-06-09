@@ -20,7 +20,7 @@ namespace Exhibition.Portal.Api
     {
         public Startup(IConfiguration configuration)
         {
-            EnvironmentVariables.InitializeTestData();
+
             Configuration = configuration;
         }
 
@@ -37,6 +37,16 @@ namespace Exhibition.Portal.Api
                     .AllowAnyOrigin()
                 );
             });
+            services.AddManagementService();
+            services.AddLogging((cfg) =>
+            {
+                cfg.AddConsole();
+                cfg.AddLog4Net();
+            });
+            services.AddMemoryCache();
+            services.AddManagementService();
+            services.AddSerialPortListener();
+            
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
@@ -53,12 +63,15 @@ namespace Exhibition.Portal.Api
             }
             app.UseHttpsRedirection();
             app.UseCors("Access-Control-Allow-Origin");
+            app.UseCors("Access-Control-Allow-Methods");
+            app.UseCors("Access-Control-Allow-Headers");
             app.UseStaticFiles(new StaticFileOptions()
             {
                 FileProvider = new PhysicalFileProvider(
                 Path.Combine(Directory.GetCurrentDirectory(), "assets")),
                 RequestPath = "/assets"
             });
+            
             app.UseMvc();
 
         }

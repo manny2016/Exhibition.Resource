@@ -8,69 +8,70 @@ namespace ConsoleApp1
     using Exhibition.Core;
     using Exhibition.Core.Models;
     using System.Linq;
+    using System.Collections.Generic;
     class Program
     {
         static void Main(string[] args)
         {
+
             Host.ConfigureServiceProvider((configure) => { });
+            Initial();
+            //var url = "https://mp.weixin.qq.com/s?__biz=MzI3NTUwMzI4Ng==&mid=2247485900&idx=1&sn=b6beb7d5a95ae3a99aabe5f185fe448c&chksm=eb028815dc750103f3169a93ed757b3fa40b87a7892bd98e14e297a58eb88f13dc643d1550d1&mpshare=1&scene=1&srcid=&pass_ticket=hcbje5N2NeFxqkPvC0tcWL02j7VbCzN1%2BJ8x69nPKA6DDfUB5rmDyDwEDwIPuT2I#rd";
+            //var text = url.GetUriContent();
+
+        }
+        static void Initial()
+        {
+
             var service = Host.GetService<IManagementService>();
+            var terminals = new List<IBaseTerminal>();
             using (var reader = new StreamReader(Path.Combine(System.Environment.CurrentDirectory, @"BuildinData\Terminal.json")))
             {
                 var text = reader.ReadToEnd();
                 foreach (var jObject in text.DeserializeToObject<JObject[]>())
                 {
+                    IBaseTerminal terminal = null;
                     var type = (TerminalTypes)jObject.SelectToken("$.Type").Value<int>();
                     switch (type)
                     {
                         case TerminalTypes.MediaPlayer:
-                            service.CreateOrUpdate(jObject.ToString().DeserializeToObject<MediaPlayerTerminal>());
+                            terminal = jObject.ToString().DeserializeToObject<MediaPlayerTerminal>();
                             break;
                         case TerminalTypes.SerialPort:
-                            service.CreateOrUpdate(jObject.ToString().DeserializeToObject<SerialPortTerminal>());
+                            terminal = jObject.ToString().DeserializeToObject<SerialPortTerminal>();
                             break;
                     }
+                    service.CreateOrUpdate(terminal);
+                    terminals.Add(terminal);
                 }
 
             }
             var index = 0;
-            foreach (var directive in service.QueryTerminals(new SQLiteQueryFilter<string>())
-                  .Select((ctx) =>
-                  {
-                      index++;
-                      if (ctx.Type == TerminalTypes.MediaPlayer)
-                      {
-                          return new Directive()
-                          {
-                              Name = $"D-{index.ToString("00")}",
-                              Terminal = ctx,
-                              Description = "媒体播放指令",
-                              DefaultWindow = (ctx as MediaPlayerTerminal)?.Settings.Windows[0],
-                              Resources = new Resource[] {
-                                new Resource() {
-                                     FullName = "Images/3.jpg",
-                                      Name = "3.jpg",
-                                       Sorting = 0,
-                                        Type = ResourceTypes.Image,
-                                         Workspace = "Images"
-                                }
-                              }
-                          };
-                      }
-                      if (ctx.Type == TerminalTypes.SerialPort)
-                      {
-                          return new Directive()
-                          {
-                              Name = $"S-{index.ToString("00")}",
-                              Terminal = ctx,
-                              Description = "串口指令",
-                              Resources = new Resource[] { }
-                          };
-                      }
-                      throw new System.NotSupportedException();
-                  }))
+            using (var reader = new StreamReader(Path.Combine(System.Environment.CurrentDirectory, @"BuildinData\Directives.json")))
             {
-                service.CreateOrUpdate(directive);
+                var text = reader.ReadToEnd();
+                foreach (var jObject in text.DeserializeToObject<JObject[]>())
+                {
+
+                    var name = jObject.SelectToken("$.Name").Value<string>();
+                    var defaultWindow = jObject.SelectToken("$.DefaultWindow").ToString();
+                    var description = jObject.SelectToken("$.Description").Value<string>();
+                    var resources = jObject.SelectToken("$.Resources").ToString();
+                    
+                    var directive = new Directive()
+                    {
+                        Name = name,
+                        DefaultWindow = defaultWindow.DeserializeToObject<Window>(),
+                        Description = description,
+                        Resources = resources.DeserializeToObject<Resource[]>(),
+                        Terminal = terminals.FirstOrDefault(o => o.Name.Equals(jObject.SelectToken("$.Terminal.name").Value<string>()))
+                    };
+                    service.CreateOrUpdate(directive);
+
+                }
             }
+
         }
     }
+
 }

@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Exhibition.Agent.Show;
 using Exhibition.Core.Models;
+using Newtonsoft.Json.Linq;
+using Exhibition.Agent.Show.Models;
+using OperationContext = Exhibition.Agent.Show.Models.OperationContext;
 
 namespace Exhibition.Core.Services
 {

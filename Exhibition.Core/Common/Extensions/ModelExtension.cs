@@ -20,6 +20,7 @@ namespace Exhibition.Core
             parameters.Add("@type", terminal.Type);
             parameters.Add("@description", terminal.Description);
             parameters.Add("@settings", terminal.GetSettings());
+            parameters.Add("@target", terminal.SerializeToJson());
             return parameters;
         }
 
@@ -31,7 +32,8 @@ VALUES(@name,@type,@description,@settings);";
 
         public static string GenernateUpdateScript(this IBaseTerminal terminal)
         {
-            return @"UPDATE terminal SET Type=@type, Description=@description,Settings=@settings WHERE Name=@name;";
+            return @"UPDATE terminal SET Type=@type, Description=@description,Settings=@settings WHERE Name=@name;
+UPDATE Directive SET Target=@target WHERE TargetName=@name";
         }
 
         public static string GenernateDeleteScript(this IBaseTerminal terminal)
@@ -70,6 +72,7 @@ VALUES(@name,@type,@description,@settings);";
 
             parameters.Add("@name", directive.Name);
             parameters.Add("@description", directive.Description);
+            parameters.Add("@targetName", directive.Terminal.Name);
             parameters.Add("@target", directive.Terminal.SerializeToJson());
             parameters.Add("@defaultwindow", directive.DefaultWindow == null ? "{}" : directive.DefaultWindow.SerializeToJson());
             parameters.Add("@resources", directive.Resources == null ? "[]" : directive.Resources.SerializeToJson());
@@ -79,15 +82,15 @@ VALUES(@name,@type,@description,@settings);";
         public static string GenernateInsertScript(this Models::Directive directive)
         {
             return @"
-INSERT INTO Directive(Name,Description,Target,DefaultWindow,Resources)
-VALUES(@name,@description,@target,@defaultwindow,@resources);
+INSERT INTO Directive(Name,Description,TargetName,Target,DefaultWindow,Resources)
+VALUES(@name,@description,@targetName,@target,@defaultwindow,@resources);
 ";
         }
 
         public static string GenernateUpdateScript(this Models::Directive directive)
         {
             return @"
-UPDATE Directive SET Target=@target,Defaultwindow=@defaultwindow,Description=@description,Resources=@resources
+UPDATE Directive SET TargetName=@targetName, Target=@target,Defaultwindow=@defaultwindow,Description=@description,Resources=@resources
 WHERE Name = @name;
 ";
         }
@@ -102,7 +105,7 @@ WHERE Name = @name;
                 DefaultWindow = directive.DefaultWindow.DeserializeToObject<Window>(),
                 Resources = directive.Resources.DeserializeToObject<Resource[]>(),
                 Terminal = directive.Target.TrytoGetInstance(),
-
+                
             };
         }
 

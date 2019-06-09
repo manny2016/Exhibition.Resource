@@ -110,6 +110,6 @@ export class NavbarComponent implements OnInit {
     };
 
     getTitle(){
-        return "xx展馆配置管理系统";  
+        return "张集展馆配置管理系统";  
     }
 }

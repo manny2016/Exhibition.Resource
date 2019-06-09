@@ -4,9 +4,12 @@
 
 namespace Exhibition.Core
 {
+    using Newtonsoft.Json.Linq;
     using System.ServiceModel;
     using System.ServiceModel.Web;
     using Models = Exhibition.Core.Models;
+    using ShowModels = Exhibition.Agent.Show.Models;
+
     [ServiceContract]
     public interface IOperationService
     {
@@ -18,7 +21,7 @@ namespace Exhibition.Core
             BodyStyle = WebMessageBodyStyle.Bare,
             RequestFormat = WebMessageFormat.Json,
             ResponseFormat = WebMessageFormat.Json)]
-        Models::GeneralResponse<int> Run(Models::OperationContext context);
+        Models::GeneralResponse<int> Run(ShowModels::OperationContext context);
 
 
         [OperationContract]

@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace Exhibition.Agent.Show.Models
 {
-    public class OperationContext : IOperateContext
+    public class OperationContext
     {
-        public Directive Directive { get; set; }
+        public MediaControlDirective Directive { get; set; }
 
         public DirectiveTypes Type { get; set; }
     }

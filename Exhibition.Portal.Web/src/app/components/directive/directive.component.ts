@@ -50,16 +50,16 @@ export class DirectiveContent implements OnInit {
 
   /** control for the MatSelect filter keyword for option groups */
   public bankGroupsFilterCtrl: FormControl = new FormControl();
-
+  
   /** list of bank groups filtered by search keyword for option groups */
   public filteredBankGroups: ReplaySubject<any[]> = new ReplaySubject<any[]>(1);
   
   @ViewChild('multiSelect') multiSelect: MatSelect;
   @ViewChild('singleSelect') singleSelect: MatSelect;
-
+  
 
   public searching: boolean = false;
-
+  public onlyShowFolder:boolean =true;
   /** Subject that emits when the component has been destroyed. */
   protected _onDestroy = new Subject<void>();
 
@@ -96,6 +96,7 @@ export class DirectiveContent implements OnInit {
           });
         }
       });
+    
   }
 
 
@@ -192,5 +193,19 @@ export class DirectiveContent implements OnInit {
       });
     });
     return bankGroupsCopy;
+  }
+  protected CheckedOnlyShowFolder(value:boolean){
+    const that = this;
+    that.service.QueryResourceforChoosing({onlyShowFolder:value}).toPromise().then(res => {
+      // that.banks = res.data;
+      var temp: any = res.data;
+      that.bankGroups = temp;
+      that.filteredBankGroups.next(that.copyBankGroups(that.bankGroups));
+      that.bankGroupsFilterCtrl.valueChanges
+        .pipe(takeUntil(that._onDestroy))
+        .subscribe(() => {
+          that.filterBankGroups();
+        });
+    })
   }
 }

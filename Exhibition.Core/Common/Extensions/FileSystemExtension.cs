@@ -42,8 +42,8 @@ namespace Exhibition.Core
 
             if (EnvironmentVariables.SupportImages.Any(o => o.Equals(info.Extension.ToLower()))) return ResourceTypes.Image;
             if (EnvironmentVariables.SupportVideos.Any(o => o.Equals(info.Extension.ToLower()))) return ResourceTypes.Video;
-            if (EnvironmentVariables.SupportWebPages.Any(o => o.Equals(info.Extension.ToLower()))) return ResourceTypes.H5;
-            if (EnvironmentVariables.SupportSerialPortDirective.Any(o => o.Equals(info.Extension.ToLower()))) return ResourceTypes.SerialPortDirective;
+            if (EnvironmentVariables.SupportTxtPlain.Any(o => o.Equals(info.Extension.ToLower()))) return ResourceTypes.TextPlain;
+            //if (EnvironmentVariables.SupportSerialPortDirective.Any(o => o.Equals(info.Extension.ToLower()))) return ResourceTypes.SerialPortDirective;
             return ResourceTypes.NotSupported;
         }
         public static IEnumerable<Resource> Convert(this FileInfo[] fileInfos)

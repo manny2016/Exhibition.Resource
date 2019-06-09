@@ -1,7 +1,7 @@
 ﻿[
   {
     "Name": "D-01",
-    "Description": "媒体播放指令",
+    "Description": "张集发布媒体控制主机",
     "Terminal": {
       "settings": {
         "Ip": "192.168.0.102",
@@ -72,8 +72,8 @@
     ]
   },
   {
-    "Name": "D-01",
-    "Description": "媒体播放指令",
+    "Name": "D-02",
+    "Description": "实践队伍媒体播放主机",
     "Terminal": {
       "settings": {
         "Ip": "192.168.0.102",
@@ -144,8 +144,8 @@
     ]
   },
   {
-    "Name": "D-01",
-    "Description": "媒体播放指令",
+    "Name": "D-03",
+    "Description": "实践阵地媒体控制",
     "Terminal": {
       "settings": {
         "Ip": "192.168.0.102",
@@ -216,8 +216,8 @@
     ]
   },
   {
-    "Name": "D-01",
-    "Description": "媒体播放指令",
+    "Name": "D-04",
+    "Description": "实践阵地滑轮媒体播放主机",
     "Terminal": {
       "settings": {
         "Ip": "192.168.0.102",
@@ -288,8 +288,8 @@
     ]
   },
   {
-    "Name": "D-01",
-    "Description": "媒体播放指令",
+    "Name": "D-05",
+    "Description": "时代价值媒体控制主机-01",
     "Terminal": {
       "settings": {
         "Ip": "192.168.0.102",
@@ -360,8 +360,8 @@
     ]
   },
   {
-    "Name": "D-01",
-    "Description": "媒体播放指令",
+    "Name": "D-06",
+    "Description": "时代价值媒体控制主机-02",
     "Terminal": {
       "settings": {
         "Ip": "192.168.0.102",
@@ -432,8 +432,8 @@
     ]
   },
   {
-    "Name": "S-11",
-    "Description": "串口指令",
+    "Name": "S-01",
+    "Description": "二展区发布控制",
     "Terminal": {
       "settings": {
         "portName": "COM1",
@@ -450,8 +450,352 @@
     "Resources": []
   },
   {
+    "Name": "S-02",
+    "Description": "三展区实践队伍地控制",
+    "Terminal": {
+      "settings": {
+        "portName": "COM1",
+        "DataBits": 8,
+        "baudRate": 9600,
+        "parity": 1,
+        "stopBits": 1
+      },
+      "name": "PLC-02",
+      "description": "PLC中控主机",
+      "type": 2
+    },
+    "DefaultWindow": null,
+    "Resources": []
+  },
+  {
+    "Name": "S-03",
+    "Description": "四展区实践阵地控制",
+    "Terminal": {
+      "settings": {
+        "portName": "COM1",
+        "DataBits": 8,
+        "baudRate": 9600,
+        "parity": 1,
+        "stopBits": 1
+      },
+      "name": "PLC-02",
+      "description": "PLC中控主机",
+      "type": 2
+    },
+    "DefaultWindow": null,
+    "Resources": []
+  },
+  {
+    "Name": "S-04",
+    "Description": "六展区时代价值 _01",
+    "Terminal": {
+      "settings": {
+        "portName": "COM1",
+        "DataBits": 8,
+        "baudRate": 9600,
+        "parity": 1,
+        "stopBits": 1
+      },
+      "name": "PLC-02",
+      "description": "PLC中控主机",
+      "type": 2
+    },
+    "DefaultWindow": null,
+    "Resources": []
+  },
+
+  {
+    "Name": "S-05",
+    "Description": "六展区时代价值 _02",
+    "Terminal": {
+      "settings": {
+        "portName": "COM1",
+        "DataBits": 8,
+        "baudRate": 9600,
+        "parity": 1,
+        "stopBits": 1
+      },
+      "name": "PLC-02",
+      "description": "PLC中控主机",
+      "type": 2
+    },
+    "DefaultWindow": null,
+    "Resources": []
+  },
+
+  {
+    "Name": "S-06",
+    "Description": "展区射灯，灯带，灯箱",
+    "Terminal": {
+      "settings": {
+        "portName": "COM1",
+        "DataBits": 8,
+        "baudRate": 9600,
+        "parity": 1,
+        "stopBits": 1
+      },
+      "name": "PLC-02",
+      "description": "PLC中控主机",
+      "type": 2
+    },
+    "DefaultWindow": null,
+    "Resources": []
+  },
+  {
+    "Name": "S-08",
+    "Description": "一区讲解系统控制",
+    "Terminal": {
+      "settings": {
+        "portName": "COM1",
+        "DataBits": 8,
+        "baudRate": 9600,
+        "parity": 1,
+        "stopBits": 1
+      },
+      "name": "PLC-02",
+      "description": "PLC中控主机",
+      "type": 2
+    },
+    "DefaultWindow": null,
+    "Resources": []
+  },
+  {
+    "Name": "S-09",
+    "Description": "二区讲解系统控制",
+    "Terminal": {
+      "settings": {
+        "portName": "COM1",
+        "DataBits": 8,
+        "baudRate": 9600,
+        "parity": 1,
+        "stopBits": 1
+      },
+      "name": "PLC-02",
+      "description": "PLC中控主机",
+      "type": 2
+    },
+    "DefaultWindow": null,
+    "Resources": []
+  },
+  {
+    "Name": "S-10",
+    "Description": "三区讲解系统控制",
+    "Terminal": {
+      "settings": {
+        "portName": "COM1",
+        "DataBits": 8,
+        "baudRate": 9600,
+        "parity": 1,
+        "stopBits": 1
+      },
+      "name": "PLC-02",
+      "description": "PLC中控主机",
+      "type": 2
+    },
+    "DefaultWindow": null,
+    "Resources": []
+  },
+  {
     "Name": "S-11",
-    "Description": "串口指令",
+    "Description": "四区讲解系统控制",
+    "Terminal": {
+      "settings": {
+        "portName": "COM1",
+        "DataBits": 8,
+        "baudRate": 9600,
+        "parity": 1,
+        "stopBits": 1
+      },
+      "name": "PLC-02",
+      "description": "PLC中控主机",
+      "type": 2
+    },
+    "DefaultWindow": null,
+    "Resources": []
+  },
+  {
+    "Name": "S-12",
+    "Description": "五区讲解系统控制",
+    "Terminal": {
+      "settings": {
+        "portName": "COM1",
+        "DataBits": 8,
+        "baudRate": 9600,
+        "parity": 1,
+        "stopBits": 1
+      },
+      "name": "PLC-02",
+      "description": "PLC中控主机",
+      "type": 2
+    },
+    "DefaultWindow": null,
+    "Resources": []
+  },
+  {
+    "Name": "S-13",
+    "Description": "六区讲解系统控制_1",
+    "Terminal": {
+      "settings": {
+        "portName": "COM1",
+        "DataBits": 8,
+        "baudRate": 9600,
+        "parity": 1,
+        "stopBits": 1
+      },
+      "name": "PLC-02",
+      "description": "PLC中控主机",
+      "type": 2
+    },
+    "DefaultWindow": null,
+    "Resources": []
+  },
+  {
+    "Name": "S-14",
+    "Description": "六区讲解系统控制_2",
+    "Terminal": {
+      "settings": {
+        "portName": "COM1",
+        "DataBits": 8,
+        "baudRate": 9600,
+        "parity": 1,
+        "stopBits": 1
+      },
+      "name": "PLC-02",
+      "description": "PLC中控主机",
+      "type": 2
+    },
+    "DefaultWindow": null,
+    "Resources": []
+  },
+  {
+    "Name": "S-15",
+    "Description": "实践阵地轨道控制 位置0",
+    "Terminal": {
+      "settings": {
+        "portName": "COM1",
+        "DataBits": 8,
+        "baudRate": 9600,
+        "parity": 1,
+        "stopBits": 1
+      },
+      "name": "PLC-02",
+      "description": "PLC中控主机",
+      "type": 2
+    },
+    "DefaultWindow": null,
+    "Resources": []
+  },
+  {
+    "Name": "S-16",
+    "Description": "实践阵地轨道控制 位置 1",
+    "Terminal": {
+      "settings": {
+        "portName": "COM1",
+        "DataBits": 8,
+        "baudRate": 9600,
+        "parity": 1,
+        "stopBits": 1
+      },
+      "name": "PLC-02",
+      "description": "PLC中控主机",
+      "type": 2
+    },
+    "DefaultWindow": null,
+    "Resources": []
+  },
+  {
+    "Name": "S-17",
+    "Description": "实践阵地轨道控制 位置 2",
+    "Terminal": {
+      "settings": {
+        "portName": "COM1",
+        "DataBits": 8,
+        "baudRate": 9600,
+        "parity": 1,
+        "stopBits": 1
+      },
+      "name": "PLC-02",
+      "description": "PLC中控主机",
+      "type": 2
+    },
+    "DefaultWindow": null,
+    "Resources": []
+  },
+  {
+    "Name": "S-18",
+    "Description": "实践阵地轨道控制 位置 3",
+    "Terminal": {
+      "settings": {
+        "portName": "COM1",
+        "DataBits": 8,
+        "baudRate": 9600,
+        "parity": 1,
+        "stopBits": 1
+      },
+      "name": "PLC-02",
+      "description": "PLC中控主机",
+      "type": 2
+    },
+    "DefaultWindow": null,
+    "Resources": []
+  },
+  {
+    "Name": "S-19",
+    "Description": "实践阵地轨道控制 位置 4",
+    "Terminal": {
+      "settings": {
+        "portName": "COM1",
+        "DataBits": 8,
+        "baudRate": 9600,
+        "parity": 1,
+        "stopBits": 1
+      },
+      "name": "PLC-02",
+      "description": "PLC中控主机",
+      "type": 2
+    },
+    "DefaultWindow": null,
+    "Resources": []
+  },
+  {
+    "Name": "S-20",
+    "Description": "实践阵地轨道控制 位置 5",
+    "Terminal": {
+      "settings": {
+        "portName": "COM1",
+        "DataBits": 8,
+        "baudRate": 9600,
+        "parity": 1,
+        "stopBits": 1
+      },
+      "name": "PLC-02",
+      "description": "PLC中控主机",
+      "type": 2
+    },
+    "DefaultWindow": null,
+    "Resources": []
+  },
+  {
+    "Name": "S-21",
+    "Description": "实践阵地轨道控制 位置 6",
+    "Terminal": {
+      "settings": {
+        "portName": "COM1",
+        "DataBits": 8,
+        "baudRate": 9600,
+        "parity": 1,
+        "stopBits": 1
+      },
+      "name": "PLC-02",
+      "description": "PLC中控主机",
+      "type": 2
+    },
+    "DefaultWindow": null,
+    "Resources": []
+  },
+  {
+    "Name": "S-22",
+    "Description": "实践阵地轨道控制 位置 7",
     "Terminal": {
       "settings": {
         "portName": "COM1",

@@ -9,8 +9,7 @@
     <div class="row">
         <div class="col-sm-6">
             <mat-form-field class="example-full-width">
-                <input matInput placeholder="指令名称" [(ngModel)]="current.name" value="{{current.name}}"
-                    disabled="disabled">
+                <input matInput placeholder="指令名称" [(ngModel)]="current.name" value="{{current.name}}" disabled="disabled">
             </mat-form-field>
         </div>
         <div class="col-sm-6">
@@ -44,10 +43,24 @@
     </div>
     <div class="row">
         <div class="col-sm-12">
-
+            <div class="form-check">
+                <label class="form-check-label" >                    
+                    <input class="form-check-input" #elmOnlyShowFolder type="checkbox" 
+                    (change)="CheckedOnlyShowFolder(elmOnlyShowFolder.checked)"  >
+                    <span class="form-check-sign" >
+                        <span class="check"></span>
+                    </span>
+                    <p>只显示文件夹</p>
+                </label>                
+            </div>
+            
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
             <mat-form-field>
-                <mat-select [formControl]="bankGroupsCtrl" placeholder="选择资源文件(特别提醒:一个指令只能包含一种类型的文件)" [(ngModel)]="current.resources"
-                     [multiple]="true" #multiSelect>
+                <mat-select [formControl]="bankGroupsCtrl" placeholder="选择资源文件(特别提醒:一个指令只能包含一种类型的文件或单个文件夹)" [(ngModel)]="current.resources"
+                    [multiple]="true" #multiSelect>
                     <ngx-mat-select-search [formControl]="bankGroupsFilterCtrl"></ngx-mat-select-search>
                     <mat-optgroup *ngFor="let group of filteredBankGroups | async" [label]="group.name">
                         <mat-option *ngFor="let resource of group.items" [value]="resource">
@@ -61,8 +74,7 @@
     <div class="row">
         <div class="col-sm-12">
             <mat-form-field class="example-full-width">
-                <textarea matInput placeholder="备注" [(ngModel)]="current.description"
-                    value="{{current.description}}"></textarea>
+                <textarea matInput placeholder="备注" [(ngModel)]="current.description" value="{{current.description}}"></textarea>
             </mat-form-field>
         </div>
         <input type="hidden" [(ngModel)]="current.windows">

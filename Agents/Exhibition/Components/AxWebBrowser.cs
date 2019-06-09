@@ -31,14 +31,15 @@ namespace Exhibition.Components
             this.timer.Interval = 5000;
             this.timer.Tick += Timer_Tick;
             this.resources = resources;
+            this.timer.Start();
         }
 
         private void Timer_Tick(object sender, System.EventArgs e)
         {
-            var allowtypes = new ResourceTypes[] { ResourceTypes.H5, ResourceTypes.Image };
+            var allowtypes = new ResourceTypes[] { ResourceTypes.TextPlain, ResourceTypes.Image };
             if (this.isAuto && this.resources.All((ctx) =>
             {
-                return allowtypes.Any(o => o.Equals(ctx));
+                return allowtypes.Any(o => o.Equals(ctx.Type));
             }))
             {
                 this.Next();
@@ -47,7 +48,6 @@ namespace Exhibition.Components
 
         private void AxWebBrowser_Load(object sender, System.EventArgs e)
         {
-
             this.WebBrowser.Width = this.Width;
             this.WebBrowser.Height = this.Height;
         }
@@ -75,9 +75,17 @@ namespace Exhibition.Components
 
         public void Play(Resource resource)
         {
-            this.timer.Start();
             var url = AgentHost.Resource + "/" + this.current.Value.FullName;
-            this.WebBrowser.LoadUrl(url);
+            if (resource.Type == ResourceTypes.TextPlain)
+            {
+                var text = url.GetUriContentDirectly();
+                this.WebBrowser.LoadUrl(text);
+
+            }
+            else
+            {
+                this.WebBrowser.LoadUrl(url);
+            }
         }
 
         public void Stop()
@@ -108,6 +116,21 @@ namespace Exhibition.Components
         public void SwichMode()
         {
             this.isAuto = !this.isAuto;
+        }
+
+        public void ScrollUp()
+        {
+            int x = 0;
+            int y = 100;
+
+            this.WebBrowser.BrowserHost.SendMouseWheelEvent(new Chromium.CfxMouseEvent(), x, y);
+        }
+
+        public void ScrollDown()
+        {
+            int x = 0;
+            int y = -100;
+            this.WebBrowser.BrowserHost.SendMouseWheelEvent(new Chromium.CfxMouseEvent(), x, y);
         }
     }
 }

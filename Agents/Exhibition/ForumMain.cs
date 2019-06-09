@@ -9,11 +9,12 @@ namespace Exhibition.Agent.Show
     using System.Text;
     using System.Linq;
     using Models = Exhibition.Core.Models;
+    using ShowModels = Exhibition.Agent.Show.Models;
     using System.Collections.Generic;
     using Exhibition.Agent.Show.Models;
     using Exhibition.Components;
 
-    public delegate void RunDirectiveDelegate(object sender, IOperateContext context);
+    public delegate void RunDirectiveDelegate(object sender, ShowModels::OperationContext context);
     public partial class ForumMain : Form
     {
         public ForumMain()
@@ -94,7 +95,7 @@ namespace Exhibition.Agent.Show
                 this.Run(sender, e.Context);
             }
         }
-        private void Run(object sender, IOperateContext context)
+        private void Run(object sender, Show.Models.OperationContext context)
         {
             var name = context.Directive.Name;
             switch (context.Type)
@@ -117,11 +118,20 @@ namespace Exhibition.Agent.Show
                 case DirectiveTypes.Stop:
                     states[context.Directive.Name]?.Operator.Stop();
                     break;
+                case DirectiveTypes.SwitchModel:
+                    states[context.Directive.Name]?.Operator.SwichMode();
+                    break;
+                case DirectiveTypes.ScrollDown:
+                    states[context.Directive.Name]?.Operator.ScrollDown();
+                    break;
+                case DirectiveTypes.ScrollUp:
+                    states[context.Directive.Name]?.Operator.ScrollUp();
+                    break;
             }
         }
-        public IOperate GenernateOperator(Models::Directive directive)
+        public IOperate GenernateOperator(ShowModels::MediaControlDirective directive)
         {
-            RemovePlayerforNewDirective(directive);
+            RemovePlayerforNewDirective(directive.Name,directive.DefaultWindow.Id);
             if (!states.ContainsKey(directive.Name))
             {
                 var state = new WorkingState()
@@ -138,18 +148,17 @@ namespace Exhibition.Agent.Show
             return states[directive.Name].Operator;
         }
 
-        private IOperate CreatePlayer(ResourceTypes type, string name, Window window, Resource[] resource)
+        private IOperate CreatePlayer(ResourceTypes type, string name, Window window, Resource[] resources)
         {
             UserControl control = null;
             switch (type)
             {
-                case ResourceTypes.H5:
+                case ResourceTypes.TextPlain:
                 case ResourceTypes.Image:
                 case ResourceTypes.Video:
-                    control = new AxWebBrowser(resource, name);
+                    control = new AxWebBrowser(resources, name);
                     break;
-                case ResourceTypes.Folder:
-                case ResourceTypes.SerialPortDirective:
+                case ResourceTypes.Folder:                
                 default:
                     throw new NotSupportedException(type.ToString());
             }
@@ -162,13 +171,13 @@ namespace Exhibition.Agent.Show
             return control as IOperate;
         }
 
-        private void RemovePlayerforNewDirective(Models::Directive directive)
+        private void RemovePlayerforNewDirective(string name,int iWindowId)
         {
-            if (states.ContainsKey(directive.Name)==false)
+            if (states.ContainsKey(name)==false)
             {
                 foreach (var state in states)
                 {
-                    if (state.Value.Id == directive.DefaultWindow.Id)
+                    if (state.Value.Id == iWindowId)
                     {
                         state.Value.Operator?.Stop();
                         states.Remove(state.Key);

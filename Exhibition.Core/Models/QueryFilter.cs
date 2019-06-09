@@ -16,6 +16,8 @@ namespace Exhibition.Core.Models
         [Newtonsoft.Json.JsonProperty("search")]
         public string Search { get; set; }
 
+        [Newtonsoft.Json.JsonProperty("onlyShowFolder")]
+        public bool? OnlyShowFolder { get; set; }
     }
     public class SQLiteQueryFilter<T>
     {
