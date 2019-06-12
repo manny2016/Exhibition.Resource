@@ -7,6 +7,5 @@ namespace Exhibition.Core
     public static class ExhibitionConfiguration
     {
         
-    }
-    
+    }    
 }

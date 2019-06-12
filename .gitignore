@@ -24,3 +24,5 @@
 /Exhibition.Portal.Api/bin/Release/netcoreapp2.1
 /Exhibition.Portal.Api/assets/Images
 /Agents/Exhibition/obj/Release
+/Agents/SerialPortHelper/bin/Debug
+/Agents/SerialPortHelper/obj/Debug

@@ -55,7 +55,7 @@ namespace Exhibition.Core
         void Delete(Models::Directive directive);
 
         IEnumerable<Models::Directive> QueryDirectives(Models::SQLiteQueryFilter<string> filter);
-
+         void Run(IOperateContext context);
         #endregion
     }
 }

@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Exhibition.Core;
+using Exhibition.Core.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -23,15 +24,15 @@ namespace Exhibition.Portal.Api
 
             Configuration = configuration;
         }
-
+        private static readonly log4net.ILog Logger = log4net.LogManager.GetLogger(typeof(Startup));
         public IConfiguration Configuration { get; }
-
+        private readonly string CorsPolicyName = "_AllowAll";
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddCors(options =>
             {
-                options.AddPolicy("Access-Control-Allow-Origin", builder => builder
+                options.AddPolicy(CorsPolicyName, builder => builder
                     .AllowAnyHeader()
                     .AllowAnyMethod()
                     .AllowAnyOrigin()
@@ -46,7 +47,7 @@ namespace Exhibition.Portal.Api
             services.AddMemoryCache();
             services.AddManagementService();
             services.AddSerialPortListener();
-            
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
@@ -62,18 +63,21 @@ namespace Exhibition.Portal.Api
                 app.UseHsts();
             }
             app.UseHttpsRedirection();
-            app.UseCors("Access-Control-Allow-Origin");
-            app.UseCors("Access-Control-Allow-Methods");
-            app.UseCors("Access-Control-Allow-Headers");
             app.UseStaticFiles(new StaticFileOptions()
             {
                 FileProvider = new PhysicalFileProvider(
                 Path.Combine(Directory.GetCurrentDirectory(), "assets")),
                 RequestPath = "/assets"
             });
-            
             app.UseMvc();
-
+            app.UseCors(CorsPolicyName);
+            app.ApplicationServices.GetService<SerialPortHelper>().StartListening();
+            //app.ApplicationServices.GetService<SerialPortHelper>().DataReceived += (bytes, terminal) =>
+            //{
+            //    Logger.Info($"Recvied {BitConverter.ToString(bytes)}");
+            //};
         }
+
+
     }
 }

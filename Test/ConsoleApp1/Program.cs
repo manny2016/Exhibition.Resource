@@ -9,13 +9,19 @@ namespace ConsoleApp1
     using Exhibition.Core.Models;
     using System.Linq;
     using System.Collections.Generic;
+    using System;
+
     class Program
     {
         static void Main(string[] args)
         {
-
             Host.ConfigureServiceProvider((configure) => { });
-            Initial();
+            var bytes = new byte[] { 12, 35, 33, 23 };
+            var helper = new TaskHelper();
+             helper.StartAsync(new int[] { 10, 11, 12, 13, 14, 15 });
+            Console.Read();
+            //Host.ConfigureServiceProvider((configure) => { });
+            //Initial();
             //var url = "https://mp.weixin.qq.com/s?__biz=MzI3NTUwMzI4Ng==&mid=2247485900&idx=1&sn=b6beb7d5a95ae3a99aabe5f185fe448c&chksm=eb028815dc750103f3169a93ed757b3fa40b87a7892bd98e14e297a58eb88f13dc643d1550d1&mpshare=1&scene=1&srcid=&pass_ticket=hcbje5N2NeFxqkPvC0tcWL02j7VbCzN1%2BJ8x69nPKA6DDfUB5rmDyDwEDwIPuT2I#rd";
             //var text = url.GetUriContent();
 
@@ -57,7 +63,7 @@ namespace ConsoleApp1
                     var defaultWindow = jObject.SelectToken("$.DefaultWindow").ToString();
                     var description = jObject.SelectToken("$.Description").Value<string>();
                     var resources = jObject.SelectToken("$.Resources").ToString();
-                    
+
                     var directive = new Directive()
                     {
                         Name = name,

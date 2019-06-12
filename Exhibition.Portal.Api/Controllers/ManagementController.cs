@@ -18,7 +18,14 @@ namespace Exhibition.Portal.Api.Controllers
     [ApiController]
     public class ManagementController : ControllerBase
     {
-        public ManagementService service = new ManagementService();
+        private readonly IManagementService service;
+        private readonly IServiceProvider provider;
+        public ManagementController(IManagementService service,IServiceProvider provider)
+        {
+            this.service = service;
+            this.provider = provider;
+        }
+        
         private static readonly log4net.ILog Logger = log4net.LogManager.GetLogger(typeof(ManagementController));
         [Route("api/mgr/GetFileSystem"), HttpPost, HttpOptions]
         public QueryFileSystemResponse GetFileSystem(QueryFilter filter)
