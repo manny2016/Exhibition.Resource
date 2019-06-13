@@ -26,3 +26,5 @@
 /Agents/Exhibition/obj/Release
 /Agents/SerialPortHelper/bin/Debug
 /Agents/SerialPortHelper/obj/Debug
+/Agents/SerialPortHelper/obj/Release
+/Exhibition.Portal.Api/logs

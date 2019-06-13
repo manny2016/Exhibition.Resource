@@ -17,5 +17,14 @@ namespace SerialPortHelper
         RequestFormat = WebMessageFormat.Json,
         ResponseFormat = WebMessageFormat.Json)]
         GeneralResponse<int> Run(OperationContext context);
+
+        [OperationContract]
+        [WebInvoke(Method = "GET",
+          UriTemplate = "Readme",
+          BodyStyle = WebMessageBodyStyle.Bare,
+          RequestFormat = WebMessageFormat.Json,
+          ResponseFormat = WebMessageFormat.Json)]
+        GeneralResponse<string> Readme();
+        
     }
 }

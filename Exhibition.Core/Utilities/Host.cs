@@ -26,8 +26,7 @@ namespace Exhibition.Core
                     cfg.AddLog4Net();
                 });
                 collection.AddMemoryCache();
-                collection.AddManagementService();
-                collection.AddSerialPortListener();
+                collection.AddManagementService();                
                 provider = collection.BuildServiceProvider();
             }
         }

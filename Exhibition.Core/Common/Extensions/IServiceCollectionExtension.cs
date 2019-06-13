@@ -13,10 +13,6 @@ namespace Exhibition.Core
             collection.Add(new ServiceDescriptor(typeof(IManagementService), typeof(ManagementService), ServiceLifetime.Transient));
             return collection;
         }
-        public static IServiceCollection AddSerialPortListener(this IServiceCollection collection)
-        {
-            collection.AddSingleton(typeof(SerialPortHelper));
-            return collection;
-        }
+       
     }
 }

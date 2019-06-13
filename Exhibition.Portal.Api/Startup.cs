@@ -46,7 +46,7 @@ namespace Exhibition.Portal.Api
             });
             services.AddMemoryCache();
             services.AddManagementService();
-            services.AddSerialPortListener();
+            
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
@@ -62,6 +62,7 @@ namespace Exhibition.Portal.Api
             {
                 app.UseHsts();
             }
+            app.UseCors(CorsPolicyName);
             app.UseHttpsRedirection();
             app.UseStaticFiles(new StaticFileOptions()
             {
@@ -70,12 +71,7 @@ namespace Exhibition.Portal.Api
                 RequestPath = "/assets"
             });
             app.UseMvc();
-            app.UseCors(CorsPolicyName);
-            app.ApplicationServices.GetService<SerialPortHelper>().StartListening();
-            //app.ApplicationServices.GetService<SerialPortHelper>().DataReceived += (bytes, terminal) =>
-            //{
-            //    Logger.Info($"Recvied {BitConverter.ToString(bytes)}");
-            //};
+            
         }
 
 

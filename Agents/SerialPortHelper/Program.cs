@@ -18,34 +18,19 @@ namespace SerialPortHelper
     {
         static void Main(string[] args)
         {
+            var workflow = new WorkflowDescriptor()
+            {
+                 Endpoint = "http://localhost:8080/api/mgr/Execute"
+            };
+            SerialPortHelperConfiguration.HostOperationSerivceViaConfiguration();
             AgentHost.Configure((collection) =>
             {
-                var url = "http://localhost:8080/api/mgr/QueryTerminals";
-                var settings = url.GetUriJsonContent<JObject>((http) =>
-                    {
-                        http.Method = "POST";
-                        http.ContentType = "application/json";
-                        using (var stream = http.GetRequestStream())
-                        {
-                            var body = new { TerminalTypes = new int[] { 2 } }.SerializeToJson();
-                            var buffers = UTF8Encoding.Default.GetBytes(body);
-                            stream.Write(buffers, 0, buffers.Length);
-                            stream.Flush();
-                        }
-
-                        return http;
-                    }).SelectTokens("$.data[*].settings")
-                  .Select(ctx =>
-                  {
-                      return ctx.ToString().DeserializeToObject<SerialPortSettings>();
-                  });
-                collection.AddSingleton(typeof(IEnumerable<SerialPortSettings>), settings);
-                collection.AddSingleton(typeof(SerialPortService));
-            });            
+            
+            });
             AgentHost.GetService<SerialPortService>()
                 .Run();
         }
 
-        
+
     }
 }

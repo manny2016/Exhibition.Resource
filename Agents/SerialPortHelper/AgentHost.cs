@@ -20,6 +20,7 @@ namespace SerialPortHelper
             });
             if (configure != null)
                 configure(collection);
+            collection.AddSerialPortService();
             provider = collection.BuildServiceProvider();
         }
 

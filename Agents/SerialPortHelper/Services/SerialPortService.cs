@@ -12,22 +12,25 @@ namespace SerialPortHelper.Services
     using System.Collections.Concurrent;
     using System;
 
-    public delegate void DataReceivedEventHandler(byte[] bytes, SerialPortSettings setting);
+    //public delegate void DataReceivedEventHandler(byte[] bytes, SerialPortSettings setting);
     public class SerialPortService
     {
         private static readonly log4net.ILog Logger = log4net.LogManager.GetLogger(typeof(SerialPortService));
         private readonly IEnumerable<SerialPortSettings> settings;
         private static object lockObject = new object();
+        private readonly WorkflowDescriptor descriptor;
         private Scheduler scheduler;
         private ConcurrentDictionary<string, SerialPort> ports = new ConcurrentDictionary<string, SerialPort>();
         public ListenStates State { get; private set; }
-        public event DataReceivedEventHandler DataReceived;
-        public SerialPortService(IEnumerable<SerialPortSettings> settings)
+        public SerialPortService(
+            IEnumerable<SerialPortSettings> settings,
+            WorkflowDescriptor descriptor)
         {
             this.settings = settings.GroupBy(o => o.PortName).Select((ctx) =>
             {
                 return ctx.FirstOrDefault();
             });
+            this.descriptor = descriptor;
         }
 
         public void Run()
@@ -48,16 +51,12 @@ namespace SerialPortHelper.Services
                                 var retval = serialport.Read(buffers, 0, buffers.Length);
                                 if (retval > 0)
                                 {
-                                    if (DataReceived != null)
-                                    {
-                                        DataReceived(buffers.Skip(0).Take(retval).ToArray(), setting);
-                                    }
-                                    Logger.Info($"received data from {setting.PortName};({retval})");
+                                    WorkflowProcessing(setting.PortName, buffers.Skip(0).Take(retval).ToArray());
                                 }
                             }
                             catch (TimeoutException timeout)
                             {
-                               // Logger.Info($"No bytes were available to read. {setting.PortName};");
+                                // Logger.Info($"No bytes were available to read. {setting.PortName};");
                             }
                             catch (Exception ex)
                             {
@@ -108,6 +107,61 @@ namespace SerialPortHelper.Services
                     }
                 }
                 return ports[settings.PortName];
+            }
+        }
+
+        public void Send(SerialPortSettings settings, byte[] buffers)
+        {
+            try
+            {
+                if (ports.ContainsKey(settings.PortName) && ports[settings.PortName].IsOpen)
+                {
+                    ports[settings.PortName].Write(buffers, 0, buffers.Length);
+                    Logger.Info($"Use {settings.PortName} to send bytes {BitConverter.ToString(buffers)}");
+                }
+                else
+                {
+                    Logger.Error($"Can't send. {settings.PortName} doesn't open or not start listen");
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.Error($"There are some issue happend; {ex.SerializeToJson()}");
+            }
+
+        }
+
+        private void WorkflowProcessing(string portName, byte[] data)
+        {
+            try
+            {
+                Logger.Info($"received data from {portName};({data.Length})");
+                var hex = BitConverter.ToString(data);
+                var matched = this.descriptor.Descriptors.FirstOrDefault(o => o.Condition.Equals(hex, StringComparison.OrdinalIgnoreCase));
+                if (matched != null)
+                {
+                    var result = this.descriptor.Endpoint.GetUriJsonContent<GeneralResponse<int>>((http) =>
+                    {
+                        http.Method = "POST";
+                        http.ContentType = "application/json";
+                        using (var stream = http.GetRequestStream())
+                        {
+                            var buffers = System.Text.UTF8Encoding.Default.GetBytes(matched.Context.SerializeToJson());
+                            stream.Write(buffers, 0, buffers.Length);
+                            stream.Flush();
+                        }
+                        return http;
+                    });
+                    Logger.Info($"Matched workflow condition and executed. result:{result.Success}");
+                }
+                else
+                {
+                    Logger.Warn($"Can't matche any workflow condition ignore data");
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.Error($"Issue hanppend on proccess workflow. data:{BitConverter.ToString(data)}");
             }
         }
     }
