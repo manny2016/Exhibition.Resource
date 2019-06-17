@@ -28,3 +28,6 @@
 /Agents/SerialPortHelper/obj/Debug
 /Agents/SerialPortHelper/obj/Release
 /Exhibition.Portal.Api/logs
+/Agents/Exhibition/bin/Release
+/Agents/SerialPortHelper/bin/Release
+/Test/ConsoleApp1/bin/Release/netcoreapp2.1

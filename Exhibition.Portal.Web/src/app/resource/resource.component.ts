@@ -42,7 +42,7 @@ export class ResourceComponent implements OnInit {
 
     this.afuConfig = {
       multiple: false,
-      formatsAllowed: ".jpg,.png,.jpeg,.bmp,.mp4,.avi,.mpeg,.link,.serial",
+      formatsAllowed: ".jpg,.png,.jpeg,.bmp,.mp4,.avi,.mpeg,.link,.serial,.txt",
       maxSize: "1024",
       uploadAPI: {
         url: environment.api + "UploadFiles?workspace=",

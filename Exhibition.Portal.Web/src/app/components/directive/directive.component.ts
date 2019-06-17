@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild, NgModuleRef } from '@angular/core';
 import { NgbActiveModal, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 
 import { ManagementService } from 'app/services/ManagementService';
@@ -26,6 +26,8 @@ import { element } from 'protractor';
 export class DirectiveContent implements OnInit {
   @Input() current: any;
   @Input() terminals: any[];
+  @Input() modalRef:NgbModalRef;
+  public currentModalRef:NgbModalRef;
   private currentTerminal: any;
   public resources: any[];
   public windows: any[];
@@ -68,6 +70,7 @@ export class DirectiveContent implements OnInit {
 
   ngOnInit() {
     const that = this;
+    that.currentModalRef = that.modalRef;
     that.service.QueryResourceforChoosing({}).toPromise().then(res => {
       // that.banks = res.data;
       var temp: any = res.data;
@@ -194,7 +197,7 @@ export class DirectiveContent implements OnInit {
     });
     return bankGroupsCopy;
   }
-  protected CheckedOnlyShowFolder(value:boolean){
+  public CheckedOnlyShowFolder(value:boolean){
     const that = this;
     that.service.QueryResourceforChoosing({onlyShowFolder:value}).toPromise().then(res => {
       // that.banks = res.data;

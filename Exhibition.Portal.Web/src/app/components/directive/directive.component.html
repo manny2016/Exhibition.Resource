@@ -1,7 +1,7 @@
 <div class="modal-header">
     <h4 *ngIf="(current==null||current.name=='')" class="modal-title" id="modal-basic-title">新增指令</h4>
     <h4 *ngIf="(current!=null&&current.name!='')" class="modal-title" id="modal-basic-title">修改指令(current.name)</h4>
-    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <button type="button" class="close" aria-label="Close" (click)="currentModalRef.dismiss('Cross click')">
         <span aria-hidden="true">&times;</span>
     </button>
 </div>
@@ -83,5 +83,5 @@
 </div>
 <div class="modal-footer">
     <button type="button" class="btn btn-danger" (click)="CreateOrUpdateDirective(current)">保存</button>
-    <button type="button" class="btn btn-white" (click)="modalRef.close('Close')">关闭</button>
+    <button type="button" class="btn btn-white" (click)="currentModalRef.close('Close')">关闭</button>
 </div>
