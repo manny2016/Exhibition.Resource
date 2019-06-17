@@ -20,6 +20,14 @@
             </mat-form-field>
         </div>
     </div>
+    <h6>目标主机</h6>
+    <div class="row">
+        <div class="col-sm-6">
+            <mat-form-field class="example-full-width">
+                <input type="text" matInput  [(ngModel)]="current.settings.endpoint" placeholder="Endpoint" value="{{current.settings.endpoint}}">
+            </mat-form-field>
+        </div>    
+    </div>
     <h6>串口设置</h6>
     <div class="row">
         <div class="col-sm-6">

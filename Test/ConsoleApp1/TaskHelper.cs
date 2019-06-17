@@ -10,18 +10,24 @@ namespace ConsoleApp1
     {
         private static readonly log4net.ILog Logger = log4net.LogManager.GetLogger(typeof(TaskHelper));
 
-        
-        public async Task StartAsync(int[] array)
+
+        protected AutoResetEvent Sinal = new AutoResetEvent(true);
+        public virtual void Start(int[] array)
         {
-            Parallel.ForEach(array, (item) => {
-                for (var j = 0; j < 100000; j++)
+            Parallel.ForEach(array, (item) =>
+            {
+               
+                while (true)
                 {
-                    Logger.Info($"i:{item};j:{j}");
+                    this.Sinal.WaitOne();
+                    DateTime dt = DateTime.Now;
                     Thread.CurrentThread.Join(1000);
+                    Logger.Info($"i:{item}, {DateTime.Now.ToString("HH:mm:ss")} time span;{DateTime.Now.Subtract(dt).TotalSeconds} sec.");
+                    this.Sinal.Set();
                 }
             });
-          
+
         }
-        
+
     }
 }

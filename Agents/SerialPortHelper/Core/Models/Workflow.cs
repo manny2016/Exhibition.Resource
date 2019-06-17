@@ -11,10 +11,14 @@ namespace SerialPortHelper.Models
         public string Endpoint { get; set; }
 
         public Descriptor[] Descriptors { get; set; }
+
+        public string[] DirectiveforMove { get; set; }
+        public string[] DirectiveforPower { get; set; }
     }
     public class Descriptor
     {
         public string Condition { get; set; }
+        public string Name { get; set; }
         public OperationContextforApi Context { get; set; }
     }
 }

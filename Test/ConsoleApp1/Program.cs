@@ -16,9 +16,9 @@ namespace ConsoleApp1
         static void Main(string[] args)
         {
             Host.ConfigureServiceProvider((configure) => { });
-            var bytes = new byte[] { 12, 35, 33, 23 };
+            var array = new byte[] { 12, 35, 33, 23 };
             var helper = new TaskHelper();
-             helper.StartAsync(new int[] { 10, 11, 12, 13, 14, 15 });
+            helper.Start(new int[] {1,2,3,4,5,6,7,8,9,10 });
             Console.Read();
             //Host.ConfigureServiceProvider((configure) => { });
             //Initial();

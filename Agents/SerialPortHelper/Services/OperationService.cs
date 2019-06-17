@@ -29,8 +29,7 @@ namespace SerialPortHelper.Services
             {
                 return byte.Parse(ctx, System.Globalization.NumberStyles.HexNumber);
             }).ToArray();
-            service.Send(context.Settings, buffers);
-            
+            service.Send(context.Name, context.Settings, buffers);
             return new GeneralResponse<int>();
         }
 

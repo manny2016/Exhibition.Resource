@@ -8,8 +8,10 @@ namespace SerialPortHelper.Models
 {
     public class OperationContext
     {
+        public string Name { get; set; }
         public string[] HexString { get; set; }
         public SerialPortSettings Settings { get; set; }
+      
     }
     public class OperationContextforApi
     {
