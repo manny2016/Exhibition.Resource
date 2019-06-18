@@ -21,6 +21,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleApp1", "Test\Console
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SerialPortHelper", "Agents\SerialPortHelper\SerialPortHelper.csproj", "{0F61F65D-AB78-45E3-A062-CE02CB2F2D05}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OfficialHelper", "Agents\OfficialHelper\OfficialHelper.csproj", "{6629F1F6-8C32-4ED5-8EBB-902516290B77}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{0F61F65D-AB78-45E3-A062-CE02CB2F2D05}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0F61F65D-AB78-45E3-A062-CE02CB2F2D05}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0F61F65D-AB78-45E3-A062-CE02CB2F2D05}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6629F1F6-8C32-4ED5-8EBB-902516290B77}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6629F1F6-8C32-4ED5-8EBB-902516290B77}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6629F1F6-8C32-4ED5-8EBB-902516290B77}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6629F1F6-8C32-4ED5-8EBB-902516290B77}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -61,6 +67,7 @@ Global
 		{DC06EA61-C26F-43E3-891E-CF12084AB296} = {F3C247FB-BC2F-496F-B855-55BBCC17B8B2}
 		{0E14A833-989A-47E9-B0DC-38990E4136D0} = {8FBD05D2-3644-4C32-9FD0-9666737B8F08}
 		{0F61F65D-AB78-45E3-A062-CE02CB2F2D05} = {F3C247FB-BC2F-496F-B855-55BBCC17B8B2}
+		{6629F1F6-8C32-4ED5-8EBB-902516290B77} = {F3C247FB-BC2F-496F-B855-55BBCC17B8B2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {02E36763-7C26-4880-9888-1FB73657F49C}

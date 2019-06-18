@@ -31,3 +31,5 @@
 /Agents/Exhibition/bin/Release
 /Agents/SerialPortHelper/bin/Release
 /Test/ConsoleApp1/bin/Release/netcoreapp2.1
+/Agents/OfficialHelper/bin/Debug/netcoreapp2.1
+/Agents/OfficialHelper/obj
