@@ -153,7 +153,7 @@ namespace Exhibition.Agent.Show
             UserControl control = null;
             switch (type)
             {
-                case ResourceTypes.TextPlain:
+                case ResourceTypes.TextPlain:                                        
                 case ResourceTypes.Image:
                 case ResourceTypes.Video:
                     control = new AxWebBrowser(resources, name);

@@ -432,6 +432,79 @@
     ]
   },
   {
+    "Name": "D-07",
+    "Description": "时代价值媒体控制主机-02",
+    "Terminal": {
+      "settings": {
+        "Ip": "192.168.0.102",
+        "Endpoint": "http://192.168.0.102/api/common/run",
+        "Windows": [
+          {
+            "Id": 1,
+            "Location": {
+              "X": 0,
+              "Y": 0
+            },
+            "Size": {
+              "Width": 1024,
+              "Height": 768
+            },
+            "Monitor": 0
+          },
+          {
+            "Id": 2,
+            "Location": {
+              "X": 1024,
+              "Y": 0
+            },
+            "Size": {
+              "Width": 1024,
+              "Height": 768
+            },
+            "Monitor": 0
+          },
+          {
+            "Id": 2,
+            "Location": {
+              "X": 2048,
+              "Y": 0
+            },
+            "Size": {
+              "Width": 1024,
+              "Height": 768
+            },
+            "Monitor": 0
+          }
+        ]
+      },
+      "name": "PC-06",
+      "description": "时代价值媒体控制主机-02",
+      "type": 1
+    },
+    "DefaultWindow": {
+      "Id": 1,
+      "Location": {
+        "X": 0,
+        "Y": 0
+      },
+      "Size": {
+        "Width": 1024,
+        "Height": 768
+      },
+      "Monitor": 0
+    },
+    "Resources": [
+      {
+        "Name": "3.jpg",
+        "Type": 3,
+        "Workspace": "Images",
+        "FullName": "Images/3.jpg",
+        "Sorting": 0
+      }
+    ]
+  },
+
+  {
     "Name": "S-01",
     "Description": "二展区发布控制",
     "Terminal": {

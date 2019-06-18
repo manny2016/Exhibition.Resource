@@ -80,7 +80,6 @@ namespace Exhibition.Components
             {
                 var text = url.GetUriContentDirectly();
                 this.WebBrowser.LoadUrl(text);
-
             }
             else
             {
