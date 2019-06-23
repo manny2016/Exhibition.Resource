@@ -29,9 +29,21 @@
           "Monitor": 0
         },
         {
-          "Id": 2,
+          "Id": 3,
           "Location": {
             "X": 2048,
+            "Y": 0
+          },
+          "Size": {
+            "Width": 1024,
+            "Height": 768
+          },
+          "Monitor": 0
+        },
+        {
+          "Id": 4,
+          "Location": {
+            "X": 0,
             "Y": 0
           },
           "Size": {
@@ -76,9 +88,21 @@
           "Monitor": 0
         },
         {
-          "Id": 2,
+          "Id": 3,
           "Location": {
             "X": 2048,
+            "Y": 0
+          },
+          "Size": {
+            "Width": 1024,
+            "Height": 768
+          },
+          "Monitor": 0
+        },
+        {
+          "Id": 4,
+          "Location": {
+            "X": 0,
             "Y": 0
           },
           "Size": {
@@ -123,9 +147,21 @@
           "Monitor": 0
         },
         {
-          "Id": 2,
+          "Id": 3,
           "Location": {
             "X": 2048,
+            "Y": 0
+          },
+          "Size": {
+            "Width": 1024,
+            "Height": 768
+          },
+          "Monitor": 0
+        },
+        {
+          "Id": 4,
+          "Location": {
+            "X": 0,
             "Y": 0
           },
           "Size": {
@@ -170,9 +206,21 @@
           "Monitor": 0
         },
         {
-          "Id": 2,
+          "Id": 3,
           "Location": {
             "X": 2048,
+            "Y": 0
+          },
+          "Size": {
+            "Width": 1024,
+            "Height": 768
+          },
+          "Monitor": 0
+        },
+        {
+          "Id": 4,
+          "Location": {
+            "X": 0,
             "Y": 0
           },
           "Size": {
@@ -217,9 +265,21 @@
           "Monitor": 0
         },
         {
-          "Id": 2,
+          "Id": 3,
           "Location": {
             "X": 2048,
+            "Y": 0
+          },
+          "Size": {
+            "Width": 1024,
+            "Height": 768
+          },
+          "Monitor": 0
+        },
+        {
+          "Id": 4,
+          "Location": {
+            "X": 0,
             "Y": 0
           },
           "Size": {
@@ -264,9 +324,21 @@
           "Monitor": 0
         },
         {
-          "Id": 2,
+          "Id": 3,
           "Location": {
             "X": 2048,
+            "Y": 0
+          },
+          "Size": {
+            "Width": 1024,
+            "Height": 768
+          },
+          "Monitor": 0
+        },
+        {
+          "Id": 4,
+          "Location": {
+            "X": 0,
             "Y": 0
           },
           "Size": {

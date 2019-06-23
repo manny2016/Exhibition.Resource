@@ -14,7 +14,7 @@ namespace SerialPortHelper
             if (descriptor.DirectiveforMove.Any(o => o.Equals(name, StringComparison.OrdinalIgnoreCase)))
                 return ProcessTypes.Movefeedback;
 
-            if (descriptor.DirectiveforPower.Any(o => o.Equals(name, StringComparison.OrdinalIgnoreCase)))
+            if (descriptor.DirectiveforSoundPower.Any(o => o.Equals(name, StringComparison.OrdinalIgnoreCase)))
                 return ProcessTypes.Powerfeedback;
 
             return ProcessTypes.None;
@@ -24,8 +24,10 @@ namespace SerialPortHelper
             if (descriptor.DirectiveforMove.Any(o => o.Equals(name, StringComparison.OrdinalIgnoreCase)))
                 return DirectiveTypes.Move;
 
-            if (descriptor.DirectiveforPower.Any(o => o.Equals(name, StringComparison.OrdinalIgnoreCase)))
-                return DirectiveTypes.Power;
+            if (descriptor.DirectiveforSoundPower.Any(o => o.Equals(name, StringComparison.OrdinalIgnoreCase)))
+                return DirectiveTypes.SoundOnOff;
+            if (descriptor.DirectiveforMonitorPower.Any(o => o.Equals(name, StringComparison.OrdinalIgnoreCase)))
+                return DirectiveTypes.MonitorOnOff;
             return DirectiveTypes.Unknow;
         }
     }

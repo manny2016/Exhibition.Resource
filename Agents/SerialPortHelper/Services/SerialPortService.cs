@@ -21,6 +21,7 @@ namespace SerialPortHelper.Services
         private readonly WorkflowDescriptor descriptor;
         private Scheduler scheduler;
         private ConcurrentDictionary<string, SerialPortWorkContext> ports = new ConcurrentDictionary<string, SerialPortWorkContext>();
+        private ConcurrentDictionary<string, byte> monitorStates = new ConcurrentDictionary<string, byte>();
         private AutoResetEvent Sinal = new AutoResetEvent(true);
         public ListenStates State { get; private set; }
         WaitHandle waitHandle = new AutoResetEvent(true);
@@ -48,10 +49,10 @@ namespace SerialPortHelper.Services
                         {
                             try
                             {
-                                var context = OpenSerialPort(setting);                                                                
-                            }                            
+                                var context = OpenSerialPort(setting);
+                            }
                             catch (Exception ex)
-                            {                                
+                            {
                                 Logger.Error(ex.SerializeToJson());
                             }
                             Thread.CurrentThread.Join(1000);
@@ -161,7 +162,21 @@ namespace SerialPortHelper.Services
                     case DirectiveTypes.Move:
                         this.WriteMoveAsync(context, buffers);
                         break;
-                    case DirectiveTypes.Power:
+                    case DirectiveTypes.SoundOnOff:
+                        //this.WritePowerAnsy(context,)
+                        this.WritePowerAnsy(context, buffers);
+                        break;
+                    case DirectiveTypes.MonitorOnOff:
+                        if (monitorStates.ContainsKey(directiveName) == false)
+                        {
+                            monitorStates[directiveName] = buffers[4];
+                        }
+                        else
+                        {
+                            if (monitorStates[directiveName] == 0) monitorStates[directiveName] = 1;
+                            else monitorStates[directiveName] = 0;
+                            buffers[4] = monitorStates[directiveName];
+                        }
                         this.WritePowerAnsy(context, buffers);
                         break;
                     case DirectiveTypes.Unknow:
@@ -171,9 +186,9 @@ namespace SerialPortHelper.Services
                 }
             }
             else
-            {                
+            {
                 this.Sinal.Set();
-            }            
+            }
         }
 
         private void WorkflowProcessing(string portName, byte[] data)

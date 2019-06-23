@@ -13,7 +13,9 @@ namespace SerialPortHelper.Models
         public Descriptor[] Descriptors { get; set; }
 
         public string[] DirectiveforMove { get; set; }
-        public string[] DirectiveforPower { get; set; }
+        public string[] DirectiveforSoundPower { get; set; }
+
+        public string[] DirectiveforMonitorPower { get; set; }
     }
     public class Descriptor
     {

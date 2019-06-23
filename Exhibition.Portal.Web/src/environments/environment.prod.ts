@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  api:"http://localhost:8080/api/mgr/",
+  api:"http://192.168.0.10:8080/api/mgr/",
   types: [
     { key: 1, text: "开机" },
     { key: 2, text: "关机" },
