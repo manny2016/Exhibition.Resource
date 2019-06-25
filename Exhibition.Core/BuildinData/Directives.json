@@ -4,8 +4,8 @@
     "Description": "张集发布媒体控制主机",
     "Terminal": {
       "settings": {
-        "Ip": "192.168.0.102",
-        "Endpoint": "http://192.168.0.102/api/common/run",
+        "Ip": "192.168.0.11",
+        "Endpoint": "http://192.168.0.11/api/common/run",
         "Windows": [
           {
             "Id": 1,
@@ -76,8 +76,8 @@
     "Description": "实践队伍媒体播放主机",
     "Terminal": {
       "settings": {
-        "Ip": "192.168.0.102",
-        "Endpoint": "http://192.168.0.102/api/common/run",
+        "Ip": "192.168.0.11",
+        "Endpoint": "http://192.168.0.11/api/common/run",
         "Windows": [
           {
             "Id": 1,
@@ -148,8 +148,8 @@
     "Description": "实践阵地媒体控制",
     "Terminal": {
       "settings": {
-        "Ip": "192.168.0.102",
-        "Endpoint": "http://192.168.0.102/api/common/run",
+        "Ip": "192.168.0.11",
+        "Endpoint": "http://192.168.0.11/api/common/run",
         "Windows": [
           {
             "Id": 1,
@@ -220,8 +220,8 @@
     "Description": "实践阵地滑轮媒体播放主机",
     "Terminal": {
       "settings": {
-        "Ip": "192.168.0.102",
-        "Endpoint": "http://192.168.0.102/api/common/run",
+        "Ip": "192.168.0.11",
+        "Endpoint": "http://192.168.0.11/api/common/run",
         "Windows": [
           {
             "Id": 1,
@@ -292,8 +292,8 @@
     "Description": "时代价值媒体控制主机-01",
     "Terminal": {
       "settings": {
-        "Ip": "192.168.0.102",
-        "Endpoint": "http://192.168.0.102/api/common/run",
+        "Ip": "192.168.0.11",
+        "Endpoint": "http://192.168.0.11/api/common/run",
         "Windows": [
           {
             "Id": 1,
@@ -364,8 +364,8 @@
     "Description": "时代价值媒体控制主机-02",
     "Terminal": {
       "settings": {
-        "Ip": "192.168.0.102",
-        "Endpoint": "http://192.168.0.102/api/common/run",
+        "Ip": "192.168.0.11",
+        "Endpoint": "http://192.168.0.11/api/common/run",
         "Windows": [
           {
             "Id": 1,
@@ -405,7 +405,7 @@
           }
         ]
       },
-      "name": "PC-06",
+      "name": "PC-05",
       "description": "时代价值媒体控制主机-02",
       "type": 1
     },
@@ -436,8 +436,8 @@
     "Description": "时代价值媒体控制主机-02",
     "Terminal": {
       "settings": {
-        "Ip": "192.168.0.102",
-        "Endpoint": "http://192.168.0.102/api/common/run",
+        "Ip": "192.168.0.11",
+        "Endpoint": "http://192.168.0.11/api/common/run",
         "Windows": [
           {
             "Id": 1,
@@ -477,7 +477,7 @@
           }
         ]
       },
-      "name": "PC-06",
+      "name": "PC-05",
       "description": "时代价值媒体控制主机-02",
       "type": 1
     },

@@ -1,8 +1,8 @@
 ﻿[
   {
     "Settings": {
-      "Ip": "192.168.0.102",
-      "Endpoint": "http://192.168.0.102/api/common/run",
+      "Ip": "192.168.0.11",
+      "Endpoint": "http://192.168.0.11:8888/api/OperationService/Run",
       "Windows": [
         {
           "Id": 1,
@@ -11,44 +11,8 @@
             "Y": 0
           },
           "Size": {
-            "Width": 1024,
-            "Height": 768
-          },
-          "Monitor": 0
-        },
-        {
-          "Id": 2,
-          "Location": {
-            "X": 1024,
-            "Y": 0
-          },
-          "Size": {
-            "Width": 1024,
-            "Height": 768
-          },
-          "Monitor": 0
-        },
-        {
-          "Id": 3,
-          "Location": {
-            "X": 2048,
-            "Y": 0
-          },
-          "Size": {
-            "Width": 1024,
-            "Height": 768
-          },
-          "Monitor": 0
-        },
-        {
-          "Id": 4,
-          "Location": {
-            "X": 0,
-            "Y": 0
-          },
-          "Size": {
-            "Width": 1024,
-            "Height": 768
+            "Width": 720,
+            "Height": 1280
           },
           "Monitor": 0
         }
@@ -60,8 +24,8 @@
   },
   {
     "Settings": {
-      "Ip": "192.168.0.102",
-      "Endpoint": "http://192.168.0.102/api/common/run",
+      "Ip": "192.168.0.12",
+      "Endpoint": "http://192.168.0.12:8888/api/OperationService/Run",
       "Windows": [
         {
           "Id": 1,
@@ -70,44 +34,8 @@
             "Y": 0
           },
           "Size": {
-            "Width": 1024,
-            "Height": 768
-          },
-          "Monitor": 0
-        },
-        {
-          "Id": 2,
-          "Location": {
-            "X": 1024,
-            "Y": 0
-          },
-          "Size": {
-            "Width": 1024,
-            "Height": 768
-          },
-          "Monitor": 0
-        },
-        {
-          "Id": 3,
-          "Location": {
-            "X": 2048,
-            "Y": 0
-          },
-          "Size": {
-            "Width": 1024,
-            "Height": 768
-          },
-          "Monitor": 0
-        },
-        {
-          "Id": 4,
-          "Location": {
-            "X": 0,
-            "Y": 0
-          },
-          "Size": {
-            "Width": 1024,
-            "Height": 768
+            "Width": 768,
+            "Height": 1280
           },
           "Monitor": 0
         }
@@ -119,8 +47,8 @@
   },
   {
     "Settings": {
-      "Ip": "192.168.0.102",
-      "Endpoint": "http://192.168.0.102/api/common/run",
+      "Ip": "192.168.0.13",
+      "Endpoint": "http://192.168.0.13:8888/api/OperationService/Run",
       "Windows": [
         {
           "Id": 1,
@@ -129,43 +57,7 @@
             "Y": 0
           },
           "Size": {
-            "Width": 1024,
-            "Height": 768
-          },
-          "Monitor": 0
-        },
-        {
-          "Id": 2,
-          "Location": {
-            "X": 1024,
-            "Y": 0
-          },
-          "Size": {
-            "Width": 1024,
-            "Height": 768
-          },
-          "Monitor": 0
-        },
-        {
-          "Id": 3,
-          "Location": {
-            "X": 2048,
-            "Y": 0
-          },
-          "Size": {
-            "Width": 1024,
-            "Height": 768
-          },
-          "Monitor": 0
-        },
-        {
-          "Id": 4,
-          "Location": {
-            "X": 0,
-            "Y": 0
-          },
-          "Size": {
-            "Width": 1024,
+            "Width": 3072,
             "Height": 768
           },
           "Monitor": 0
@@ -178,8 +70,8 @@
   },
   {
     "Settings": {
-      "Ip": "192.168.0.102",
-      "Endpoint": "http://192.168.0.102/api/common/run",
+      "Ip": "192.168.0.14",
+      "Endpoint": "http://192.168.0.14:8888/api/OperationService/Run",
       "Windows": [
         {
           "Id": 1,
@@ -188,20 +80,20 @@
             "Y": 0
           },
           "Size": {
-            "Width": 1024,
-            "Height": 768
+            "Width": 1920,
+            "Height": 1080
           },
           "Monitor": 0
         },
         {
           "Id": 2,
           "Location": {
-            "X": 1024,
+            "X": 1920,
             "Y": 0
           },
           "Size": {
-            "Width": 1024,
-            "Height": 768
+            "Width": 1920,
+            "Height": 1080
           },
           "Monitor": 0
         },
@@ -212,33 +104,33 @@
             "Y": 0
           },
           "Size": {
-            "Width": 1024,
-            "Height": 768
+            "Width": 1080,
+            "Height": 1920
           },
-          "Monitor": 0
+          "Monitor": 1
         },
         {
           "Id": 4,
           "Location": {
             "X": 0,
-            "Y": 0
+            "Y": 1920
           },
           "Size": {
-            "Width": 1024,
-            "Height": 768
+            "Width": 1080,
+            "Height": 1920
           },
-          "Monitor": 0
+          "Monitor": 1
         }
       ]
     },
     "Name": "PC-04",
-    "Description": "实践阵地滑轮媒体播放主机",
+    "Description": "时代价值媒体控制主机-01",
     "Type": 1
   },
   {
     "Settings": {
-      "Ip": "192.168.0.102",
-      "Endpoint": "http://192.168.0.102/api/common/run",
+      "Ip": "192.168.0.15",
+      "Endpoint": "http://192.168.0.15:8888/api/OperationService/Run",
       "Windows": [
         {
           "Id": 1,
@@ -247,44 +139,8 @@
             "Y": 0
           },
           "Size": {
-            "Width": 1024,
-            "Height": 768
-          },
-          "Monitor": 0
-        },
-        {
-          "Id": 2,
-          "Location": {
-            "X": 1024,
-            "Y": 0
-          },
-          "Size": {
-            "Width": 1024,
-            "Height": 768
-          },
-          "Monitor": 0
-        },
-        {
-          "Id": 3,
-          "Location": {
-            "X": 2048,
-            "Y": 0
-          },
-          "Size": {
-            "Width": 1024,
-            "Height": 768
-          },
-          "Monitor": 0
-        },
-        {
-          "Id": 4,
-          "Location": {
-            "X": 0,
-            "Y": 0
-          },
-          "Size": {
-            "Width": 1024,
-            "Height": 768
+            "Width": 3840,
+            "Height": 1080
           },
           "Monitor": 0
         }
@@ -296,65 +152,6 @@
   },
   {
     "Settings": {
-      "Ip": "192.168.0.102",
-      "Endpoint": "http://192.168.0.102/api/common/run",
-      "Windows": [
-        {
-          "Id": 1,
-          "Location": {
-            "X": 0,
-            "Y": 0
-          },
-          "Size": {
-            "Width": 1024,
-            "Height": 768
-          },
-          "Monitor": 0
-        },
-        {
-          "Id": 2,
-          "Location": {
-            "X": 1024,
-            "Y": 0
-          },
-          "Size": {
-            "Width": 1024,
-            "Height": 768
-          },
-          "Monitor": 0
-        },
-        {
-          "Id": 3,
-          "Location": {
-            "X": 2048,
-            "Y": 0
-          },
-          "Size": {
-            "Width": 1024,
-            "Height": 768
-          },
-          "Monitor": 0
-        },
-        {
-          "Id": 4,
-          "Location": {
-            "X": 0,
-            "Y": 0
-          },
-          "Size": {
-            "Width": 1024,
-            "Height": 768
-          },
-          "Monitor": 0
-        }
-      ]
-    },
-    "Name": "PC-06",
-    "Description": "时代价值媒体控制主机-02",
-    "Type": 1
-  },
-  {
-    "Settings": {
       "PortName": "COM1",
       "DataBits": 8,
       "BaudRate": 9600,
@@ -362,19 +159,55 @@
       "StopBits": 1
     },
     "Name": "PLC-01",
-    "Description": "PLC中控主机",
+    "Description": "志愿者服务，创业领军人物-01 -02  创新产品",
     "Type": 2
   },
   {
     "Settings": {
-      "PortName": "COM1",
+      "PortName": "COM2",
       "DataBits": 8,
       "baudRate": 9600,
       "Parity": 1,
       "StopBits": 1
     },
     "Name": "PLC-02",
-    "Description": "PLC中控主机",
+    "Description": "滑屏 液晶屏 开关机",
+    "Type": 2
+  },
+  {
+    "Settings": {
+      "PortName": "COM3",
+      "DataBits": 8,
+      "baudRate": 9600,
+      "Parity": 1,
+      "StopBits": 1
+    },
+    "Name": "COM3",
+    "Description": "PLC 滑屏",
+    "Type": 2
+  },
+  {
+    "Settings": {
+      "PortName": "COM4",
+      "DataBits": 8,
+      "baudRate": 9600,
+      "Parity": 1,
+      "StopBits": 1
+    },
+    "Name": "COM4",
+    "Description": "文明之花（3斜屏）液晶开关",
+    "Type": 2
+  },
+  {
+    "Settings": {
+      "PortName": "COM5",
+      "DataBits": 8,
+      "baudRate": 9600,
+      "Parity": 1,
+      "StopBits": 1
+    },
+    "Name": "PLCSound",
+    "Description": "音响控制",
     "Type": 2
   }
 ]

@@ -1,6 +1,6 @@
 ﻿namespace Exhibition.Agent.Show
 {
-    partial class ForumMain
+    partial class FromWapper
     {
         /// <summary>
         /// Required designer variable.
@@ -30,17 +30,15 @@
         {
             this.SuspendLayout();
             // 
-            // ForumMain
+            // FromWapper
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(970, 542);
-            this.ControlBox = false;
+            this.ClientSize = new System.Drawing.Size(800, 450);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "ForumMain";
-            this.ShowInTaskbar = false;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.WindowState = System.Windows.Forms.FormWindowState.Minimized;
+            this.Name = "FromWapper";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
+            this.Text = "FromWapper";
             this.ResumeLayout(false);
 
         }
@@ -48,4 +46,3 @@
         #endregion
     }
 }
-
