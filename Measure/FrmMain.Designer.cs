@@ -1,6 +1,6 @@
-﻿namespace Exhibition.Agent.Show
+﻿namespace Measure
 {
-    partial class FromWapper
+    partial class FrmMain
     {
         /// <summary>
         /// Required designer variable.
@@ -30,16 +30,16 @@
         {
             this.SuspendLayout();
             // 
-            // FromWapper
+            // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "FromWapper";
+            this.Name = "FrmMain";
             this.ShowInTaskbar = false;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
-            this.Text = "FromWapper";
+            this.Text = "FrmMain";
+            this.WindowState = System.Windows.Forms.FormWindowState.Minimized;
             this.ResumeLayout(false);
 
         }

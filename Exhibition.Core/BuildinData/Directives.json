@@ -1,11 +1,11 @@
 ﻿[
   {
     "Name": "D-01",
-    "Description": "张集发布媒体控制主机",
+    "Description": "张集发布",
     "Terminal": {
-      "settings": {
+      "Settings": {
         "Ip": "192.168.0.11",
-        "Endpoint": "http://192.168.0.11/api/common/run",
+        "Endpoint": "http://192.168.0.11:8888/api/OperationService/Run",
         "Windows": [
           {
             "Id": 1,
@@ -14,40 +14,16 @@
               "Y": 0
             },
             "Size": {
-              "Width": 1024,
-              "Height": 768
-            },
-            "Monitor": 0
-          },
-          {
-            "Id": 2,
-            "Location": {
-              "X": 1024,
-              "Y": 0
-            },
-            "Size": {
-              "Width": 1024,
-              "Height": 768
-            },
-            "Monitor": 0
-          },
-          {
-            "Id": 2,
-            "Location": {
-              "X": 2048,
-              "Y": 0
-            },
-            "Size": {
-              "Width": 1024,
-              "Height": 768
+              "Width": 768,
+              "Height": 1280
             },
             "Monitor": 0
           }
         ]
       },
-      "name": "PC-01",
-      "description": "张集发布媒体控制主机",
-      "type": 1
+      "Name": "PC-01",
+      "Description": "张集发布",
+      "Type": 1
     },
     "DefaultWindow": {
       "Id": 1,

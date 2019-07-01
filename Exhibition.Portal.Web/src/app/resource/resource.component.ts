@@ -24,7 +24,7 @@ class DataTablesResponse {
 })
 export class ResourceComponent implements OnInit {
   public dtOptions: DataTables.Settings = {};
-  public resources: any[];
+  public resources:any;
   public parent: string;
   public edittingContext: string;
   public workspace: string;
@@ -36,8 +36,7 @@ export class ResourceComponent implements OnInit {
     that.service.GetResources({ current: that.workspace, search: null }).toPromise().then(res => {
       var source: any = res;
       that.resources = source.data;
-      that.parent = source.parent;
-      console.log(res);
+      that.parent = source.parent;       
     })
 
     this.afuConfig = {
@@ -138,16 +137,19 @@ export class ResourceComponent implements OnInit {
     const that = this;
     if (event.key == "Enter" && event.target.value != "") {
       console.log(resource.workspace);
-
       that.service.Rename({
         workspace: that.workspace,
         name: resource.name,
         newName: event.target.value
       }).toPromise().then(res => {
-        var data: any = res;
-        resource.name = data.data.name;
+      
+        resource.name = res.data.name;
         resource.editable = false
+        resource.fullName = res.data.fullName;
+        resource.workspace=res.data.workspace;
+        console.log("rename",resource.fullName,res.data.fullName);
       });
+   
     }
   }
   /**
@@ -158,7 +160,6 @@ export class ResourceComponent implements OnInit {
     this.service.CreateDirectory({
       workspace: that.workspace, name: "新建文件夹", newName: ""
     }).toPromise().then(res => {
-
       that.service.GetResources({ current: that.workspace, search: null }).toPromise().then(res => {
         var source: any = res;
         that.resources = source.data;

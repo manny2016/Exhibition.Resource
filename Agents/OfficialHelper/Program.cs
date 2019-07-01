@@ -7,7 +7,7 @@ namespace OfficialHelper
     using System.IO;
     using System.Threading;
     using System.Threading.Tasks;
-
+    using System.Linq;
     class Program
     {
         private static readonly log4net.ILog Logger = log4net.LogManager.GetLogger(typeof(Program));
@@ -25,26 +25,36 @@ namespace OfficialHelper
                         try
                         {
                             Logger.Info($"Start {task}.");
-                            var fullName = Path.Combine(Environment.CurrentDirectory, @"assets\userfiles\success.txt");
+                            var fullName = Path.Combine(Environment.CurrentDirectory, @"assets\userfiles\usr_info.txt");
                             var target = new DirectoryInfo(Path.Combine(Environment.CurrentDirectory, @"assets\userfiles\Official"));
                             target.CreateIfNotExists();
                             if (File.Exists(fullName))
                             {
-                                var lines = File.ReadAllText(fullName).Split(new char[] { '\r', '\n' });
+                                var lines = File.ReadAllText(fullName).Split(new char[] { '\r', '\n' }).Where(o => !string.IsNullOrEmpty(o));
+                                
                                 foreach (var line in lines)
                                 {
                                     if (string.IsNullOrEmpty(line.Trim())) continue;
                                     //  Id|Title|Url|Date
                                     var array = line.Split('|');
                                     //Date-Id
-                                    var fileName = new FileInfo(Path.Combine(target.FullName, $"{array[3]}-{array[0]}.txt"));
+                                    var fileName = new FileInfo(Path.Combine(target.FullName, $"{array[4]}-{array[0]}.txt"));
                                     if (fileName.Exists) fileName.Delete();
-                                    using (var stream = new FileStream(fileName.FullName, FileMode.Create))
+                                    try
                                     {
-                                        var writer = new StreamWriter(stream);
-                                        writer.Write(array[2]);
-                                        writer.Flush();
+                                        using (var stream = new FileStream(fileName.FullName, FileMode.Create))
+                                        {
+                                            var writer = new StreamWriter(stream);
+                                            writer.Write(array[2]);
+                                            writer.Flush();
+                                        }
                                     }
+                                    catch(Exception ex)
+                                    {
+                                        Logger.Error($"FileName issue {fullName}");
+                                        continue;
+                                    }
+                                    
                                 }
                             }
                             else
@@ -56,7 +66,7 @@ namespace OfficialHelper
                         {
                             Logger.Error(ex);
                         }
-                        Thread.CurrentThread.Join(TimeSpan.FromHours(1));
+                        Thread.CurrentThread.Join(TimeSpan.FromDays(1));
                     }
                 });
             });

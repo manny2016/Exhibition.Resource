@@ -12,36 +12,36 @@ namespace Measure
 {
     public partial class Form1 : Form
     {
-        public Form1()
+        public Form1(int idx)
         {
             InitializeComponent();
             this.KeyDown += Form1_KeyDown;
             this.MouseMove += Form1_MouseMove;
             this.Load += Form1_Load1;
+            this.index = idx;
         }
-
+        private int index = 0;
         private void Form1_Load1(object sender, EventArgs e)
         {
             
+            this.Locating(index);
         }
-        private void Locating(int index)
+        private void Locating(int idx)
         {
-           
-            if (Screen.AllScreens.Length > 1)
-            {
-                var screen = Screen.AllScreens[index];
+
+            
+                var screen = Screen.AllScreens[idx];
                 this.Location = new Point(screen.Bounds.X, screen.Bounds.Y);
                 this.Top = 0;
                 this.Left = screen.WorkingArea.Left;
                 this.Width = screen.WorkingArea.Width;
                 this.Height = screen.WorkingArea.Height;
-              
-            }
+            
         }
 
         private void Form1_MouseMove(object sender, MouseEventArgs e)
         {
-            this.label1.Text = $"x={e.Location.X},\r\n y={e.Location.Y};\r\n width={this.Width},\r\n height={this.Height}";
+          
         }
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
@@ -57,14 +57,32 @@ namespace Measure
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            Locating(0);
+            //Locating();
         }
         bool first = true;
         private void button1_Click(object sender, EventArgs e)
         {
 
-            Locating(first?0:1);
-            first = !first;
+            
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            try
+            {
+                var location = this.textBox1.Text.Split(',');
+                this.panel1.Location = new Point(int.Parse(location[0]), int.Parse(location[1]));
+                this.panel1.Size = new Size(int.Parse(location[2]),int.Parse(location[3]));
+            }
+            catch
+            {
+
+            }
         }
     }
 }

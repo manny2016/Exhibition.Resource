@@ -11,7 +11,7 @@
             "Y": 0
           },
           "Size": {
-            "Width": 720,
+            "Width": 768,
             "Height": 1280
           },
           "Monitor": 0
@@ -19,7 +19,7 @@
       ]
     },
     "Name": "PC-01",
-    "Description": "张集发布媒体控制主机",
+    "Description": "张集发布",
     "Type": 1
   },
   {
@@ -42,7 +42,7 @@
       ]
     },
     "Name": "PC-02",
-    "Description": "实践队伍媒体播放主机",
+    "Description": "志愿者服务",
     "Type": 1
   },
   {
@@ -65,7 +65,7 @@
       ]
     },
     "Name": "PC-03",
-    "Description": "实践阵地媒体控制",
+    "Description": "实践阵地(滑屏主机)",
     "Type": 1
   },
   {
@@ -124,7 +124,7 @@
       ]
     },
     "Name": "PC-04",
-    "Description": "时代价值媒体控制主机-01",
+    "Description": "领军人物/创新产品",
     "Type": 1
   },
   {
@@ -147,32 +147,8 @@
       ]
     },
     "Name": "PC-05",
-    "Description": "时代价值媒体控制主机-01",
+    "Description": "文明之花",
     "Type": 1
-  },
-  {
-    "Settings": {
-      "PortName": "COM1",
-      "DataBits": 8,
-      "BaudRate": 9600,
-      "Parity": 1,
-      "StopBits": 1
-    },
-    "Name": "PLC-01",
-    "Description": "志愿者服务，创业领军人物-01 -02  创新产品",
-    "Type": 2
-  },
-  {
-    "Settings": {
-      "PortName": "COM2",
-      "DataBits": 8,
-      "baudRate": 9600,
-      "Parity": 1,
-      "StopBits": 1
-    },
-    "Name": "PLC-02",
-    "Description": "滑屏 液晶屏 开关机",
-    "Type": 2
   },
   {
     "Settings": {
@@ -182,20 +158,8 @@
       "Parity": 1,
       "StopBits": 1
     },
-    "Name": "COM3",
-    "Description": "PLC 滑屏",
-    "Type": 2
-  },
-  {
-    "Settings": {
-      "PortName": "COM4",
-      "DataBits": 8,
-      "baudRate": 9600,
-      "Parity": 1,
-      "StopBits": 1
-    },
-    "Name": "COM4",
-    "Description": "文明之花（3斜屏）液晶开关",
+    "Name": "PLC-01",
+    "Description": "PLC滑屏",
     "Type": 2
   },
   {
@@ -206,7 +170,7 @@
       "Parity": 1,
       "StopBits": 1
     },
-    "Name": "PLCSound",
+    "Name": "PLC-02",
     "Description": "音响控制",
     "Type": 2
   }

@@ -3,8 +3,10 @@
 
 namespace Exhibition.Core.Services
 {
+    using System;
     using System.Windows.Forms;
     using Exhibition.Agent.Show;
+    using Exhibition.Agent.Show.Models;
     using Exhibition.Core.Models;
     using OperationContext = Exhibition.Agent.Show.Models.OperationContext;
     public class OperationService : IOperationService
@@ -16,7 +18,14 @@ namespace Exhibition.Core.Services
 
         public GeneralResponse<int> Run(OperationContext context)
         {
-            AgentHost.TriggerDirectiveEvent(this, new OperationEventArgs() { Context = context });
+            try
+            {
+                AgentHost.TriggerDirectiveEvent(this, new OperationEventArgs() { Context = context });
+                var state = new StoredState() { Last = context };
+                state.Last.Type = DirectiveTypes.Run;
+                state.Save();
+            }
+            catch (Exception ex) { }
             return new GeneralResponse<int>()
             {
                 Success = true,
@@ -24,9 +33,19 @@ namespace Exhibition.Core.Services
             };
         }
 
+        public void ShowLayoutInfo(Window[] windows)
+        {
+            AgentHost.TriggerShowLayoutInfoEvent(this, new LayoutinfoEventArgs(windows));
+        }
+
         public void Shutdown()
         {
             Application.Exit();
+        }
+
+        public void UpgradeLayout(Window[] windows)
+        {
+            AgentHost.TriggerUpgardLayout(this, new LayoutinfoEventArgs(windows));
         }
     }
 }

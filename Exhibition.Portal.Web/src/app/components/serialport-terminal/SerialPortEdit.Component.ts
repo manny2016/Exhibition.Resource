@@ -25,11 +25,9 @@ export class SerialPortEdit {
     console.log(terminal);
     that.service.CreateOrUpdateSerialPortTerminal(terminal).toPromise().then(res => {      
       if (res.success) {
-        that.activeModal.close("Close");
+        that.modalRef.close("Close");
       }
-      else {
-        
-      }
+    
     })
       .catch(error => {
 

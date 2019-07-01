@@ -87,12 +87,9 @@ namespace SerialPortHelper.Services
                     lock (lockObject)
                     {
                         var serial = new SerialPort(settings.PortName,
-                            settings.BaudRate,
-                            settings.Parity,
-                            settings.DataBits);
-                        serial.ReadTimeout = 500;
-                        serial.WriteTimeout = 500;
-                        serial.Handshake = Handshake.XOnXOff;
+                          9600, Parity.None                            ,
+                            8, StopBits.One);
+                        
                         serial.Open();
                         ports[settings.PortName] = new SerialPortWorkContext(settings.PortName, serial);
                         Logger.Info($"Open SerialPort {settings.PortName}");
@@ -104,18 +101,25 @@ namespace SerialPortHelper.Services
 
         public async void WriteMoveAsync(SerialPortWorkContext context, byte[] buffers)
         {
-            var queryState = "22 A3 A4 A1 0A".Split(' ').Select((ctx) =>
+            var queryState = "22 00 00 00 0A".Split(' ').Select((ctx) =>
             {
                 return byte.Parse(ctx, System.Globalization.NumberStyles.HexNumber);
             }).ToArray();
-            context.SerialPort.Write(buffers, 0, buffers.Length);
+            context.SerialPort.Write(queryState, 0, queryState.Length);
             //Query current postion.
             await this.ReadAsync(context, (ctx, reply) =>
             {
+                if (reply == null)
+                {
+                    Logger.Error("Reply null command");
+                    return;
+                }
                 buffers[1] = reply[1];
                 context.SerialPort.Write(buffers, 0, buffers.Length);
                 this.ReadAsync(context, (c, b) =>
                 {
+                    if (b == null) return;
+
                     var descriptorObject = this.descriptor.Descriptors.FirstOrDefault(o => o.Context.Name.Equals(context.DirectiveName));
                     if (descriptorObject != null && BitConverter.ToString(b).Equals(descriptorObject.Condition))
                     {
@@ -164,6 +168,14 @@ namespace SerialPortHelper.Services
                         break;
                     case DirectiveTypes.SoundOnOff:
                         //this.WritePowerAnsy(context,)
+                        //Write off all 
+                        var turnoff = "11 A8 B0 00 0A".Split(' ').Select((ctx) =>
+                        {
+                            return byte.Parse(ctx, System.Globalization.NumberStyles.HexNumber);
+
+                        }).ToArray();
+                        ports[settings.PortName].SerialPort.Write(turnoff, 0, turnoff.Length);
+                        Thread.CurrentThread.Join(500);
                         this.WritePowerAnsy(context, buffers);
                         break;
                     case DirectiveTypes.MonitorOnOff:
@@ -185,10 +197,8 @@ namespace SerialPortHelper.Services
                         break;
                 }
             }
-            else
-            {
-                this.Sinal.Set();
-            }
+
+            //this.Sinal.Set();
         }
 
         private void WorkflowProcessing(string portName, byte[] data)
@@ -232,34 +242,35 @@ namespace SerialPortHelper.Services
             }
         }
 
-        private void QueryStateAndReadfeedback(SerialPortSettings settings, Action<SerialPortSettings, byte[]> feedback)
-        {
-            this.Sinal.WaitOne();
-            var context = ports[settings.PortName];
-            if (context.Useable())
-            {
+        //private void QueryStateAndReadfeedback(SerialPortSettings settings, Action<SerialPortSettings, byte[]> feedback)
+        //{
+        //    this.Sinal.WaitOne();
+        //    var context = ports[settings.PortName];
+        //    if (context.Useable())
+        //    {
 
-                var queryState = "22 A3 A4 A1 0A".Split(' ').Select((ctx) =>
-                {
-                    return byte.Parse(ctx, System.Globalization.NumberStyles.HexNumber);
-                }).ToArray();
-                ports[settings.PortName].SerialPort.Write(queryState, 0, queryState.Length);
-                var timeout = DateTime.Now;
-                do
-                {
-                    Thread.CurrentThread.Join(500);
-                    var states = new byte[1024];
-                    var retnVal = ports[settings.PortName].SerialPort.Read(states, 0, states.Length);
-                    if (retnVal > 0)
-                    {
-                        Logger.Info($"Query current postion and return {BitConverter.ToString(states)}");
-                        feedback(settings, states.Skip(0).Take(retnVal).ToArray());
-                        break;
-                    }
-                } while (DateTime.Now.Subtract(timeout).TotalSeconds < 3);
-            }
-            this.Sinal.Set();
-        }
+        //        var queryState = "22 A3 A4 A1 0A".Split(' ').Select((ctx) =>
+        //        {
+        //            return byte.Parse(ctx, System.Globalization.NumberStyles.HexNumber);
+
+        //        }).ToArray();
+        //        ports[settings.PortName].SerialPort.Write(queryState, 0, queryState.Length);
+        //        var timeout = DateTime.Now;
+        //        do
+        //        {
+        //            Thread.CurrentThread.Join(500);
+        //            var states = new byte[1024];
+        //            var retnVal = ports[settings.PortName].SerialPort.Read(states, 0, states.Length);
+        //            if (retnVal > 0)
+        //            {
+        //                Logger.Info($"Query current postion and return {BitConverter.ToString(states)}");
+        //                feedback(settings, states.Skip(0).Take(retnVal).ToArray());
+        //                break;
+        //            }
+        //        } while (DateTime.Now.Subtract(timeout).TotalSeconds < 3);
+        //    }
+        //    this.Sinal.Set();
+        //}
 
         /// <summary>
         /// Read Serial Port data by SerialPortSettings
@@ -277,7 +288,7 @@ namespace SerialPortHelper.Services
             int iReadBytes = 0;
             do
             {
-                Thread.CurrentThread.Join(1000);
+                Thread.CurrentThread.Join(500);
                 try
                 {
                     var buffers = new byte[64];
@@ -286,14 +297,21 @@ namespace SerialPortHelper.Services
                     if (iReadBytes > 0)
                     {
                         callback?.Invoke(context, buffers.Skip(0).Take(iReadBytes).ToArray());
+                        Logger.Info($"Read bytes from {context.Name};{context.DirectiveName};{BitConverter.ToString(buffers)}");
                     }
+                }
+                catch (TimeoutException ex)
+                {
+                    Logger.Warn($"Timeout exception on {context.Name} ;DirectiveName:{context.DirectiveName}");
                 }
                 catch (Exception ex)
                 {
-                    Logger.Error($"Error happened on get reply on {context.Name}. DirectiveName:{context.DirectiveName}");
+                    Logger.Error($"Error happened on get reply on {context.Name}. DirectiveName:{context.DirectiveName},error:{ex.Message};{ex.SerializeToJson()}");
+
                 }
 
-            } while (DateTime.Now.Subtract(startRead).TotalSeconds < 5 && iReadBytes.Equals(0));
+            } while (DateTime.Now.Subtract(startRead).TotalSeconds < timeout );
+            callback?.Invoke(context, null);
             return iReadBytes;
         }
 

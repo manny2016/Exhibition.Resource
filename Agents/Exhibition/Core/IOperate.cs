@@ -18,7 +18,12 @@ namespace Exhibition.Core
         void Stop();
 
         void SwichMode();
+
         void ScrollUp();
+
         void ScrollDown();
+
+        void UpgradeLayout(Window window);
+      
     }
 }

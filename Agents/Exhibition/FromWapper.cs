@@ -23,15 +23,22 @@ namespace Exhibition.Agent.Show
             this.Load += FromWapper_Load;
         }
         public int DefaultMonitor { get; private set; }
-      
-        public FromWapper(int monitor) : this()
+        public Window[] Windows { get; set; }
+        public FromWapper(int monitor, Window[] windows) : this()
         {
             this.DefaultMonitor = monitor;
+            this.Windows = windows;
+
         }
         private void FromWapper_Load(object sender, EventArgs e)
         {
             AgentHost.DirectiveReceived += AgentHost_DirectiveReceived;
             this.Locating();
+            if (StoredState.Instance.Last != null)
+            {
+                AgentHost.TriggerDirectiveEvent(this, new OperationEventArgs() { Context = StoredState.Instance.Last });
+            }
+
         }
         private void Locating()
         {
@@ -57,6 +64,13 @@ namespace Exhibition.Agent.Show
         private void Run(object sender, Show.Models.OperationContext context)
         {
             if (context.Directive.DefaultWindow.Monitor != this.DefaultMonitor) return;
+            //foreach(var label in this.Controls)
+            //{
+            //    if(label is Label)
+            //    {
+            //        this.Controls.Remove(label as Control);
+            //    }
+            //}
             var name = context.Directive.Name;
             switch (context.Type)
             {
@@ -143,6 +157,19 @@ namespace Exhibition.Agent.Show
                         states.Remove(state.Key);
                         return;
                     }
+                }
+            }
+        }
+        public void UpgradeLayout(Window[] windows)
+        {
+            this.Windows = windows;
+            foreach (var window in windows)
+            {
+                var state = this.states.FirstOrDefault(o => o.Value.Id == window.Id);
+                if (state.Value != null)
+                {
+                    state.Value.Window = window;
+
                 }
             }
         }

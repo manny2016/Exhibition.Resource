@@ -24,10 +24,51 @@ namespace Exhibition.Agent.Show
         {
             InitializeComponent();
             this.Load += ForumMain_Load;
-            this.LoadWindowConfiguration();
+            AgentHost.ShowLayoutInfo += AgentHost_ShowLayoutInfo;
+            AgentHost.UpgradeLayoutInfo += AgentHost_UpgradeLayoutInfo;
             this.KeyPreview = true;
             this.KeyUp += ForumMain_KeyUp;
 
+        }
+
+        private void AgentHost_UpgradeLayoutInfo(object sender, LayoutinfoEventArgs e)
+        {
+            if (this.InvokeRequired)
+            {
+                LayoutInfoEventHandler handler = new LayoutInfoEventHandler(AgentHost_UpgradeLayoutInfo);
+                handler.Invoke(sender, e);
+            }
+            else
+            {
+                var monitors = e.Windows.Select(o => o.Monitor).Distinct();              
+                foreach (var idx in monitors)
+                {
+                    if (this.states.ContainsKey(idx))
+                    {
+                        states[idx].UpgradeLayout(e.Windows.Where(o => o.Monitor == idx).ToArray());
+                    }
+                
+                }
+            }
+        }
+
+        private void AgentHost_ShowLayoutInfo(object sender, LayoutinfoEventArgs e)
+        {
+            if(this.InvokeRequired)
+            {
+              LayoutInfoEventHandler handler = new LayoutInfoEventHandler(this.AgentHost_ShowLayoutInfo);
+                this.Invoke(handler, sender, e);
+            }
+            else
+            {
+                var monitors = e.Windows.Select(o => o.Monitor).Distinct();
+                foreach (var monitor in monitors)
+                {
+                    var info = new FrmLayoutInfo(monitor, e.Windows.Where(o => o.Monitor == monitor).ToArray());
+                    info.Show();
+                }
+            }
+          
         }
 
         private void ForumMain_KeyUp(object sender, KeyEventArgs e)
@@ -42,7 +83,6 @@ namespace Exhibition.Agent.Show
 
         private void ForumMain_Load(object sender, EventArgs e)
         {
-
             this.LoadWindowConfiguration();
         }
 
@@ -58,8 +98,7 @@ namespace Exhibition.Agent.Show
                   http.ContentType = "application/json; charset=utf-8";
                   var data = new
                   {
-                   
-                     
+                      TerminalTypes = new TerminalTypes[] { TerminalTypes.MediaPlayer }
                   };
                   using (var stream = http.GetRequestStream())
                   {
@@ -71,22 +110,20 @@ namespace Exhibition.Agent.Show
                   return http;
               });
             if (result.Data.Length == 0) throw new ArgumentOutOfRangeException("cant find any terminals configuration from server");
-            foreach (var address in Dns.GetHostAddresses(Dns.GetHostName()).Where(o => o.AddressFamily == AddressFamily.InterNetwork))
+            var address = Dns.GetHostAddresses(Dns.GetHostName()).Where(o => o.AddressFamily == AddressFamily.InterNetwork)
+                .Where(o => !string.IsNullOrEmpty(o.ToString())).Select(o => o.ToString());
+
+            var terminal = result.Data.FirstOrDefault(o => address.Any(add => o.Settings.Endpoint.IndexOf(add) >= 0));
+            if (terminal != null)
             {
-                foreach (var terminal in result.Data)
+                var monitors = terminal.Settings.Windows.Select(o => o.Monitor).Distinct();
+                foreach (var idx in monitors)
                 {
-                    if (terminal.Settings == null || string.IsNullOrEmpty(terminal.Settings.Endpoint)) continue;
-                    if (terminal.Settings.Endpoint.IndexOf(address.ToString()) >= 0)
-                    {
-                        foreach (var idx in terminal.Settings.Windows.GroupBy(o => o.Monitor).Select(o => o.Key))
-                        {
-                            states[idx] = new FromWapper(idx);
-                            states[idx].Show();
-                        }
-                        return;
-                    }
+                    states[idx] = new FromWapper(idx, terminal.Settings.Windows.Where(o => o.Monitor == idx).ToArray());
+                    states[idx].Show();
                 }
             }
+
         }
 
     }

@@ -32,8 +32,8 @@ VALUES(@name,@type,@description,@settings);";
 
         public static string GenernateUpdateScript(this IBaseTerminal terminal)
         {
-            return @"UPDATE terminal SET Type=@type, Description=@description,Settings=@settings WHERE Name=@name;
-UPDATE Directive SET Target=@target WHERE TargetName=@name";
+            return @"UPDATE terminal SET Type=@type, Description=@description,Settings=@settings WHERE Name=@name;";
+
         }
 
         public static string GenernateDeleteScript(this IBaseTerminal terminal)

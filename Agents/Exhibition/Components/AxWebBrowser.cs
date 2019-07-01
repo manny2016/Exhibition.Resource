@@ -83,7 +83,17 @@ namespace Exhibition.Components
             }
             else
             {
-                this.WebBrowser.LoadUrl(url);
+                if (resource.Type == ResourceTypes.Image)
+                {
+                    var html = Strings.HtmlShowImage.Replace("_ImageUrl_", url);
+                    this.WebBrowser.LoadString(html);
+
+                }
+                else
+                {
+                    this.WebBrowser.LoadUrl(url);
+                }
+
             }
         }
 
@@ -130,6 +140,16 @@ namespace Exhibition.Components
             int x = 0;
             int y = -100;
             this.WebBrowser.BrowserHost.SendMouseWheelEvent(new Chromium.CfxMouseEvent(), x, y);
+        }
+
+    
+
+        public void UpgradeLayout(Window window)
+        {
+            this.Size = new Size(window.Size.Width, window.Size.Height);
+            this.Location = new Point(window.Location.X, window.Location.Y);
+            this.WebBrowser.Size = new Size(window.Size.Width, window.Size.Height);
+            this.WebBrowser.Location = new Point(window.Location.X, window.Location.Y);
         }
     }
 }
