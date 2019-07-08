@@ -5,9 +5,11 @@ namespace Exhibition.Agent.Show.Models
 {
     using System.IO;
     using Exhibition.Core;
+    using System.Collections.Generic;
     public class StoredState
     {
         const string FileName = "StoredState.inf";
+
         public void Save()
         {
 
@@ -19,14 +21,34 @@ namespace Exhibition.Agent.Show.Models
                 writer.Flush();
             }
         }
+        public Dictionary<int, OperationContext> Last
+        {
+            get; set;
+        }
+        private static StoredState instance;
+        private static object lockObject = new object();
         public static StoredState Instance
         {
             get
             {
-                if (!File.Exists(FileName)) return new StoredState() { Last = null };
-                return File.ReadAllText(FileName).DeserializeToObject<StoredState>();
+                if (instance == null)
+                {
+                    lock (lockObject)
+                    {
+                        if (instance == null)
+                        {
+                            lock(lockObject)
+                            {
+                                if (!File.Exists(FileName)) return new StoredState() { Last = new Dictionary<int, OperationContext>() };
+                                instance = File.ReadAllText(FileName).DeserializeToObject<StoredState>();
+                            }                       
+                        }
+                    }
+                }
+                return instance;
+
             }
         }
-        public OperationContext Last { get; set; }
+
     }
 }

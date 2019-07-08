@@ -23,7 +23,12 @@ namespace Exhibition.Components
         private bool isAuto = false;
         public AxWebBrowser(Resource[] resources, string name)
         {
-            linked = new LinkedList<Resource>(resources.OrderBy(o => o.Name));
+            if (name == "D-01")
+                linked = new LinkedList<Resource>(resources.OrderByDescending(o => o.Name));
+            else
+                linked = new LinkedList<Resource>(resources.OrderBy(o => o.Name));
+
+         
             current = linked.First;
             this.InitializeComponent();
             this.Load += AxWebBrowser_Load;

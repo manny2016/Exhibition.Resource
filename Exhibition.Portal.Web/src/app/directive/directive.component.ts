@@ -35,6 +35,12 @@ export class DirectiveComponent {
         });
         modalRef.dismiss = (reson => { });
     }
+    public Execute(directive){
+       
+        this.service.Execute(directive).toPromise().then(res=>{
+            console.log(res);
+        });
+    }
     public Refresh() {
         const that = this;
         that.service.QueryDirectives({ search: null }).toPromise().then(res => {

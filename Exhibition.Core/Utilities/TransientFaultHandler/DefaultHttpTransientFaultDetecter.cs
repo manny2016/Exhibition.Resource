@@ -19,7 +19,7 @@
 
         public DefaultHttpTransientFaultDetecter()
             : base(DetectException) { }
-
+       
         public static bool DetectException(Exception condition,bool ifHasDetailsErrorMessageThrow)
         {
             if (condition == null)
@@ -55,6 +55,7 @@
                             return true;
                         }
                     }
+                    
                 }
             }
 

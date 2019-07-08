@@ -21,11 +21,14 @@ namespace Exhibition.Core.Services
             try
             {
                 AgentHost.TriggerDirectiveEvent(this, new OperationEventArgs() { Context = context });
-                var state = new StoredState() { Last = context };
-                state.Last.Type = DirectiveTypes.Run;
-                state.Save();
+                var copyof = context.DeepClone();
+                copyof.Type = DirectiveTypes.Run;
+                StoredState.Instance.Last[context.Directive.DefaultWindow.Id] = copyof;
+                StoredState.Instance.Save();
             }
-            catch (Exception ex) { }
+            catch (Exception ex) {
+
+            }
             return new GeneralResponse<int>()
             {
                 Success = true,

@@ -34,14 +34,19 @@ namespace Exhibition.Agent.Show
         {
             AgentHost.DirectiveReceived += AgentHost_DirectiveReceived;
             this.Locating();
-            if (StoredState.Instance.Last != null)
+            foreach (var window in this.Windows)
             {
-                AgentHost.TriggerDirectiveEvent(this, new OperationEventArgs() { Context = StoredState.Instance.Last });
+                if (StoredState.Instance.Last.ContainsKey(window.Id))
+                {
+                    var context = StoredState.Instance.Last[window.Id];
+                    AgentHost.TriggerDirectiveEvent(this, new OperationEventArgs() { Context = context });
+                }
             }
 
         }
         private void Locating()
         {
+            if (this.DefaultMonitor >= Screen.AllScreens.Length) return;
             var screen = Screen.AllScreens[this.DefaultMonitor];
             this.Location = new Point(screen.Bounds.X, screen.Bounds.Y);
             this.Top = 0;
@@ -64,13 +69,7 @@ namespace Exhibition.Agent.Show
         private void Run(object sender, Show.Models.OperationContext context)
         {
             if (context.Directive.DefaultWindow.Monitor != this.DefaultMonitor) return;
-            //foreach(var label in this.Controls)
-            //{
-            //    if(label is Label)
-            //    {
-            //        this.Controls.Remove(label as Control);
-            //    }
-            //}
+            if (context.Directive.Resources.Length.Equals(0)) return;
             var name = context.Directive.Name;
             switch (context.Type)
             {
@@ -130,6 +129,7 @@ namespace Exhibition.Agent.Show
                 case ResourceTypes.TextPlain:
                 case ResourceTypes.Image:
                 case ResourceTypes.Video:
+              
                     control = new AxWebBrowser(resources, name);
                     break;
                 case ResourceTypes.Folder:
@@ -169,7 +169,6 @@ namespace Exhibition.Agent.Show
                 if (state.Value != null)
                 {
                     state.Value.Window = window;
-
                 }
             }
         }

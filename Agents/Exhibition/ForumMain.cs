@@ -40,23 +40,23 @@ namespace Exhibition.Agent.Show
             }
             else
             {
-                var monitors = e.Windows.Select(o => o.Monitor).Distinct();              
+                var monitors = e.Windows.Select(o => o.Monitor).Distinct();
                 foreach (var idx in monitors)
                 {
                     if (this.states.ContainsKey(idx))
                     {
                         states[idx].UpgradeLayout(e.Windows.Where(o => o.Monitor == idx).ToArray());
                     }
-                
+
                 }
             }
         }
 
         private void AgentHost_ShowLayoutInfo(object sender, LayoutinfoEventArgs e)
         {
-            if(this.InvokeRequired)
+            if (this.InvokeRequired)
             {
-              LayoutInfoEventHandler handler = new LayoutInfoEventHandler(this.AgentHost_ShowLayoutInfo);
+                LayoutInfoEventHandler handler = new LayoutInfoEventHandler(this.AgentHost_ShowLayoutInfo);
                 this.Invoke(handler, sender, e);
             }
             else
@@ -68,7 +68,7 @@ namespace Exhibition.Agent.Show
                     info.Show();
                 }
             }
-          
+
         }
 
         private void ForumMain_KeyUp(object sender, KeyEventArgs e)
@@ -90,7 +90,6 @@ namespace Exhibition.Agent.Show
 
         private void LoadWindowConfiguration()
         {
-
             var url = string.Format(AgentHost.Api, "QueryTerminals");
             var result = url.GetUriJsonContent<GeneralResponse<MediaPlayerTerminal[]>>((http) =>
               {
@@ -123,7 +122,6 @@ namespace Exhibition.Agent.Show
                     states[idx].Show();
                 }
             }
-
         }
 
     }

@@ -7,7 +7,7 @@ import { Subscription } from 'rxjs'
 
 
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-import { environment } from 'environments/environment.prod';
+import { environment } from 'environments/environment';
 
 declare var $: any;
 class DataTablesResponse {
