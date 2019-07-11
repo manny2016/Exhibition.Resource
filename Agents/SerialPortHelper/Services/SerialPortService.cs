@@ -139,9 +139,9 @@ namespace SerialPortHelper.Services
                 {
                     this.Read(context, queries, (replies) =>
                      {
+                         Logger.Warn($"Current position {BitConverter.ToString(replies)}");
                          if (replies != null && this.directives[context.Name].TryDequeue(out DirectiveQueueContext directive))
                          {                             
-                             Logger.Warn($"Current position {BitConverter.ToString(replies)}");
                              directive.Buffers[1] = replies[1];
                              context.SerialPort.Write(directive.Buffers, 0, directive.Buffers.Length);
                              Logger.Info($"Send move directive {BitConverter.ToString(directive.Buffers)}");
