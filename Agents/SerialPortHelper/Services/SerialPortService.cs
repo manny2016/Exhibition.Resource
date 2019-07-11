@@ -27,7 +27,15 @@ namespace SerialPortHelper.Services
         private AutoResetEvent Sinal = new AutoResetEvent(true);
         public ListenStates State { get; private set; }
         WaitHandle waitHandle = new AutoResetEvent(true);
+        private readonly byte[] queries = "22 00 00 00 0A".Split(' ').Select((ctx) =>
+        {
+            return byte.Parse(ctx, System.Globalization.NumberStyles.HexNumber);
+        }).ToArray();
+        private readonly byte[] allSoundOff = "11 A8 B0 00 0A".Split(' ').Select((ctx) =>
+        {
+            return byte.Parse(ctx, System.Globalization.NumberStyles.HexNumber);
 
+        }).ToArray();
         public SerialPortService(
             IEnumerable<SerialPortSettings> settings,
             WorkflowDescriptor descriptor)
@@ -59,16 +67,11 @@ namespace SerialPortHelper.Services
                 scheduler.Start();
             }
         }
-        private void QueryStates(SerialPortWorkContext context, Action<byte[]> action)
+        private void Read(SerialPortWorkContext context, byte[] buffers, Action<byte[]> action)
         {
             try
-            {
-                var queryState = "22 00 00 00 0A".Split(' ').Select((ctx) =>
-                {
-                    return byte.Parse(ctx, System.Globalization.NumberStyles.HexNumber);
-                }).ToArray();
-                context.SerialPort.Write(queryState, 0, queryState.Length);
-                Logger.Info($"Write query directive;{BitConverter.ToString(queryState)}");
+            {              
+                context.SerialPort.Write(buffers, 0, buffers.Length);
                 Thread.CurrentThread.Join(500);
                 var reply = new byte[64];
                 var read = context.SerialPort.Read(reply, 0, reply.Length);
@@ -131,50 +134,29 @@ namespace SerialPortHelper.Services
         {
             try
             {
-                this.Sinal.WaitOne();
-                if (!this.directives.ContainsKey(context.Name) || this.directives[context.Name].Count.Equals(0))
+                this.Sinal.WaitOne();                
+                if (this.descriptor.MoveSerialPorts.Any(o => o.Equals(context.SerialPort.PortName)))
                 {
-                    //Logger.Warn($"Directive queue is empty on serial port:{context.Name};");
-                    return;
+                    this.Read(context, queries, (replies) =>
+                     {
+                         if (replies != null && this.directives[context.Name].TryDequeue(out DirectiveQueueContext directive))
+                         {                             
+                             Logger.Warn($"Current position {BitConverter.ToString(replies)}");
+                             directive.Buffers[1] = replies[1];
+                             context.SerialPort.Write(directive.Buffers, 0, directive.Buffers.Length);
+                             Logger.Info($"Send move directive {BitConverter.ToString(directive.Buffers)}");
+                             this.DoWorkflow(directive.Name);
+                         }
+                     });
                 }
-                if (this.directives[context.Name].TryDequeue(out DirectiveQueueContext directive))
+                else
                 {
-                    var type = this.descriptor.DirectiveTypeMapping(directive.Name);
-                    switch (type)
+                    if (this.directives[context.Name].TryDequeue(out DirectiveQueueContext directive))
                     {
-                        case DirectiveTypes.Move:
-                            this.QueryStates(context, (replies) =>
-                            {
-                                if (replies != null)
-                                {
-                                    Logger.Warn($"Current position {BitConverter.ToString(replies)}");
-                                    directive.Buffers[1] = replies[1];
-                                    context.SerialPort.Write(directive.Buffers, 0, directive.Buffers.Length);
-                                    Logger.Info($"Send move directive {BitConverter.ToString(directive.Buffers)}");
-                                }
-                                else
-                                {
-                                    Logger.Warn("Query postion failed. Will ignore this directive");
-                                }
-                                 this.DoWorkflow(directive.Name);
-                            });
-
-                            break;
-                        case DirectiveTypes.SoundOnOff:
-                            var turnoff = "11 A8 B0 00 0A".Split(' ').Select((ctx) =>
-                            {
-                                return byte.Parse(ctx, System.Globalization.NumberStyles.HexNumber);
-
-                            }).ToArray();
-                            context.SerialPort.Write(turnoff, 0, turnoff.Length);
-                            Thread.CurrentThread.Join(500);
-                            context.SerialPort.Write(directive.Buffers, 0, turnoff.Length);
-                            Logger.Info($"Write sound On/Off directive on port {context.SerialPort.PortName}");
-                            break;
-                        case DirectiveTypes.MonitorOnOff:
-                        case DirectiveTypes.Unknow:
-                        default:
-                            break;
+                        this.Read(context, allSoundOff, (replies) =>
+                        {
+                            context.SerialPort.Write(directive.Buffers, 0, directive.Buffers.Length);
+                        });
                     }
                 }
             }
@@ -209,7 +191,7 @@ namespace SerialPortHelper.Services
                 directives[settings.PortName].Enqueue(context);
             }
         }
-        private  void DoWorkflow(string directiveName)
+        private void DoWorkflow(string directiveName)
         {
             foreach (var descriptorObject in this.descriptor.Descriptors
                 .Where(o => o.Condition.Equals(directiveName, StringComparison.OrdinalIgnoreCase)))
