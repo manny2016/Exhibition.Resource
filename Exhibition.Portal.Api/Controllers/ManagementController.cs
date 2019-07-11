@@ -12,6 +12,7 @@ namespace Exhibition.Portal.Api.Controllers
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Text;
     using System.Threading.Tasks;
     using Models = Exhibition.Core.Models;
 
@@ -20,12 +21,12 @@ namespace Exhibition.Portal.Api.Controllers
     {
         private readonly IManagementService service;
         private readonly IServiceProvider provider;
-        public ManagementController(IManagementService service,IServiceProvider provider)
+        public ManagementController(IManagementService service, IServiceProvider provider)
         {
             this.service = service;
             this.provider = provider;
         }
-        
+
         private static readonly log4net.ILog Logger = log4net.LogManager.GetLogger(typeof(ManagementController));
         [Route("api/mgr/GetFileSystem"), HttpPost, HttpOptions]
         public QueryFileSystemResponse GetFileSystem(QueryFilter filter)
@@ -159,8 +160,42 @@ namespace Exhibition.Portal.Api.Controllers
         [Route("api/mgr/CreateOrUpdateMediaPlayerTerminal"), HttpPost, HttpOptions]
         public GeneralResponse<int> CreateOrUpdateMediaPlayerTerminal(MediaPlayerTerminal terminal)
         {
-            service.CreateOrUpdate(terminal);
-            return new GeneralResponse<int>();
+            try
+            {
+                service.CreateOrUpdate(terminal);
+
+                var url = string.Concat(terminal.Settings.Endpoint.TrimEnd("/Run".ToCharArray()), "/UpgradeLayout");
+                if (!string.IsNullOrEmpty(url))
+                {
+                    url.GetUriContent((http) =>
+                    {
+                        http.Method = "POST";
+                        var body = terminal.Settings.Windows.SerializeToJson();
+                        http.ContentType = "application/json";
+                        using (var stream = http.GetRequestStream())
+                        {
+                            var buffers = UTF8Encoding.Default.GetBytes(body);
+                            stream.Write(buffers, 0, buffers.Length);
+                            stream.Flush();
+                        }
+                        return http;
+                    });
+                }
+                return new GeneralResponse<int>();
+            }
+            catch (Exception ex)
+            {
+                return new GeneralResponse<int>()
+                {
+                    Data = -1,
+                    Success = false,
+                    ErrorMsg = ex.Message
+
+                };
+            }
+
+
+
         }
 
         [Route("api/mgr/CreateOrUpdateDirective"), HttpPost, HttpOptions]
@@ -213,7 +248,7 @@ namespace Exhibition.Portal.Api.Controllers
             {
                 directive.Resources = directive.Resources.Concat(more).ToArray()
                     .Distinct(ResourceEqualityComparer.OrdinalIgnoreCase)
-                    .Where(o=>o.Type!= ResourceTypes.Folder)
+                    .Where(o => o.Type != ResourceTypes.Folder)
                     .ToArray();
             }
             this.service.Run(new OperationContext() { Type = context.Type, Directive = directive });

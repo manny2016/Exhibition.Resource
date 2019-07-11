@@ -1,11 +1,11 @@
 ﻿[
   {
     "Name": "D-01",
-    "Description": "张集发布媒体控制主机",
+    "Description": "张集发布",
     "Terminal": {
-      "settings": {
-        "Ip": "192.168.0.102",
-        "Endpoint": "http://192.168.0.102/api/common/run",
+      "Settings": {
+        "Ip": "192.168.0.11",
+        "Endpoint": "http://192.168.0.11:8888/api/OperationService/Run",
         "Windows": [
           {
             "Id": 1,
@@ -14,40 +14,16 @@
               "Y": 0
             },
             "Size": {
-              "Width": 1024,
-              "Height": 768
-            },
-            "Monitor": 0
-          },
-          {
-            "Id": 2,
-            "Location": {
-              "X": 1024,
-              "Y": 0
-            },
-            "Size": {
-              "Width": 1024,
-              "Height": 768
-            },
-            "Monitor": 0
-          },
-          {
-            "Id": 2,
-            "Location": {
-              "X": 2048,
-              "Y": 0
-            },
-            "Size": {
-              "Width": 1024,
-              "Height": 768
+              "Width": 768,
+              "Height": 1280
             },
             "Monitor": 0
           }
         ]
       },
-      "name": "PC-01",
-      "description": "张集发布媒体控制主机",
-      "type": 1
+      "Name": "PC-01",
+      "Description": "张集发布",
+      "Type": 1
     },
     "DefaultWindow": {
       "Id": 1,
@@ -76,8 +52,8 @@
     "Description": "实践队伍媒体播放主机",
     "Terminal": {
       "settings": {
-        "Ip": "192.168.0.102",
-        "Endpoint": "http://192.168.0.102/api/common/run",
+        "Ip": "192.168.0.11",
+        "Endpoint": "http://192.168.0.11/api/common/run",
         "Windows": [
           {
             "Id": 1,
@@ -148,8 +124,8 @@
     "Description": "实践阵地媒体控制",
     "Terminal": {
       "settings": {
-        "Ip": "192.168.0.102",
-        "Endpoint": "http://192.168.0.102/api/common/run",
+        "Ip": "192.168.0.11",
+        "Endpoint": "http://192.168.0.11/api/common/run",
         "Windows": [
           {
             "Id": 1,
@@ -220,8 +196,8 @@
     "Description": "实践阵地滑轮媒体播放主机",
     "Terminal": {
       "settings": {
-        "Ip": "192.168.0.102",
-        "Endpoint": "http://192.168.0.102/api/common/run",
+        "Ip": "192.168.0.11",
+        "Endpoint": "http://192.168.0.11/api/common/run",
         "Windows": [
           {
             "Id": 1,
@@ -292,8 +268,8 @@
     "Description": "时代价值媒体控制主机-01",
     "Terminal": {
       "settings": {
-        "Ip": "192.168.0.102",
-        "Endpoint": "http://192.168.0.102/api/common/run",
+        "Ip": "192.168.0.11",
+        "Endpoint": "http://192.168.0.11/api/common/run",
         "Windows": [
           {
             "Id": 1,
@@ -364,8 +340,8 @@
     "Description": "时代价值媒体控制主机-02",
     "Terminal": {
       "settings": {
-        "Ip": "192.168.0.102",
-        "Endpoint": "http://192.168.0.102/api/common/run",
+        "Ip": "192.168.0.11",
+        "Endpoint": "http://192.168.0.11/api/common/run",
         "Windows": [
           {
             "Id": 1,
@@ -405,7 +381,7 @@
           }
         ]
       },
-      "name": "PC-06",
+      "name": "PC-05",
       "description": "时代价值媒体控制主机-02",
       "type": 1
     },
@@ -436,8 +412,8 @@
     "Description": "时代价值媒体控制主机-02",
     "Terminal": {
       "settings": {
-        "Ip": "192.168.0.102",
-        "Endpoint": "http://192.168.0.102/api/common/run",
+        "Ip": "192.168.0.11",
+        "Endpoint": "http://192.168.0.11/api/common/run",
         "Windows": [
           {
             "Id": 1,
@@ -477,7 +453,7 @@
           }
         ]
       },
-      "name": "PC-06",
+      "name": "PC-05",
       "description": "时代价值媒体控制主机-02",
       "type": 1
     },

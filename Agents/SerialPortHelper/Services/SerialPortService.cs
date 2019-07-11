@@ -21,9 +21,13 @@ namespace SerialPortHelper.Services
         private readonly WorkflowDescriptor descriptor;
         private Scheduler scheduler;
         private ConcurrentDictionary<string, SerialPortWorkContext> ports = new ConcurrentDictionary<string, SerialPortWorkContext>();
+        private ConcurrentDictionary<string, byte> monitorStates = new ConcurrentDictionary<string, byte>();
+        private ConcurrentDictionary<string, ConcurrentQueue<DirectiveQueueContext>> directives = new ConcurrentDictionary<string, ConcurrentQueue<DirectiveQueueContext>>();
+        //private ConcurrentQueue<byte[]> moves = new ConcurrentQueue<byte[]>();
         private AutoResetEvent Sinal = new AutoResetEvent(true);
         public ListenStates State { get; private set; }
         WaitHandle waitHandle = new AutoResetEvent(true);
+
         public SerialPortService(
             IEnumerable<SerialPortSettings> settings,
             WorkflowDescriptor descriptor)
@@ -35,7 +39,7 @@ namespace SerialPortHelper.Services
             this.descriptor = descriptor;
         }
 
-        public void Run()
+        public async void Run()
         {
             if (scheduler == null)
             {
@@ -46,21 +50,46 @@ namespace SerialPortHelper.Services
                     {
                         while (cancellation.IsCancellationRequested == false)
                         {
-                            try
-                            {
-                                var context = OpenSerialPort(setting);                                                                
-                            }                            
-                            catch (Exception ex)
-                            {                                
-                                Logger.Error(ex.SerializeToJson());
-                            }
-                            Thread.CurrentThread.Join(1000);
+                            var context = OpenSerialPort(setting);
+                            this.DoWork(context);
                         }
                     });
                     this.State = ListenStates.Stoped;
                 });
                 scheduler.Start();
             }
+        }
+        private void QueryStates(SerialPortWorkContext context, Action<byte[]> action)
+        {
+            try
+            {
+                var queryState = "22 00 00 00 0A".Split(' ').Select((ctx) =>
+                {
+                    return byte.Parse(ctx, System.Globalization.NumberStyles.HexNumber);
+                }).ToArray();
+                context.SerialPort.Write(queryState, 0, queryState.Length);
+                Logger.Info($"Write query directive;{BitConverter.ToString(queryState)}");
+                Thread.CurrentThread.Join(500);
+                var reply = new byte[64];
+                var read = context.SerialPort.Read(reply, 0, reply.Length);
+                if (read > 0)
+                {
+                    action?.Invoke(reply.Skip(0).Take(read).ToArray());
+                }
+                else
+                {
+                    action?.Invoke(null);
+                }
+            }
+            catch (TimeoutException ex)
+            {
+                Logger.Warn($"Read time out on {context.SerialPort.PortName}");
+            }
+            catch (Exception ex)
+            {
+                Logger.Error($"UnKnow exception {ex.SerializeToJson()}");
+            }
+
         }
         public void Abort()
         {
@@ -86,12 +115,9 @@ namespace SerialPortHelper.Services
                     lock (lockObject)
                     {
                         var serial = new SerialPort(settings.PortName,
-                            settings.BaudRate,
-                            settings.Parity,
-                            settings.DataBits);
-                        serial.ReadTimeout = 500;
-                        serial.WriteTimeout = 500;
-                        serial.Handshake = Handshake.XOnXOff;
+                          9600, Parity.None,
+                            8, StopBits.One);
+
                         serial.Open();
                         ports[settings.PortName] = new SerialPortWorkContext(settings.PortName, serial);
                         Logger.Info($"Open SerialPort {settings.PortName}");
@@ -101,186 +127,107 @@ namespace SerialPortHelper.Services
             }
         }
 
-        public async void WriteMoveAsync(SerialPortWorkContext context, byte[] buffers)
+        private void DoWork(SerialPortWorkContext context)
         {
-            var queryState = "22 A3 A4 A1 0A".Split(' ').Select((ctx) =>
+            try
             {
-                return byte.Parse(ctx, System.Globalization.NumberStyles.HexNumber);
-            }).ToArray();
-            context.SerialPort.Write(buffers, 0, buffers.Length);
-            //Query current postion.
-            await this.ReadAsync(context, (ctx, reply) =>
-            {
-                buffers[1] = reply[1];
-                context.SerialPort.Write(buffers, 0, buffers.Length);
-                this.ReadAsync(context, (c, b) =>
+                this.Sinal.WaitOne();
+                if (!this.directives.ContainsKey(context.Name) || this.directives[context.Name].Count.Equals(0))
                 {
-                    var descriptorObject = this.descriptor.Descriptors.FirstOrDefault(o => o.Context.Name.Equals(context.DirectiveName));
-                    if (descriptorObject != null && BitConverter.ToString(b).Equals(descriptorObject.Condition))
+                    //Logger.Warn($"Directive queue is empty on serial port:{context.Name};");
+                    return;
+                }
+                if (this.directives[context.Name].TryDequeue(out DirectiveQueueContext directive))
+                {
+                    var type = this.descriptor.DirectiveTypeMapping(directive.Name);
+                    switch (type)
                     {
-                        this.descriptor.Endpoint.GetUriJsonContent<dynamic>((http) =>
-                        {
-                            http.Method = "POST";
-                            http.ContentType = "application/json";
-                            var data = descriptorObject.Context.SerializeToJson();
-                            using (var stream = http.GetRequestStream())
+                        case DirectiveTypes.Move:
+                            this.QueryStates(context, (replies) =>
                             {
-                                var bytes = System.Text.UTF8Encoding.Default.GetBytes(data);
-                                stream.Write(bytes, 0, bytes.Length);
-                                stream.Flush();
-                            }
-                            return http;
-                        });
-                    }
+                                if (replies != null)
+                                {
+                                    Logger.Warn($"Current position {BitConverter.ToString(replies)}");
+                                    directive.Buffers[1] = replies[1];
+                                    context.SerialPort.Write(directive.Buffers, 0, directive.Buffers.Length);
+                                    Logger.Info($"Send move directive {BitConverter.ToString(directive.Buffers)}");
+                                }
+                                else
+                                {
+                                    Logger.Warn("Query postion failed. Will ignore this directive");
+                                }
+                                 this.DoWorkflow(directive.Name);
+                            });
 
-                }, 180).GetAwaiter().GetResult();
-                this.Sinal.Set();
-            });
-        }
-        public async void WritePowerAnsy(SerialPortWorkContext context, byte[] buffers)
-        {
-            context.SerialPort.Write(buffers, 0, buffers.Length);
-            await this.ReadAsync(context, (ctx, bytes) =>
+                            break;
+                        case DirectiveTypes.SoundOnOff:
+                            var turnoff = "11 A8 B0 00 0A".Split(' ').Select((ctx) =>
+                            {
+                                return byte.Parse(ctx, System.Globalization.NumberStyles.HexNumber);
+
+                            }).ToArray();
+                            context.SerialPort.Write(turnoff, 0, turnoff.Length);
+                            Thread.CurrentThread.Join(500);
+                            context.SerialPort.Write(directive.Buffers, 0, turnoff.Length);
+                            Logger.Info($"Write sound On/Off directive on port {context.SerialPort.PortName}");
+                            break;
+                        case DirectiveTypes.MonitorOnOff:
+                        case DirectiveTypes.Unknow:
+                        default:
+                            break;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex);
+            }
+            finally
             {
                 this.Sinal.Set();
-            });
+            }
         }
+
         public void Send(
             string directiveName,
             SerialPortSettings settings,
             byte[] buffers)
         {
-            this.Sinal.WaitOne();
-            var context = ports[settings.PortName];
-            if (context.Useable())
+            var context = new DirectiveQueueContext()
             {
-                var type = this.descriptor.DirectiveTypeMapping(directiveName);
-                context.DirectiveName = directiveName;
-                switch (type)
-                {
-                    case DirectiveTypes.Move:
-                        this.WriteMoveAsync(context, buffers);
-                        break;
-                    case DirectiveTypes.Power:
-                        this.WritePowerAnsy(context, buffers);
-                        break;
-                    case DirectiveTypes.Unknow:
-                    default:
-                        Logger.Warn($"Unknow directive type ignore it;Directive Name: {directiveName}");
-                        break;
-                }
+                PortName = settings.PortName,
+                Buffers = buffers,
+                Name = directiveName
+            };
+            if (!directives.ContainsKey(settings.PortName))
+            {
+                directives[settings.PortName] = new ConcurrentQueue<DirectiveQueueContext>();
+                directives[settings.PortName].Enqueue(context);
             }
             else
-            {                
-                this.Sinal.Set();
-            }            
-        }
-
-        private void WorkflowProcessing(string portName, byte[] data)
-        {
-            var context = this.ports[portName];
-            if (context.Type == ProcessTypes.None) return;
-            try
             {
-
-                Logger.Info($"received data from {portName};({data.Length})");
-                var hex = BitConverter.ToString(data);
-                var matched = this.descriptor.Descriptors.FirstOrDefault((ctx) =>
+                directives[settings.PortName].Enqueue(context);
+            }
+        }
+        private  void DoWorkflow(string directiveName)
+        {
+            foreach (var descriptorObject in this.descriptor.Descriptors
+                .Where(o => o.Condition.Equals(directiveName, StringComparison.OrdinalIgnoreCase)))
+            {
+                this.descriptor.Endpoint.GetUriJsonContent<GeneralResponse<int>>((http) =>
                 {
-                    return ctx.Condition.Equals(hex, StringComparison.OrdinalIgnoreCase) &&
-                    ctx.Name.Equals(this.ports[portName].Name, StringComparison.OrdinalIgnoreCase);
+                    http.Method = "POST";
+                    http.ContentType = "application/json";
+                    var data = descriptorObject.Context.SerializeToJson();
+                    using (var stream = http.GetRequestStream())
+                    {
+                        var bytes = System.Text.UTF8Encoding.Default.GetBytes(data);
+                        stream.Write(bytes, 0, bytes.Length);
+                        stream.Flush();
+                    }
+                    return http;
                 });
-                if (matched != null)
-                {
-                    var result = this.descriptor.Endpoint.GetUriJsonContent<GeneralResponse<int>>((http) =>
-                    {
-                        http.Method = "POST";
-                        http.ContentType = "application/json";
-                        using (var stream = http.GetRequestStream())
-                        {
-                            var buffers = System.Text.UTF8Encoding.Default.GetBytes(matched.Context.SerializeToJson());
-                            stream.Write(buffers, 0, buffers.Length);
-                            stream.Flush();
-                        }
-                        return http;
-                    });
-                    Logger.Info($"Matched workflow condition and executed. result:{result.Success}");
-                }
-                else
-                {
-                    Logger.Warn($"Can't matche any workflow condition ignore data");
-                }
-            }
-            catch (Exception ex)
-            {
-                Logger.Error($"Issue hanppend on proccess workflow. data:{BitConverter.ToString(data)}");
             }
         }
-
-        private void QueryStateAndReadfeedback(SerialPortSettings settings, Action<SerialPortSettings, byte[]> feedback)
-        {
-            this.Sinal.WaitOne();
-            var context = ports[settings.PortName];
-            if (context.Useable())
-            {
-
-                var queryState = "22 A3 A4 A1 0A".Split(' ').Select((ctx) =>
-                {
-                    return byte.Parse(ctx, System.Globalization.NumberStyles.HexNumber);
-                }).ToArray();
-                ports[settings.PortName].SerialPort.Write(queryState, 0, queryState.Length);
-                var timeout = DateTime.Now;
-                do
-                {
-                    Thread.CurrentThread.Join(500);
-                    var states = new byte[1024];
-                    var retnVal = ports[settings.PortName].SerialPort.Read(states, 0, states.Length);
-                    if (retnVal > 0)
-                    {
-                        Logger.Info($"Query current postion and return {BitConverter.ToString(states)}");
-                        feedback(settings, states.Skip(0).Take(retnVal).ToArray());
-                        break;
-                    }
-                } while (DateTime.Now.Subtract(timeout).TotalSeconds < 3);
-            }
-            this.Sinal.Set();
-        }
-
-        /// <summary>
-        /// Read Serial Port data by SerialPortSettings
-        /// </summary>
-        /// <param name="context"></param>
-        /// <param name="callback"></param>
-        /// <param name="timeout">timeout default value is 5 second</param>
-        /// <returns></returns>
-        private async Task<int> ReadAsync(
-            SerialPortWorkContext context,
-            Action<SerialPortWorkContext, byte[]> callback = null,
-            int timeout = 5)
-        {
-            var startRead = DateTime.Now;
-            int iReadBytes = 0;
-            do
-            {
-                Thread.CurrentThread.Join(1000);
-                try
-                {
-                    var buffers = new byte[64];
-
-                    iReadBytes = context.SerialPort.Read(buffers, 0, buffers.Length);
-                    if (iReadBytes > 0)
-                    {
-                        callback?.Invoke(context, buffers.Skip(0).Take(iReadBytes).ToArray());
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Logger.Error($"Error happened on get reply on {context.Name}. DirectiveName:{context.DirectiveName}");
-                }
-
-            } while (DateTime.Now.Subtract(startRead).TotalSeconds < 5 && iReadBytes.Equals(0));
-            return iReadBytes;
-        }
-
     }
 }

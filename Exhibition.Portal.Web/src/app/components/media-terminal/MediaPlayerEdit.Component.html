@@ -32,22 +32,27 @@
     <h6>播放窗口设置</h6>
 
     <div class="row" *ngFor="let window of current.settings.windows">
-        <div class="col-sm-3">
+            <div class="col-sm-4">
+                    <mat-form-field class="example-full-width">
+                        <input type="text" matInput placeholder="监视器" [(ngModel)]="window.monitor" value="{{window.monitor}}">
+                    </mat-form-field>
+                </div>
+        <div class="col-sm-2">
             <mat-form-field class="example-full-width">
                 <input type="text" matInput placeholder="横坐标(X)" [(ngModel)]="window.location.x" value="{{window.location.x}}">
             </mat-form-field>
         </div>
-        <div class="col-sm-3">
+        <div class="col-sm-2">
             <mat-form-field class="example-full-width">
                 <input matInput placeholder="纵坐标(Y)" [(ngModel)]="window.location.y" value="{{window.location.y}}">
             </mat-form-field>
         </div>
-        <div class="col-sm-3">
+        <div class="col-sm-2">
             <mat-form-field class="example-full-width">
                 <input matInput placeholder="宽度(width)" [(ngModel)]="window.size.width" value="{{window.size.width}}">
             </mat-form-field>
         </div>
-        <div class="col-sm-3">
+        <div class="col-sm-2">
             <mat-form-field class="example-full-width">
                 <input matInput placeholder="高度(Height)" [(ngModel)]="window.size.height" value="{{window.size.height}}">
             </mat-form-field>

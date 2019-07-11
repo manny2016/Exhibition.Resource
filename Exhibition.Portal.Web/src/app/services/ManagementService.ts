@@ -2,7 +2,7 @@ import { Injectable, EventEmitter, Output } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { environment } from '../../environments/environment.prod'
+import { environment } from '../../environments/environment'
 // import { Sidebar } from '../models/Sidebar';
 // import { Resource } from 'app/models/Resource'; 
 // import { QueryFilter, SQLiteFilter } from 'app/models/queryFilter';
@@ -135,5 +135,9 @@ export class ManagementService {
         if (type == -1) { return "不支持的设备"; }
         if (type == 1) { return "媒体播放机"; }
         if (type == 2) { return "PLC中控设备"; }
+    }
+    public Execute(directive:any):Observable<any>{
+        const url = environment.api+"Execute";
+        return this.https.post(url,{Name:directive.name,Type:1});
     }
 }

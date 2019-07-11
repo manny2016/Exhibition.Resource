@@ -10,6 +10,7 @@ namespace SerialPortHelper
     {
         Unknow = 0,
         Move = 1,
-        Power = 2,
+        SoundOnOff = 2,
+        MonitorOnOff = 3
     }
 }

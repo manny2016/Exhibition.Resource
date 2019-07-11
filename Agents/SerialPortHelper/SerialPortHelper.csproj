@@ -13,7 +13,7 @@
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>D:\Workspace\wwwroot\Helper\</PublishUrl>
+    <PublishUrl>D:\Workspace\wwwroot\SerialPortHelper\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -23,7 +23,7 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationRevision>5</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -146,6 +146,7 @@
     <Compile Include="Core\Enum\DetectionTypes.cs" />
     <Compile Include="Core\Enum\DirectiveTypes.cs" />
     <Compile Include="Core\Enum\ListenStates.cs" />
+    <Compile Include="Core\Models\DirectiveQueueContext.cs" />
     <Compile Include="Core\Models\SerialPortWorkContext.cs" />
     <Compile Include="Core\Models\OperationContext.cs" />
     <Compile Include="Core\Models\GeneralResponse.cs" />

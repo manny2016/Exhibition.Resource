@@ -5,7 +5,7 @@
 
 export const environment = {
   production: false,
-  api: "https://localhost:44378/api/mgr/",
+  api: "http://localhost:8080/api/mgr/",
   types: [
     { key: "1", text: "开机" },
     { key: "2", text: "关机" },

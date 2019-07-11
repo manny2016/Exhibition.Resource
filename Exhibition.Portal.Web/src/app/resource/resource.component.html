@@ -47,9 +47,8 @@
                                                 <i class="material-icons">{{getIcoName(resource.type)}}</i>
                                                 {{ resource.name }}</a>
 
-                                            <mat-form-field class="example-full-width" *ngIf="resource.editable"
-                                                type="text" [ngModel]="edittingContext"                                               >
-                                                <input matInput placeholder="#Ip" value="{{resource.name}}"  (keypress)="OnInputBoxKeyPress($event,resource)">
+                                            <mat-form-field class="example-full-width" *ngIf="resource.editable"                                                                                              >
+                                                <input matInput  type="text" [ngModel]="edittingContext"  placeholder="输入名称" value="{{resource.name}}"  (keypress)="OnInputBoxKeyPress($event,resource)">
                                             </mat-form-field>
                                         </td>
                                         <td>{{ resource.fullName }}</td>

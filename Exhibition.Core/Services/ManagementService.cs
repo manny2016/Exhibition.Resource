@@ -10,6 +10,8 @@
     using Microsoft.AspNetCore.Http;
     using System;
     using Dapper;
+    using Exhibition.Core.Models;
+
     public class ManagementService : IManagementService
     {
         #region FileSystem Management
@@ -118,7 +120,7 @@
         {
             var current = Path.Combine(workspace.ServerMap(), name);
             var type = current.GetResourceType();
-
+            var target = string.Empty;
             switch (type)
             {
                 case ResourceTypes.Folder:
@@ -129,11 +131,12 @@
                     }
                     else
                     {
-                        directory.MoveTo(Path.Combine(directory.Parent.FullName, newly));
+                        target = Path.Combine(directory.Parent.FullName, newly);
+                        directory.MoveTo(target);
                     }
                     break;
                 case ResourceTypes.Image:
-                case ResourceTypes.Video:                
+                case ResourceTypes.Video:
                 case ResourceTypes.TextPlain:
                 default:
                     var fileinfo = new FileInfo(current);
@@ -143,14 +146,16 @@
                     }
                     else
                     {
-                        fileinfo.MoveTo(Path.Combine(workspace.ServerMap(), newly));
+                        target = Path.Combine(workspace.ServerMap(), newly);
+                        fileinfo.MoveTo(target);
+
                     }
                     break;
             }
             return new Models::Resource()
             {
                 Workspace = workspace,
-                FullName = Path.Combine(current, newly).UrlMap(),
+                FullName = target.UrlMap(),
                 Name = newly,
                 Sorting = 0,
                 Type = type
@@ -195,6 +200,37 @@
                 if (database.ExecuteScalar<int>(queryString, new { @name = terminal.Name }) > 0)
                 {
                     database.Execute(terminal.GenernateUpdateScript(), terminal.GenernateParameters());
+                    queryString = "SELECT * FROM Directive WHERE TargetName=@name";
+                    var directies = database.Query<Entities::Directive>(queryString,new { @name=terminal.Name})
+                        .Select(o => o.Convert());
+
+                    foreach(var directive in directies)
+                    {
+                        var executeSqlString = "UPDATE Directive SET Target=@target,DefaultWindow=@defaultWindow WHERE name=@name;";
+                        var defaultWindow = directive.DefaultWindow;
+                        var target = terminal.SerializeToJson();                      
+                       switch(terminal.Type)
+                        {
+                            case TerminalTypes.MediaPlayer:
+                                
+                                if (directive.DefaultWindow != null)
+                                {
+                                    var mediaPlayerSettings = terminal.GetSettings().DeserializeToObject<MedaiPlayerSettings>();
+                                    defaultWindow = mediaPlayerSettings.Windows.FirstOrDefault(o => o.Id.Equals(directive.DefaultWindow.Id));
+                                    if(defaultWindow==null)
+                                    {
+                                        defaultWindow = directive.DefaultWindow;
+                                    }                               
+                                }                             
+                                break;                          
+                        }
+                        database.Execute(executeSqlString, new
+                        {
+                            @name = directive.Name,
+                            @target = terminal.SerializeToJson(),
+                            @defaultWindow = defaultWindow.SerializeToJson()
+                        });
+                    }
                 }
                 else
                 {
@@ -220,7 +256,7 @@
                         return ctx.Convert();
                     });
             }
-            
+
         }
         #endregion
 
@@ -273,7 +309,7 @@
                     break;
             }
         }
-        
+
         #endregion
     }
 }

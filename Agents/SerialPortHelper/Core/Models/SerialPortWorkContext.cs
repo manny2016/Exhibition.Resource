@@ -23,7 +23,7 @@ namespace SerialPortHelper.Models
         public string DirectiveName { get; set; }
         public ProcessTypes Type { get; set; }
         public SerialPort SerialPort { get; private set; }
-
+        
         public bool Useable()
         {
             return this.SerialPort != null && this.SerialPort.IsOpen == true;

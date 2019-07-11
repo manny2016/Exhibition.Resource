@@ -33,3 +33,8 @@
 /Test/ConsoleApp1/bin/Release/netcoreapp2.1
 /Agents/OfficialHelper/bin/Debug/netcoreapp2.1
 /Agents/OfficialHelper/obj
+/Agents/OfficialHelper/bin/Release/netcoreapp2.1
+/Agents/OfficialHelper/Properties/PublishProfiles
+/Measure/bin
+/Measure/obj/Debug
+/Measure/obj/Release

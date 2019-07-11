@@ -12,6 +12,8 @@ namespace Exhibition.Agent.Show
     public static class AgentHost
     {
         public static event OperationEventHandler DirectiveReceived;
+        public static event LayoutInfoEventHandler ShowLayoutInfo;
+        public static event LayoutInfoEventHandler UpgradeLayoutInfo;
         public static void HostOperationSerivceViaConfiguration()
         {
             var host = new ServiceHost(typeof(OperationService));
@@ -25,7 +27,14 @@ namespace Exhibition.Agent.Show
         {
             DirectiveReceived?.Invoke(sender, e);
         }
-
+        public static void TriggerShowLayoutInfoEvent(object sender,LayoutinfoEventArgs e)
+        {
+            ShowLayoutInfo?.Invoke(sender, e);
+        }
+        public static void TriggerUpgardLayout(object sender, LayoutinfoEventArgs e)
+        {
+            UpgradeLayoutInfo?.Invoke(sender, e);
+        }
         public static string Api
         {
             get

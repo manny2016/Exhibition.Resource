@@ -16,11 +16,11 @@ namespace Exhibition.Core
         /// </summary>
         Stop = 2,
         /// <summary>
-        /// 上一个
+        /// 下一个
         /// </summary>
         Next = 3,
         /// <summary>
-        /// 下一个
+        /// 上一个
         /// </summary>
         Previous = 4,
 

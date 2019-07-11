@@ -24,13 +24,11 @@ export class MediaPlayerEdit {
   public CreateOrUpdateTerminal(terminal: any) {
     const that = this;
     console.log(terminal);
-    that.service.CreateOrUpdateMediaPlayerTerminal(terminal).toPromise().then(res => {
+    that.service.CreateOrUpdateMediaPlayerTerminal(terminal).toPromise().then(res => {    
       if (res.success) {
-        that.activeModal.close("Close");
-      }
-      else {
-
-      }
+        console.log("close");
+        that.modalRef.close("Close");
+      }    
     })
     .catch(error => {
 

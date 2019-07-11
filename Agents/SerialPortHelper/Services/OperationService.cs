@@ -23,13 +23,20 @@ namespace SerialPortHelper.Services
 
         public GeneralResponse<int> Run(OperationContext context)
         {
-            Logger.Info($"Run Service Command {context.SerializeToJson()}");
-            var service = AgentHost.GetService<SerialPortService>();
-            var buffers = context.HexString.Select((ctx) =>
+            try
             {
-                return byte.Parse(ctx, System.Globalization.NumberStyles.HexNumber);
-            }).ToArray();
-            service.Send(context.Name, context.Settings, buffers);
+                Logger.Info($"Run Service Command {context.SerializeToJson()}");
+                var service = AgentHost.GetService<SerialPortService>();
+                var buffers = context.HexString.Select((ctx) =>
+                {
+                    return byte.Parse(ctx, System.Globalization.NumberStyles.HexNumber);
+                }).ToArray();
+                service.Send(context.Name, context.Settings, buffers);
+            }
+            catch(Exception ex)
+            {
+                Logger.Error(ex);
+            }            
             return new GeneralResponse<int>();
         }
 
