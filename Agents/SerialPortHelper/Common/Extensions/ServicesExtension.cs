@@ -40,9 +40,37 @@ namespace SerialPortHelper
                 {
                     Endpoint = "http://localhost:8080/api/mgr/Execute",
                     Descriptors = new Descriptor[] {
-                          new Descriptor(){  Condition="01", Context = new OperationContextforApi(){
-                               Name = "S-01",
-                                Type =1
+                          new Descriptor(){  Condition="S-15", Context = new OperationContextforApi(){
+                               Name = "D-01",
+                               Type =1
+                          } },
+                          new Descriptor(){  Condition="S-16", Context = new OperationContextforApi(){
+                               Name = "D-01",
+                               Type =1
+                          } },
+                          new Descriptor(){  Condition="S-17", Context = new OperationContextforApi(){
+                               Name = "D-01",
+                               Type =1
+                          } },
+                          new Descriptor(){  Condition="S-18", Context = new OperationContextforApi(){
+                               Name = "D-01",
+                               Type =1
+                          } },                          
+                          new Descriptor(){  Condition="S-19", Context = new OperationContextforApi(){
+                               Name = "D-01",
+                               Type =1
+                          } },                          
+                          new Descriptor(){  Condition="S-20", Context = new OperationContextforApi(){
+                               Name = "D-01",
+                               Type =1
+                          } },
+                          new Descriptor(){  Condition="S-21", Context = new OperationContextforApi(){
+                               Name = "D-01",
+                               Type =1
+                          } },
+                          new Descriptor(){  Condition="S-22", Context = new OperationContextforApi(){
+                               Name = "D-01",
+                               Type =1
                           } }
                       }
                 };
